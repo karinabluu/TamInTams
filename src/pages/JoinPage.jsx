@@ -48,23 +48,25 @@ export default function JoinPage() {
     } catch (error) {
       // 회원가입 실패 시 로직을 추가하실 수 있습니다.
       console.error('회원가입 실패:', error);
-      alert('회원가입 실패: ' + error.response.data.message);
+      // alert('회원가입 실패: ' + error.response.data.message);
     }
   };
 
   return (
     <St.JoinContainer>
       <St.Header>
-        <St.JoinSubTitle>회원가입 페이지</St.JoinSubTitle>
-        <St.JoinTitle>회원가입</St.JoinTitle>
+        <St.JoinSubTitle></St.JoinSubTitle>
+        <St.JoinTitle></St.JoinTitle>
       </St.Header>
 
       <St.Col margin="10px 0 20px">
-        <St.JoinText>이메일</St.JoinText>
+        <St.JoinText>아이디</St.JoinText>
         <JoinInput
           value={id}
           handleChange={setId}
-          errorMessage={'이메일 형식이어야 합니다.'}
+          errorMessage={
+            '아이디는 7~12자리 이상이며 특수문자와 한글은 포함되지 않습니다.'
+          }
         />
       </St.Col>
 
@@ -74,7 +76,9 @@ export default function JoinPage() {
           type="password"
           value={password}
           handleChange={setPassword}
-          errorMessage={'비밀번호는 6자리 이상이어야 합니다.'}
+          errorMessage={
+            '비밀번호는 6자리 이상이며, 특수문자 1개가 포함되어야합니다.'
+          }
         />
       </St.Col>
 
@@ -108,4 +112,148 @@ export default function JoinPage() {
       </St.JoinButton>
     </St.JoinContainer>
   );
+
+  // return (
+  //   <St.JoinContainer>
+  //     <St.Header>
+  //       <St.JoinSubTitle></St.JoinSubTitle>
+  //       <St.JoinTitle></St.JoinTitle>
+  //       {/* <img
+  //         src="img/lycos.webp"
+  //         alt="img"
+  //         style={{ width: "250px" }}
+  //         onClick={() => {
+  //           navigate("/");
+  //         }}
+  //       /> */}
+  //     </St.Header>
+
+  //     <St.Col margin="10px 0 20px">
+  //       {/* <St.Row> */}
+  //       <St.JoinText></St.JoinText>
+  //       <JoinInput
+  //         value={id}
+  //         handleChange={setId}
+  //         // handleKeyUp={validateUserId}
+  //         errorMessage={
+  //           '아이디는 7~12자리 이상이며 특수문자와 한글은 포함되지 않습니다.'
+  //         }
+  //       />
+  //       {/* </St.Row> */}
+  //     </St.Col>
+
+  //     <St.Col margin="10px 0 20px">
+  //       {/* <St.Row> */}
+  //       <St.JoinText></St.JoinText>
+  //       <JoinInput
+  //         type="password"
+  //         value={password}
+  //         handleChange={setPassword}
+  //         // handleKeyUp={validatePassword}
+  //         errorMessage={
+  //           '비밀번호는 6자리 이상이며, 특수문자 1개가 포함되어야합니다.'
+  //         }
+  //       />
+  //       {/* </St.Row> */}
+  //     </St.Col>
+
+  //     <St.Col margin="10px 0 40px">
+  //       {/* <St.Row> */}
+  //       <St.JoinText></St.JoinText>
+  //       <St.Input
+  //         type="password"
+  //         onChange={(e) => setPasswordConfirm(e.target.value)}
+  //       />
+  //       {password === passwordConfirm || (
+  //         <St.ErrorMessage>비밀번호가 동일하지 않습니다</St.ErrorMessage>
+  //       )}
+  //       {/* </St.Row> */}
+  //     </St.Col>
+  //     <St.JoinButton>
+  //       <St.Button
+  //         onClick={() => {
+  //           navigate('/');
+  //           // alert('가입을 축하합니다');
+  //         }}
+  //       >
+  //         이전으로
+  //       </St.Button>
+
+  //       <St.Button onClick={onSubmitHandler}>가입완료</St.Button>
+  //     </St.JoinButton>
+  //   </St.JoinContainer>
+  // );
 }
+
+//   return (
+//     <St.JoinContainer>
+//       <St.Header>
+//         <St.JoinSubTitle></St.JoinSubTitle>
+//         <St.JoinTitle></St.JoinTitle>
+//         {/* <img
+//           src="img/lycos.webp"
+//           alt="img"
+//           style={{ width: "250px" }}
+//           onClick={() => {
+//             navigate("/");
+//           }}
+//         /> */}
+//       </St.Header>
+
+//       <St.Col margin="10px 0 20px">
+//         {/* <St.Row> */}
+//         <St.JoinText></St.JoinText>
+//         <JoinInput
+//           value={id}
+//           handleChange={setId}
+//           // handleKeyUp={validateUserId}
+//           errorMessage={
+//             '아이디는 7~12자리 이상이며 특수문자와 한글은 포함되지 않습니다.'
+//           }
+//         />
+//         {/* </St.Row> */}
+//       </St.Col>
+
+//       <St.Col margin="10px 0 20px">
+//         {/* <St.Row> */}
+//         <St.JoinText></St.JoinText>
+//         <JoinInput
+//           type="password"
+//           value={password}
+//           handleChange={setPassword}
+//           // handleKeyUp={validatePassword}
+//           errorMessage={
+//             '비밀번호는 6자리 이상이며, 특수문자 1개가 포함되어야합니다.'
+//           }
+//         />
+//         {/* </St.Row> */}
+//       </St.Col>
+
+//       <St.Col margin="10px 0 40px">
+//         {/* <St.Row> */}
+//         <St.JoinText></St.JoinText>
+//         <St.Input
+//           type="password"
+//           onChange={(e) => setPasswordConfirm(e.target.value)}
+//         />
+//         {password === passwordConfirm || (
+//           <St.ErrorMessage>비밀번호가 동일하지 않습니다</St.ErrorMessage>
+//         )}
+//         {/* </St.Row> */}
+//       </St.Col>
+//       <St.JoinButton>
+//         <St.Button
+//           onClick={() => {
+//             navigate('/');
+//             // alert('가입을 축하합니다');
+//           }}
+//         >
+//           이전으로
+//         </St.Button>
+
+//         <St.Button onClick={onSubmitHandler}>가입완료</St.Button>
+//       </St.JoinButton>
+//     </St.JoinContainer>
+//   );
+// }
+// }

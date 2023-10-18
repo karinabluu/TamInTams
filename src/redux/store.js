@@ -1,7 +1,10 @@
-import { configureStore } from "@reduxjs/toolkit";
-import loginSlice from "../redux/slice/loginSlice";
-import joinSlice from "./slice/joinSlice";
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
+
+// Combine the reducers
+const rootReducer = combineReducers({
+  // Add other reducers here if needed
+});
 
 export const store = configureStore({
-  reducer: { login: loginSlice, join: joinSlice },
+  reducer: rootReducer,
 });
