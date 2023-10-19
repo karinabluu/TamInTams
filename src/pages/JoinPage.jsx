@@ -60,7 +60,7 @@ export default function JoinPage() {
           value={id}
           handleChange={setId}
           errorMessage={
-            '아이디는 7~12자리 이상이며 특수문자와 한글은 포함되지 않습니다.'
+            '아이디는 7자리 이상 12자리 이하이며, 특수문자와 한글은 포함되지 않습니다.'
           }
         />
       </St.Col>
@@ -72,7 +72,7 @@ export default function JoinPage() {
           value={password}
           handleChange={setPassword}
           errorMessage={
-            '비밀번호는 6자리 이상이며, 특수문자 1개가 포함되어야합니다.'
+            '비밀번호는 8자리 이상이며, 특수문자가 1개 이상 포함되어야 합니다.'
           }
         />
       </St.Col>
