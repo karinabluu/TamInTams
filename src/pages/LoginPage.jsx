@@ -4,6 +4,7 @@ import axios from 'axios';
 import JoinInput from '../components/Input/JoinInput';
 import { setToken, getToken } from '../util/token';
 import * as St from '../styles/styles';
+import { validateUserId, validatePassword } from '../util/validation';
 
 export default function LoginPage() {
   useEffect(() => {

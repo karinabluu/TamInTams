@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import JoinInput from '../components/Input/JoinInput';
 import { getToken } from '../util/token';
 import * as St from '../styles/styles';
+import { validateUserId, validatePassword } from '../util/validation';
 
 export default function JoinPage() {
   useEffect(() => {
@@ -23,6 +24,19 @@ export default function JoinPage() {
     e.preventDefault();
     if (password !== passwordConfirm) {
       alert('비밀번호와 비밀번호 확인이 서로 다릅니다.');
+      return;
+    }
+
+    if (!validateUserId(id)) {
+      alert(
+        '아이디는 7자리 이상 12자리 이하이며, 특수문자와 한글은 포함되지 않습니다.'
+      );
+      return;
+    }
+    if (!validatePassword(password)) {
+      alert(
+        '비밀번호는 8자리 이상이며, 특수문자가 1개 이상 포함되어야 합니다.'
+      );
       return;
     }
 
@@ -57,6 +71,7 @@ export default function JoinPage() {
       <St.Col margin="10px 0 20px">
         <St.JoinText>아이디</St.JoinText>
         <JoinInput
+          type="text"
           value={id}
           handleChange={setId}
           errorMessage={
