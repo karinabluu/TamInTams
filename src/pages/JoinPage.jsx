@@ -7,18 +7,18 @@ import * as St from '../styles/styles';
 import { validateUserId, validatePassword } from '../util/validation';
 
 export default function JoinPage() {
+  const [id, setId] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
+  const navigate = useNavigate();
+
   useEffect(() => {
     const token = getToken();
     if (token) {
       navigate('/main');
     }
   }, []);
-
-  const [id, setId] = useState('');
-  const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
-  const [passwordConfirm, setPasswordConfirm] = useState('');
-  const navigate = useNavigate();
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
@@ -49,6 +49,7 @@ export default function JoinPage() {
     try {
       const response = await axios.post(
         'http://3.36.132.186:3018/api/sign-up',
+        { headers: { 'Content-Type': 'application/json' } },
         userData
       );
 
