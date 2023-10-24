@@ -13,8 +13,8 @@ export default function Floor3() {
   const size = ['m2', 'm3', 'na2', 'na3']; // 크기 옵션: 중간세로, 중간가로, 나박스
   const color = ['green', 'yellow']; // 색상 옵션: 초록, 노랑(Nabox)
 
-  // 로그아웃
-
+  // 로그아웃 기능 구현
+  // 서버 연결 되면 floor2 > login 으로 바꾸기만 하면 됨
   useEffect(() => {
     const token = getToken();
     if (!token) {
