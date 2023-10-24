@@ -100,25 +100,25 @@ export const JoinContainer = styled.div`
 export const JoinRow1 = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 324px;
+  margin-left: 196px;
 `;
 
 export const JoinRow2 = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 304px;
+  margin-left: 176px;
 `;
 
 export const JoinRow3 = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 256px;
+  margin-left: 128px;
 `;
 
 export const JoinRow4 = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 276px;
+  margin-left: 148px;
 `;
 
 export const JoinSubTitle = styled.div`

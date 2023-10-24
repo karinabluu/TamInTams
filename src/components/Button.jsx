@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 // Button 컴포넌트
 
@@ -25,9 +25,9 @@ function Button({ size, color, icon, onClick, children }) {
   // colorHandler 함수는 color 매개변수에 따라 버튼의 색상 스타일을 설정합니다.
   const colorHandler = (color) => {
     switch (color) {
-      case "green":
+      case 'green':
         return `border: 1.6px solid #000000; background-color: #02c8be`; // Primary 버튼 스타일
-      case "yellow":
+      case 'yellow':
         return `border: 1.6px solid #000000; color: #000000; background-color: #8fdf40`; // Negative 버튼 스타일
     }
   };
@@ -35,15 +35,15 @@ function Button({ size, color, icon, onClick, children }) {
   // sizeHandler 함수는 size 매개변수에 따라 버튼의 크기 스타일을 설정합니다.
   const sizeHandler = (size) => {
     switch (size) {
-      case "m2":
+      case 'm2':
         return `width: 79px; height: 100px;`; // 2층 회의실 크기
-      case "m3":
+      case 'm3':
         return `width: 100px; height: 71px;`; // 3층 회의실 크기
-      case "na2":
+      case 'na2':
         return `width: 30px; height: 55px;`; // 2층 나박스 크기
-      case "na3":
+      case 'na3':
         return `width: 55px; height: 48px;`; // 2층 나박스 크기
-      case "big":
+      case 'big':
         return `width 40px; height: 120px;`; // 3층 대회의실 크기
     }
   };
