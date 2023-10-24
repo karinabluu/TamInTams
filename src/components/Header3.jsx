@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
 function Header3() {
   const navigate = useNavigate(); // 페이지간 이동
-  const nickName = '탐나는';
+  const nickName = "탐나는";
 
   return (
     <>
       <ButtonAlign>
         <ButtonWrapper>
-          <FloorButton style={{ fontSize: '50px' }}>3F</FloorButton>
+          <FloorButton style={{ fontSize: "50px" }}>3F</FloorButton>
           <span> I </span>
           <FloorButton
-            style={{ color: 'lightgrey' }}
+            style={{ color: "lightgrey" }}
             onClick={() => {
               navigate(`/Floor2`);
             }}
@@ -21,8 +21,8 @@ function Header3() {
             2F
           </FloorButton>
         </ButtonWrapper>
-        <span style={{ fontWeight: 'bold' }}>
-          {nickName ? nickName : ''} 인재님
+        <span style={{ fontWeight: "bold" }}>
+          {nickName ? nickName : ""} 인재님
         </span>
       </ButtonAlign>
     </>
@@ -50,8 +50,4 @@ const ButtonAlign = styled.div`
   align-items: baseline;
   justify-content: space-between;
   gap: 15px;
-`;
-
-const Separator = styled.span`
-  font-size: 20px;
 `;

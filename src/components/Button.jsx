@@ -36,13 +36,15 @@ function Button({ size, color, icon, onClick, children }) {
   const sizeHandler = (size) => {
     switch (size) {
       case "m2":
-        return `width: 70px; height: 100px;`; // 2층 회의실 크기
+        return `width: 79px; height: 100px;`; // 2층 회의실 크기
       case "m3":
-        return `width: 100px; height: 70px;`; // 3층 회의실 크기
+        return `width: 100px; height: 71px;`; // 3층 회의실 크기
       case "na2":
         return `width: 30px; height: 55px;`; // 2층 나박스 크기
       case "na3":
-        return `width: 45px; height: 55px;`; // 2층 나박스 크기
+        return `width: 55px; height: 48px;`; // 2층 나박스 크기
+      case "big":
+        return `width 40px; height: 120px;`; // 3층 대회의실 크기
     }
   };
 

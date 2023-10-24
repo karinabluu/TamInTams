@@ -7,6 +7,16 @@ function Header2() {
 
   const nickName = "탐나는"; // 사용자의 닉네임을 저장하는 변수
 
+  // 모달창을 띄우기 위한 유즈스테이트
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       <ButtonAlign>
@@ -56,8 +66,4 @@ const ButtonAlign = styled.div`
   align-items: baseline;
   justify-content: space-between;
   gap: 15px;
-`;
-
-const Separator = styled.span`
-  font-size: 20px;
 `;
