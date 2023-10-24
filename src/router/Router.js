@@ -1,8 +1,8 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import LoginPage from '../pages/LoginPage';
-import JoinPage from '../pages/JoinPage';
-import Floor2 from '../pages/Floor2';
-import Floor3 from '../pages/Floor3';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import LoginPage from "../pages/LoginPage";
+import JoinPage from "../pages/JoinPage";
+import Floor2 from "../pages/Floor2";
+import Floor3 from "../pages/Floor3";
 
 function Routers() {
   return (
