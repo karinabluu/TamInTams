@@ -1,17 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../components/Button';
-import Header3 from '../components/Header3';
+import Header3 from '../components/Header2';
+import { getToken } from '../util/token';
+import * as St from '../styles/styles';
+import axios from 'axios';
 
-function Floor3() {
-  const navigate = useNavigate(); // 페이지간 이동
+export default function Floor3() {
+  const navigate = useNavigate();
 
   const size = ['m2', 'm3', 'na2', 'na3']; // 크기 옵션: 중간세로, 중간가로, 나박스
   const color = ['green', 'yellow']; // 색상 옵션: 초록, 노랑(Nabox)
 
+  // 로그아웃
+
+  useEffect(() => {
+    const token = getToken();
+    if (!token) {
+      navigate('/floor3');
+    }
+  }, []);
+
+  const logOutHandler = async () => {
+    try {
+      await axios.get('http://3.36.132.186:3018/api/log-out');
+      navigate('/login');
+    } catch (error) {
+      console.error('로그아웃 실패', error);
+    }
+  };
+
   return (
     <>
+      <St.Button onClick={logOutHandler}>로그아웃</St.Button>
       <Header3 />
       <Floor3bg />
       <ButtonsSection>
@@ -40,8 +62,6 @@ function Floor3() {
     </>
   );
 }
-
-export default Floor3;
 
 //스타일드 컴포넌트 백그라운드 이미지 설정
 const Floor3bg = styled.div`

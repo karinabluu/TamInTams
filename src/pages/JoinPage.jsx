@@ -16,7 +16,7 @@ export default function JoinPage() {
   useEffect(() => {
     const token = getToken();
     if (token) {
-      navigate('/main');
+      navigate('/floor2');
     }
   }, []);
 
