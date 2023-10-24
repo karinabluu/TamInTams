@@ -1,5 +1,10 @@
 import styled, { createGlobalStyle, css } from 'styled-components';
 
+export const LoginContainer = styled.div`
+  text-align: center;
+  margin: 130px;
+`;
+
 export const ErrorMessage = styled.div`
   max-width: 250px;
   color: red;
@@ -7,25 +12,77 @@ export const ErrorMessage = styled.div`
   margin: 4px;
 `;
 
+export const LoginRow1 = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 100px;
+`;
+
+export const LoginRow2 = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 129px;
+`;
+
+export const LoginCol = styled.div`
+  padding: 70px;
+`;
+
+export const LoginTitle = styled.div`
+  font-weight: 500;
+  font-size: 55px;
+  font-weight: bold;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+`;
+
+export const LoginSubTitle = styled.div`
+  font-weight: 700;
+  font-size: 16px;
+  font-weight: border;
+`;
+
+export const LoginButton = styled.button`
+  all: unset;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 500;
+`;
+
+export const LoginBar = styled.div`
+  font-weight: 500;
+  font-size: 20px;
+`;
+
+export const LoginButtons = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  margin-left: 250px;
+`;
+
+export const Button = styled.button``;
+
+export const LoginText = styled.div`
+  font-size: 30px;
+`;
+
+export const Input = styled.input`
+  margin: 15px 0 0 10px;
+  width: 400px;
+  height: 40px;
+  font-size: 30px;
+  text-align: center;
+`;
+
 export const GlobalStyle = createGlobalStyle`
     /* background-color: #e5e5e5;
     body {
       margin: 0;
     } */
-`;
-
-export const LoginContainer = styled.div`
-  /* margin: 0 auto;
-  padding: 15px;
-  width: 700px;
-  height: 100vh;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-top: 150px;
-  align-items: center;
-  background-color: #e5e5e5; */
 `;
 
 export const MainContainer = styled.div`
@@ -94,16 +151,6 @@ export const PostWrap = styled.div`
   border-bottom: 3px solid lightgray; */
 `;
 
-export const Input = styled.input`
-  /* margin: 15px 0 0 0;
-  width: 370px;
-  height: 35px;
-  border-radius: 9px;
-  border: none;
-  font-size: 19px;
-  text-align: center; */
-`;
-
 export const InputId = styled(Input)`
   /* background-position: 7px center;
   background-repeat: no-repeat;
@@ -132,37 +179,10 @@ export const BtnWrap = styled.div`
   margin: 0 0 0 0; */
 `;
 
-export const Button = styled.button``;
-
 export const Col = styled.div`
   /* display: flex;
   flex-direction: column;
   margin: ${(props) => props && props.margin}; */
-`;
-
-export const LoginSubTitle = styled.div`
-  /* font-weight: 700;
-  font-size: 20px;
-  color: #000080; */
-`;
-
-export const LoginTitle = styled.div`
-  /* font-weight: 500;
-  font-size: 50px;
-  color: #000080; */
-`;
-
-export const LoginText = styled.div`
-  /* font-weight: 600;
-  font-size: 20px;
-  color: #000080;
-  width: 40%;
-  margin-left: -95px; */
-`;
-
-export const Row = styled.div`
-  /* display: flex;
-  align-items: center; */
 `;
 
 export const JoinSubTitle = styled.div`

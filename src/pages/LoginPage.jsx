@@ -46,37 +46,44 @@ export default function LoginPage() {
   return (
     <St.LoginContainer>
       <St.Header>
-        <St.JoinSubTitle></St.JoinSubTitle>
-        <St.LoginTitle>로그인 페이지</St.LoginTitle>
+        <St.LoginTitle>TAMINTAMS</St.LoginTitle>
+        <St.LoginSubTitle>
+          회의실 예약할 땐, 탐나는 인재 탐나는 스페이스
+        </St.LoginSubTitle>
       </St.Header>
 
-      <St.Col margin="10px 0 20px">
-        <St.JoinText>아이디</St.JoinText>
-        <JoinInput
-          value={id}
-          handleChange={setId}
-          errorMessage={
-            '아이디는 7자리 이상 12자리 이하이며, 특수문자와 한글은 포함되지 않습니다.'
-          }
-        />
-      </St.Col>
+      <St.LoginCol>
+        <St.LoginRow1>
+          <St.LoginText>아이디</St.LoginText>
+          <JoinInput
+            value={id}
+            handleChange={setId}
+            placeholder="이메일을입력하세요"
+            errorMessage={
+              '아이디는 7자리 이상 12자리 이하이며, 특수문자와 한글은 포함되지 않습니다.'
+            }
+          />
+        </St.LoginRow1>
+        <St.LoginRow2>
+          <St.LoginText>비밀번호</St.LoginText>
+          <JoinInput
+            type="password"
+            value={password}
+            handleChange={setPassword}
+            errorMessage={
+              '비밀번호는 8자리 이상이며, 특수문자가 1개 이상 포함되어야 합니다.'
+            }
+          />
+        </St.LoginRow2>
 
-      <St.Col margin="10px 0 20px">
-        <St.JoinText>비밀번호</St.JoinText>
-        <JoinInput
-          type="password"
-          value={password}
-          handleChange={setPassword}
-          errorMessage={
-            '비밀번호는 8자리 이상이며, 특수문자가 1개 이상 포함되어야 합니다.'
-          }
-        />
-      </St.Col>
-
-      <St.JoinButton>
-        <St.Button onClick={() => navigate('/join')}>회원가입</St.Button>
-        <St.Button onClick={onLoginHandler}>로그인</St.Button>
-      </St.JoinButton>
+        <St.LoginButtons>
+          <St.LoginButton onClick={() => navigate('/join')}>
+            회원가입
+          </St.LoginButton>
+          <St.LoginBar>│</St.LoginBar>
+          <St.LoginButton onClick={onLoginHandler}>로그인</St.LoginButton>
+        </St.LoginButtons>
+      </St.LoginCol>
     </St.LoginContainer>
   );
 }
