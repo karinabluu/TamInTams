@@ -1,5 +1,12 @@
 import styled, { createGlobalStyle, css } from 'styled-components';
 
+export const ErrorMessage = styled.div`
+  max-width: 250px;
+  color: red;
+  font-size: 12px;
+  margin: 4px;
+`;
+
 export const GlobalStyle = createGlobalStyle`
     /* background-color: #e5e5e5;
     body {
@@ -125,67 +132,12 @@ export const BtnWrap = styled.div`
   margin: 0 0 0 0; */
 `;
 
-// Button Theme & Button Components
-export const theme = {
-  // primary: css`
-  //   background-color: white;
-  //   color: #000080;
-  //   border-radius: 7px;
-  //   height: 40px;
-  // `,
-  // secondary: css`
-  //   background-color: #dc143c;
-  //   color: #e5e5e5;
-  //   border-radius: 7px;
-  //   height: 40px;
-  //   border: 2px solid #000080;
-  // `,
-  // thirdy: css`
-  //   background-color: #000080;
-  //   color: #e5e5e5;
-  // `,
-};
-
-export const Button = styled.button`
-  /* margin: 0 8px 0 8px;
-  width: 140px;
-  height: 35px;
-  border: none;
-  border-radius: 7px;
-  font-size: 15px;
-  font-weight: 500;
-  cursor: pointer;
-
-  &:hover {
-    filter: brightness(0.95);
-  }
-
-  ${({ buttontheme }) => buttontheme === 'primary' && theme.primary};
-  ${({ buttontheme }) => buttontheme === 'secondary' && theme.secondary};
-  ${({ buttontheme }) => buttontheme === 'thirdy' && theme.thirdy}; */
-`;
-Button.shouldForwardProp = (prop) => prop !== 'buttontheme';
-
-// export const Footer = styled.footer`
-//   padding: 21px;
-//   height: 50px;
-//   position: relative;
-//   color: gray;
-//   font-weight: 700;
-//   font-size: 13.2px;
-// `;
+export const Button = styled.button``;
 
 export const Col = styled.div`
   /* display: flex;
   flex-direction: column;
   margin: ${(props) => props && props.margin}; */
-`;
-
-export const ErrorMessage = styled.div`
-  /* max-width: 250px;
-  color: red;
-  font-size: 12px;
-  margin: 4px; */
 `;
 
 export const LoginSubTitle = styled.div`

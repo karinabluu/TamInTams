@@ -3,5 +3,3 @@
 팀원 : 양희정, 이재민, 김새롬, 오건녕, 하헌준
 
 요구사항 정의서 : https://amazing-bike-ede.notion.site/c2a79d980f3243ba8c1f772dfcdc25af?pvs=4
-
-test + 합니다
