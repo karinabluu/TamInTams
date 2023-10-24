@@ -1,10 +1,10 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import { createStore } from "redux";
+import { combineReducers } from "redux";
+import rooms from "./modules/rooms";
 
-// Combine the reducers
 const rootReducer = combineReducers({
-  // Add other reducers here if needed
+  rooms,
 });
+const store = createStore(rootReducer);
 
-export const store = configureStore({
-  reducer: rootReducer,
-});
+export default store;
