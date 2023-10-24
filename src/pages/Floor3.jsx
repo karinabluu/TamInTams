@@ -1,14 +1,14 @@
-import React from "react";
-import { Navigate, useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import Button from "./components/Button";
-import Header3 from "./components/Header3";
+import React from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import Button from '../components/Button';
+import Header3 from '../components/Header3';
 
 function Floor3() {
   const navigate = useNavigate(); // 페이지간 이동
 
-  const size = ["m2", "m3", "na2", "na3"]; // 크기 옵션: 중간세로, 중간가로, 나박스
-  const color = ["green", "yellow"]; // 색상 옵션: 초록, 노랑(Nabox)
+  const size = ['m2', 'm3', 'na2', 'na3']; // 크기 옵션: 중간세로, 중간가로, 나박스
+  const color = ['green', 'yellow']; // 색상 옵션: 초록, 노랑(Nabox)
 
   return (
     <>
@@ -45,7 +45,7 @@ export default Floor3;
 
 //스타일드 컴포넌트 백그라운드 이미지 설정
 const Floor3bg = styled.div`
-  background-image: url("/Floor3.png");
+  background-image: url('/Floor3.png');
   height: 500px;
   background-repeat: no-repeat;
   background-size: 95%;

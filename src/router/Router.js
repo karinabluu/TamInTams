@@ -1,11 +1,11 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import LoginPage from "../pages/LoginPage";
-import MainPage from "../pages/MainPage";
-import JoinPage from "../pages/JoinPage";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import LoginPage from '../pages/LoginPage';
+import MainPage from '../pages/MainPage';
+import JoinPage from '../pages/JoinPage';
 
 // 페이지 컴포넌트를 import
-import Floor2 from "../Floor2";
-import Floor3 from "../Floor3";
+import Floor2 from '../pages/Floor2';
+import Floor3 from '../pages/Floor3';
 
 function Routers() {
   return (

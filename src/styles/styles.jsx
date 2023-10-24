@@ -1,15 +1,20 @@
-import styled, { createGlobalStyle, css } from 'styled-components';
+import styled from 'styled-components';
+
+// 로그인 페이지
 
 export const LoginContainer = styled.div`
+  min-width: 800px;
+  max-width: 1200px;
   text-align: center;
   margin: 130px;
 `;
 
 export const ErrorMessage = styled.div`
-  max-width: 250px;
+  max-width: 210px;
   color: red;
   font-size: 12px;
-  margin: 4px;
+  margin: 8px;
+  display: flex;
 `;
 
 export const LoginRow1 = styled.div`
@@ -23,7 +28,7 @@ export const LoginRow2 = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 129px;
+  margin-right: 130px;
 `;
 
 export const LoginCol = styled.div`
@@ -42,6 +47,7 @@ export const LoginSubTitle = styled.div`
   font-weight: 700;
   font-size: 16px;
   font-weight: border;
+  color: #424242;
 `;
 
 export const LoginButton = styled.button`
@@ -53,7 +59,7 @@ export const LoginButton = styled.button`
 
 export const LoginBar = styled.div`
   font-weight: 500;
-  font-size: 20px;
+  font-size: 22px;
 `;
 
 export const LoginButtons = styled.div`
@@ -68,21 +74,96 @@ export const Button = styled.button``;
 
 export const LoginText = styled.div`
   font-size: 30px;
+  color: #424242;
 `;
 
 export const Input = styled.input`
-  margin: 15px 0 0 10px;
+  margin: 15px 0 0 15px;
   width: 400px;
   height: 40px;
   font-size: 30px;
   text-align: center;
+  border-width: 3px;
+  border-radius: 20px;
+  border-color: #808080;
 `;
 
-export const GlobalStyle = createGlobalStyle`
-    /* background-color: #e5e5e5;
-    body {
-      margin: 0;
-    } */
+// 회원가입 페이지
+
+export const JoinContainer = styled.div`
+  min-width: 800px;
+  max-width: 1200px;
+  text-align: center;
+  margin: 130px;
+`;
+
+export const JoinRow1 = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: 324px;
+`;
+
+export const JoinRow2 = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: 304px;
+`;
+
+export const JoinRow3 = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: 256px;
+`;
+
+export const JoinRow4 = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: 276px;
+`;
+
+export const JoinSubTitle = styled.div`
+  font-weight: 500;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  color: #424242;
+`;
+
+export const JoinTitle = styled.div`
+  font-weight: 500;
+  font-size: 50px;
+  font-weight: bold;
+`;
+
+export const JoinText = styled.div`
+  font-size: 20px;
+  color: #424242;
+`;
+
+export const JoinHeader = styled.div`
+  margin-top: -20px;
+  margin-bottom: 20px;
+`;
+
+export const JoinBar = styled.div`
+  font-weight: 500;
+  font-size: 22px;
+`;
+
+export const JoinButton = styled.button`
+  all: unset;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 500;
+`;
+
+export const JoinButtons = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  margin-left: 250px;
 `;
 
 export const MainContainer = styled.div`
@@ -97,26 +178,6 @@ export const MainContainer = styled.div`
   padding-top: 150px;
   align-items: center;
   background-color: #e5e5e5; */
-`;
-
-export const JoinContainer = styled.div`
-  /* margin: 0 auto;
-  padding: 15px;
-  width: 700px;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #000080;
-  border: 20px double #e5e5e5; */
-`;
-
-export const Header = styled.header`
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
-  margin: 10px 0 0 0; */
 `;
 
 export const Nav = styled.header`
@@ -183,31 +244,6 @@ export const Col = styled.div`
   /* display: flex;
   flex-direction: column;
   margin: ${(props) => props && props.margin}; */
-`;
-
-export const JoinSubTitle = styled.div`
-  /* font-size: 18px;
-  color: white;
-  padding-top: 70px; */
-`;
-
-export const JoinTitle = styled.div`
-  /* font-weight: 400;
-  font-size: 45px;
-  color: white; */
-`;
-
-export const JoinText = styled.div`
-  /* font-weight: 500;
-  font-size: 18px;
-  color: white;
-  font-weight: 100;
-  margin-left: -100px;
-  width: 40%; */
-`;
-
-export const JoinButton = styled.div`
-  /* padding-bottom: 70px; */
 `;
 
 export const MainTitle = styled.div`

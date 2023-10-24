@@ -64,12 +64,11 @@ export default function JoinPage() {
 
   return (
     <St.JoinContainer>
-      <St.Header>
-        <St.JoinSubTitle></St.JoinSubTitle>
-        <St.JoinTitle></St.JoinTitle>
-      </St.Header>
-
-      <St.Col margin="10px 0 20px">
+      <St.JoinHeader>
+        <St.JoinSubTitle>TAMINTAMS</St.JoinSubTitle>
+        <St.JoinTitle>회원가입</St.JoinTitle>
+      </St.JoinHeader>
+      <St.JoinRow1>
         <St.JoinText>아이디</St.JoinText>
         <JoinInput
           type="text"
@@ -79,9 +78,9 @@ export default function JoinPage() {
             '아이디는 7자리 이상 12자리 이하이며, 특수문자와 한글은 포함되지 않습니다.'
           }
         />
-      </St.Col>
+      </St.JoinRow1>
 
-      <St.Col margin="10px 0 20px">
+      <St.JoinRow2>
         <St.JoinText>비밀번호</St.JoinText>
         <JoinInput
           type="password"
@@ -91,9 +90,9 @@ export default function JoinPage() {
             '비밀번호는 8자리 이상이며, 특수문자가 1개 이상 포함되어야 합니다.'
           }
         />
-      </St.Col>
+      </St.JoinRow2>
 
-      <St.Col margin="10px 0 20px">
+      <St.JoinRow3>
         <St.JoinText>비밀번호 확인</St.JoinText>
         <St.Input
           type="password"
@@ -103,9 +102,9 @@ export default function JoinPage() {
         {password === passwordConfirm || (
           <St.ErrorMessage>비밀번호가 일치하지 않습니다.</St.ErrorMessage>
         )}
-      </St.Col>
+      </St.JoinRow3>
 
-      <St.Col margin="10px 0 20px">
+      <St.JoinRow4>
         <St.JoinText>사용자 이름</St.JoinText>
         <St.Input
           type="text"
@@ -115,12 +114,13 @@ export default function JoinPage() {
         {name.trim() === '' && (
           <St.ErrorMessage>사용자 이름을 입력하세요.</St.ErrorMessage>
         )}
-      </St.Col>
+      </St.JoinRow4>
 
-      <St.JoinButton>
-        <St.Button onClick={() => navigate('/')}>이전으로</St.Button>
-        <St.Button onClick={onSubmitHandler}>가입완료</St.Button>
-      </St.JoinButton>
+      <St.JoinButtons>
+        <St.JoinButton onClick={() => navigate('/')}>이전으로</St.JoinButton>
+        <St.JoinBar>│</St.JoinBar>
+        <St.JoinButton onClick={onSubmitHandler}>가입완료</St.JoinButton>
+      </St.JoinButtons>
     </St.JoinContainer>
   );
 }
