@@ -10,7 +10,7 @@ export default function LoginPage() {
   useEffect(() => {
     const token = getToken();
     if (token) {
-      navigate('/floor2');
+      navigate('/'); // floor2
     }
   }, []);
 
