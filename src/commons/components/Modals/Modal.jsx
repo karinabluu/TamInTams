@@ -8,6 +8,8 @@ const Modal = (props) => {
     if (selectedButtons.length === 0) {
       alert("시간을 선택해주세요!");
     } else {
+      // 예약 완료 후 closedTimes를 업데이트
+      props.updateSelectTimes(roomname, selectedButtons);
       alert("예약이 완료되었습니다!");
     }
   };

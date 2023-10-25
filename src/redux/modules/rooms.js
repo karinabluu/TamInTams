@@ -4,21 +4,21 @@ export const initialState = {
   items: [
     {
       id: uuid(),
-      name: "비양도",
+      name: "안녕",
       boolean: true,
-      closedTimes: [],
+      selectTimes: [],
     },
     {
       id: uuid(),
       name: "표선",
       boolean: true,
-      closedTimes: [],
+      selectTimes: [],
     },
     {
       id: uuid(),
       name: "Nabox",
       boolean: true,
-      closedTimes: [],
+      selectTimes: [],
     },
   ],
   modalOpen: false,
@@ -29,7 +29,7 @@ export const initialState = {
 const OPEN_MODAL = "rooms/OPEN_MODAL";
 const CLOSE_MODAL = "rooms/CLOSE_MODAL";
 const SELECT_BUTTON = "rooms/SELECT_BUTTON";
-const UPDATE_CLOSED_TIMES = "rooms/UPDATE_CLOSED_TIMES";
+const UPDATE_SELECT_TIMES = "rooms/UPDATE_SELECT_TIMES";
 
 // Action creators for modal
 
@@ -46,9 +46,9 @@ export const selectButton = (button) => ({
   payload: button,
 });
 
-export const updateClosedTimes = (roomname, updatedClosedTimes) => ({
-  type: UPDATE_CLOSED_TIMES,
-  payload: { roomname, updatedClosedTimes },
+export const updateSelectTimes = (roomname, selectTimes) => ({
+  type: UPDATE_SELECT_TIMES,
+  payload: { roomname, selectTimes },
 });
 
 // Reducer
@@ -64,16 +64,16 @@ const rooms = (state = initialState, action) => {
       const { payload: button } = action;
       return {
         ...state,
-        selectedButtons: handleSelectedButtons(state.selectedButtons, button),
+        selectedButtons: handleSelectedTimes(state.selectedButtons, button),
       };
 
-    case UPDATE_CLOSED_TIMES:
-      const { roomname, updatedClosedTimes } = action.payload;
+    case UPDATE_SELECT_TIMES:
+      const { roomname, selectTimes } = action.payload;
       return {
         ...state,
         items: state.items.map((item) =>
           item.name === roomname
-            ? { ...item, closedTimes: updatedClosedTimes }
+            ? { ...item, selectedButtons: selectTimes }
             : item
         ),
       };
@@ -83,7 +83,7 @@ const rooms = (state = initialState, action) => {
   }
 };
 
-const handleSelectedButtons = (selectedButtons, button) => {
+const handleSelectedTimes = (selectedButtons, button) => {
   if (selectedButtons.includes(button)) {
     return selectedButtons.filter((item) => item !== button);
   } else if (selectedButtons.length < 2) {
