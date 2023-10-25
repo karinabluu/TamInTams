@@ -101,10 +101,11 @@ export default function Floor2() {
 //스타일드 컴포넌트 백그라운드 이미지 설정
 const Floor2bg = styled.div`
   background-image: url('/Floor2.png');
-  height: 500px;
   background-repeat: no-repeat;
-  background-size: 95%;
-  margin-top: 5px;
+  background-attachment: local;
+  background-image: cover;
+  height: 600px;
+  /* background-position: center; */
 `;
 
 //버튼끼리 묶어주는 섹션
