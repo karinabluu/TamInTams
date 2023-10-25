@@ -22,9 +22,13 @@ export default function Floor2() {
   }, []);
 
   const logOutHandler = async () => {
+    const token = getToken();
+    console.log(token);
     try {
-      await axios.post('http://3.36.132.186:3018/api/log-out');
-      navigate('/login');
+      await axios.post('http://3.36.132.186:3018/api/log-out', null, {
+        headers: { Authorization: token },
+      });
+      navigate('/');
     } catch (error) {
       console.error('로그아웃 실패', error);
     }

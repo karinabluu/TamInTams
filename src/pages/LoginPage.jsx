@@ -34,7 +34,7 @@ export default function LoginPage() {
 
       if (response.status === 200) {
         setToken(response.data.token);
-        console.log('로그인 성공:', response.data);
+        console.log('로그인 성공:', response.data.token);
         navigate('/floor2');
       }
     } catch (error) {

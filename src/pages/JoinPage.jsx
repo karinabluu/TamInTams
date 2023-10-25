@@ -52,17 +52,16 @@ export default function JoinPage() {
         userData,
         { headers: { 'Content-Type': 'application/json' } }
       );
+      console.log(response);
 
-      if (response.status === 200) {
+      if (response.status === 201) {
         alert('회원가입에 성공하였습니다!');
-        navigate('/login');
+        navigate('/');
         console.log('회원가입 성공:', response.data);
-      } else if (response.status === 409) {
-        alert('이미 존재하는 아이디입니다.');
-        console.error('중복 아이디:', response.data);
       }
     } catch (error) {
       console.error('회원가입 실패:', error);
+      alert(error.response.data.message);
     }
   };
 

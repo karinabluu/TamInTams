@@ -4,6 +4,7 @@
 // 이 토큰을 나중에 서버로의 인증 및 API 요청에 사용할 수 있음
 
 export const setToken = (token) => {
+  console.log(token);
   localStorage.setItem('token', token);
 };
 
