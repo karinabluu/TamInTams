@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 // 로그인 페이지
 
@@ -69,8 +69,6 @@ export const LoginButtons = styled.div`
   padding: 30px;
   margin-left: 250px;
 `;
-
-export const Button = styled.button``;
 
 export const LoginText = styled.div`
   font-size: 30px;
@@ -165,3 +163,71 @@ export const JoinButtons = styled.div`
   padding: 30px;
   margin-left: 250px;
 `;
+
+// 2F / 3F 버튼 디자인
+
+export const Button = styled.div`
+  background-color: transparent;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+`;
+
+export const HeaderWrap = styled.section`
+  display: flex; //
+  max-width: 1190px;
+  justify-content: space-between;
+  margin: auto;
+  align-items: baseline;
+`;
+
+// 버튼 정렬
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  align-items: baseline;
+  gap: 15px;
+`;
+
+// 회의실 버튼 디자인
+
+export const RoomButton = styled.div`
+  border-radius: 9px;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 10px;
+  display: flex;
+  &:active {
+    filter: brightness(60%);
+  }
+`;
+
+// 회의실 버튼 컬러
+
+export const colorHandler = (color) => {
+  switch (color) {
+    case "green":
+      return {
+        border: "2.8px solid #222222",
+        color: "#ffffff",
+        backgroundColor: "#02c8be",
+      };
+    case "yellow":
+      return {
+        border: "2.2px solid #222222",
+        color: "#ffffff",
+        backgroundColor: "#8fdf40",
+      };
+    case "transparent":
+      return {
+        border: "2.8px solid transparent",
+        color: "#ffffff",
+        backgroundColor: "transparent", // 배경색을 투명으로 설정
+      };
+    default:
+      return {};
+  }
+};

@@ -1,23 +1,85 @@
-import React, { useState, useEffect } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import Button from '../components/Button';
-import Header2 from '../components/Header2';
-import { getToken } from '../util/token';
-import * as St from '../styles/styles';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import { getToken } from "../util/token";
+import * as St from "../styles/styles";
+import axios from "axios";
 
-export default function Floor2() {
-  const navigate = useNavigate();
+const sizeHandler = (size) => {
+  switch (size) {
+    case "large":
+      return {
+        width: "93px",
+        height: "125px",
+      };
+    case "small":
+      return {
+        width: "40px",
+        height: "60px",
+      };
+    default:
+      return {};
+  }
+};
 
-  const size = ['m2', 'm3', 'na2', 'na3', 'big']; // 크기 옵션: 중간세로, 중간가로, 나박스
-  const color = ['green', 'yellow']; // 색상 옵션: 초록, 노랑(Nabox)
+const roomData = [
+  { name: "협재", sizeHandler: "large", colorHandler: "green" },
+  { name: "곽지", sizeHandler: "large", colorHandler: "green" },
+  { name: "이호", sizeHandler: "large", colorHandler: "green" },
+  { name: "함덕", sizeHandler: "large", colorHandler: "green" },
+  { name: "월평", sizeHandler: "large", colorHandler: "green" },
+  { name: "김녕", sizeHandler: "large", colorHandler: "green" },
+  { name: "신양", sizeHandler: "large", colorHandler: "green" },
+  { name: "", sizeHandler: "large", colorHandler: "transparent" },
+  { name: "하모", sizeHandler: "large", colorHandler: "green" },
+  { name: "화순", sizeHandler: "large", colorHandler: "green" },
+  { name: "중문", sizeHandler: "large", colorHandler: "green" },
+  { name: "표선", sizeHandler: "large", colorHandler: "green" },
+  { name: "Na1", sizeHandler: "small", colorHandler: "yellow" },
+  { name: "Na2", sizeHandler: "small", colorHandler: "yellow" },
+  { name: "Na3", sizeHandler: "small", colorHandler: "yellow" },
+  { name: "", sizeHandler: "small", colorHandler: "transparent" },
+  { name: "Na4", sizeHandler: "small", colorHandler: "yellow" },
+  { name: "Na5", sizeHandler: "small", colorHandler: "yellow" },
+  { name: "Na6", sizeHandler: "small", colorHandler: "yellow" },
+];
 
-  // 로그아웃 기능 구현
+const Floor2img = styled.div`
+  background-image: url("/Floor2.png");
+  background-position: center;
+  height: 600px;
+  background-repeat: no-repeat;
+`;
+
+const ButtonsRows = styled.section`
+  display: flex; //
+  align-items: stretch;
+  max-width: 758px;
+  justify-content: space-between;
+  margin: auto;
+`;
+
+// const ButtonsRows2 = styled.section`
+//   display: flex; //
+//   max-width: 758px;
+//   justify-content: space-between;
+//   margin: auto;
+//   position: relative;
+//   top: 39px;
+// `;
+
+const ButtonColumns = styled.section`
+  position: relative;
+  top: -538px;
+`;
+
+const Floor2 = () => {
+  const navigate = useNavigate(); // 페이지간 이동을 위한 함수 import
+
   useEffect(() => {
     const token = getToken();
     if (!token) {
-      navigate('/login');
+      navigate("/login");
     }
   }, []);
 
@@ -25,100 +87,83 @@ export default function Floor2() {
     const token = getToken();
     console.log(token);
     try {
-      await axios.post('http://3.36.132.186:3018/api/log-out', null, {
+      await axios.post("http://3.36.132.186:3018/api/log-out", null, {
         headers: { Authorization: token },
       });
-      navigate('/');
+      navigate("/");
     } catch (error) {
-      console.error('로그아웃 실패', error);
+      console.error("로그아웃 실패", error);
     }
   };
 
   return (
     <>
-      <St.Button onClick={logOutHandler}>로그아웃</St.Button>
-      <Header2 />
-      <Floor2bg />
-      <ButtonsSection>
-        <Button size={size[0]} color={color[0]}>
-          협재
-        </Button>
-        <Button
-          size={size[0]} // m2 2층의 회의실 크기 적용
-          color={color[0]} // 중간회의실 색 green 적용
-        >
-          곽지
-        </Button>
-        <Button size={size[0]} color={color[0]}>
-          이호
-        </Button>
-        <Button size={size[0]} color={color[0]}>
-          함덕
-        </Button>
-        <Button size={size[0]} color={color[0]}>
-          월평
-        </Button>
-        <Button size={size[0]} color={color[0]}>
-          김녕
-        </Button>
-        <Button size={size[0]} color={color[0]}>
-          신양
-        </Button>
-      </ButtonsSection>
-      <ButtonsSection2>
-        <Button
-          size={size[0]}
-          style={{
-            backgroundColor: 'transparent',
-          }}
-        ></Button>
-        <Button size={size[0]} color={color[0]}>
-          하모
-        </Button>
-        <Button size={size[0]} color={color[0]}>
-          화순
-        </Button>
-        <Button size={size[0]} color={color[0]}>
-          중문
-        </Button>
-        <Button size={size[0]} color={color[0]}>
-          표선
-        </Button>
-        <Button size={size[2]} color={color[1]}>
-          Na1
-        </Button>
-        <Button size={size[2]} color={color[1]}>
-          Na2
-        </Button>
-        <Button size={size[2]} color={color[1]}>
-          Na3
-        </Button>
-      </ButtonsSection2>
+      <St.HeaderWrap>
+        <St.ButtonWrapper>
+          <St.Button style={{ fontSize: "50px" }}>2F </St.Button>
+          <span> I </span>
+          <St.Button
+            style={{ color: "lightgrey" }}
+            onClick={() => {
+              navigate("/Floor3"); //3층 페이지로 이동하는 이벤트함수 처리 필요함
+            }}
+          >
+            3F
+          </St.Button>
+        </St.ButtonWrapper>
+        <St.Button onClick={logOutHandler}>탐나는 인재님</St.Button>
+      </St.HeaderWrap>
+      <Floor2img />
+      <ButtonColumns>
+        <ButtonsRows style={{ marginBottom: "36px" }}>
+          {roomData.slice(0, 7).map((room, index) => (
+            <St.RoomButton
+              key={index}
+              style={{
+                ...sizeHandler(room.sizeHandler),
+                ...St.colorHandler(room.colorHandler),
+              }}
+              onClick={() => {
+                if (room.name === "협재") {
+                  alert("협재 버튼을 클릭했어요");
+                } else if (room.name === "곽지") {
+                  alert("곽지 버튼을 클릭했어요");
+                }
+              }}
+            >
+              {room.name}
+            </St.RoomButton>
+          ))}
+        </ButtonsRows>
+        <ButtonsRows>
+          {roomData.slice(7, 16).map((room, index) => (
+            <St.RoomButton
+              key={index}
+              style={{
+                ...sizeHandler(room.sizeHandler),
+                ...St.colorHandler(room.colorHandler),
+              }}
+            >
+              {room.name}
+            </St.RoomButton>
+          ))}
+        </ButtonsRows>
+        {/* <ButtonsRows2>
+          {roomData.slice(16).map((room, index) => (
+            <St.RoomButton
+              key={index}
+              style={{
+                ...sizeHandler(room.sizeHandler),
+                ...St.colorHandler(room.colorHandler),
+              }}
+            >
+              {room.name}
+            </St.RoomButton>
+          ))}
+        </ButtonsRows2> */}
+      </ButtonColumns>
     </>
   );
-}
+};
 
-//스타일드 컴포넌트 백그라운드 이미지 설정
-const Floor2bg = styled.div`
-  background-image: url('/Floor2.png');
-  background-repeat: no-repeat;
-  background-attachment: local;
-  background-image: cover;
-  height: 600px;
-  /* background-position: center; */
-`;
-
-//버튼끼리 묶어주는 섹션
-const ButtonsSection = styled.section`
-  margin-top: -455px;
-  margin-left: 188px;
-  display: flex; // 요소를 가운데로 정렬
-  gap: 10px; // 내부 요소 여백
-`;
-
-const ButtonsSection2 = styled.section`
-  margin-top: 40px;
-  margin-left: 189px;
-  display: flex; // 요소를 가운데로 정렬
-  gap: 10px; // 내부 요소 여백
-`;
+export default Floor2;
