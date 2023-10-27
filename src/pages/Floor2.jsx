@@ -5,6 +5,8 @@ import { getToken } from "../util/token";
 import * as St from "../styles/styles";
 import axios from "axios";
 
+// 룸버튼 크기
+
 const sizeHandler = (size) => {
   switch (size) {
     case "large":
@@ -21,9 +23,15 @@ const sizeHandler = (size) => {
       return {};
   }
 };
+const size = ["large", "small", "xlarge"];
+const color = ["green", "yellow", "transparent"];
 
 const roomData = [
-  { name: "협재", sizeHandler: "large", colorHandler: "green" },
+  {
+    name: "협재",
+    sizeHandler: "large",
+    colorHandler: "green",
+  },
   { name: "곽지", sizeHandler: "large", colorHandler: "green" },
   { name: "이호", sizeHandler: "large", colorHandler: "green" },
   { name: "함덕", sizeHandler: "large", colorHandler: "green" },
@@ -52,21 +60,12 @@ const Floor2img = styled.div`
 `;
 
 const ButtonsRows = styled.section`
-  display: flex; //
+  display: flex;
   align-items: stretch;
   max-width: 758px;
   justify-content: space-between;
   margin: auto;
 `;
-
-// const ButtonsRows2 = styled.section`
-//   display: flex; //
-//   max-width: 758px;
-//   justify-content: space-between;
-//   margin: auto;
-//   position: relative;
-//   top: 39px;
-// `;
 
 const ButtonColumns = styled.section`
   position: relative;
@@ -113,55 +112,37 @@ const Floor2 = () => {
         </St.ButtonWrapper>
         <St.Button onClick={logOutHandler}>탐나는 인재님</St.Button>
       </St.HeaderWrap>
-      <Floor2img />
-      <ButtonColumns>
-        <ButtonsRows style={{ marginBottom: "36px" }}>
-          {roomData.slice(0, 7).map((room, index) => (
-            <St.RoomButton
-              key={index}
-              style={{
-                ...sizeHandler(room.sizeHandler),
-                ...St.colorHandler(room.colorHandler),
-              }}
-              onClick={() => {
-                if (room.name === "협재") {
-                  alert("협재 버튼을 클릭했어요");
-                } else if (room.name === "곽지") {
-                  alert("곽지 버튼을 클릭했어요");
-                }
-              }}
-            >
-              {room.name}
-            </St.RoomButton>
-          ))}
-        </ButtonsRows>
-        <ButtonsRows>
-          {roomData.slice(7, 16).map((room, index) => (
-            <St.RoomButton
-              key={index}
-              style={{
-                ...sizeHandler(room.sizeHandler),
-                ...St.colorHandler(room.colorHandler),
-              }}
-            >
-              {room.name}
-            </St.RoomButton>
-          ))}
-        </ButtonsRows>
-        {/* <ButtonsRows2>
-          {roomData.slice(16).map((room, index) => (
-            <St.RoomButton
-              key={index}
-              style={{
-                ...sizeHandler(room.sizeHandler),
-                ...St.colorHandler(room.colorHandler),
-              }}
-            >
-              {room.name}
-            </St.RoomButton>
-          ))}
-        </ButtonsRows2> */}
-      </ButtonColumns>
+      <St.Mapping>
+        <Floor2img />
+        <ButtonColumns>
+          <ButtonsRows style={{ marginBottom: "36px" }}>
+            {roomData.slice(0, 7).map((room, index) => (
+              <St.RoomButton
+                key={index}
+                style={{
+                  ...sizeHandler(room.sizeHandler),
+                  ...St.colorHandler(room.colorHandler),
+                }}
+              >
+                {room.name}
+              </St.RoomButton>
+            ))}
+          </ButtonsRows>
+          <ButtonsRows>
+            {roomData.slice(7, 16).map((room, index) => (
+              <St.RoomButton
+                key={index}
+                style={{
+                  ...sizeHandler(room.sizeHandler),
+                  ...St.colorHandler(room.colorHandler),
+                }}
+              >
+                {room.name}
+              </St.RoomButton>
+            ))}
+          </ButtonsRows>
+        </ButtonColumns>
+      </St.Mapping>
     </>
   );
 };

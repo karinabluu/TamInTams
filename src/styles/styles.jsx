@@ -198,7 +198,7 @@ export const RoomButton = styled.div`
   font-size: 14px;
   font-weight: bold;
   cursor: pointer;
-  margin-bottom: 10px;
+  margin-bottom: 9.5px;
   display: flex;
   &:active {
     filter: brightness(60%);
@@ -231,3 +231,12 @@ export const colorHandler = (color) => {
       return {};
   }
 };
+
+// 층별지도 감싸는 div
+
+export const Mapping = styled.section`
+  width: 1200px;
+  height: 600px;
+  margin: 0 auto;
+  position: relative;
+`;

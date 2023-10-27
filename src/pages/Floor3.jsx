@@ -6,6 +6,7 @@ import * as St from "../styles/styles";
 import axios from "axios";
 
 // 룸버튼 크기
+
 const sizeHandler = (size) => {
   switch (size) {
     case "large":
@@ -21,7 +22,7 @@ const sizeHandler = (size) => {
     case "xlarge":
       return {
         width: "102px",
-        height: "198px",
+        height: "200px",
       };
     default:
       return {};
@@ -32,13 +33,13 @@ const size = ["large", "small", "xlarge"];
 const color = ["green", "yellow", "transparent"];
 
 const roomData2 = [
-  { name: "다랑쉬오름", sizeHandler: 0, colorHandler: 0 },
-  { name: "용눈이오름", sizeHandler: 0, colorHandler: 0 },
-  { name: "따라비오름", sizeHandler: 0, colorHandler: 0 },
-  { name: "Na1", sizeHandler: 1, colorHandler: 1 },
-  { name: "Na2", sizeHandler: 1, colorHandler: 1 },
-  { name: "Na3", sizeHandler: 1, colorHandler: 1 },
-  { name: "거문오름", sizeHandler: 2, colorHandler: 0 },
+  { name: "다랑쉬오름", sizeHandler: "large", colorHandler: "green" },
+  { name: "용눈이오름", sizeHandler: "large", colorHandler: "green" },
+  { name: "따라비오름", sizeHandler: "large", colorHandler: "green" },
+  { name: "Na1", sizeHandler: "small", colorHandler: "yellow" },
+  { name: "Na2", sizeHandler: "small", colorHandler: "yellow" },
+  { name: "Na3", sizeHandler: "small", colorHandler: "yellow" },
+  { name: "거문오름", sizeHandler: "xlarge", colorHandler: "green" },
 ];
 
 const Floor3img = styled.div`
@@ -50,33 +51,33 @@ const Floor3img = styled.div`
 
 const ButtonsColumns = styled.section`
   display: flex;
-  flex-direction: column; //
-  max-width: 758px;
-  justify-content: space-between;
+  flex-direction: column;
+  /* justify-content: space-between; */
   margin: auto;
+  width: fit-content;
 `;
 
 const ButtonsColumns2 = styled.section`
   display: flex;
-  flex-direction: column; //
-  max-width: 758px;
-  justify-content: space-between;
+  /* flex-direction: column;
+  justify-content: space-between; */
   margin: auto;
-  top: -1061px;
-  left: 482px;
+  top: -460px;
+  left: 156px;
   position: relative;
+  width: fit-content;
 `;
 
 const ButtonsSpace = styled.section`
-  position: relative;
-  top: -538px;
-  left: 828px;
+  position: absolute;
+  top: 60px;
+  left: 1050px;
 `;
 
 const ButtonsSpace2 = styled.section`
-  position: relative;
-  top: -800px;
-  left: 640px;
+  position: absolute;
+  top: 140px;
+  left: 860px;
 `;
 
 const Floor3 = () => {
@@ -119,50 +120,53 @@ const Floor3 = () => {
         </St.ButtonWrapper>
         <St.Button onClick={logOutHandler}>탐나는 인재님</St.Button>
       </St.HeaderWrap>
-      <Floor3img />
-      <ButtonsSpace>
-        <ButtonsColumns style={{ marginBottom: "46px" }}>
-          {roomData2.slice(0, 3).map((room, index) => (
+      <St.Mapping>
+        <Floor3img />
+        <ButtonsSpace>
+          <ButtonsColumns style={{ marginBottom: "46px" }}>
+            {roomData2.slice(0, 3).map((room, index) => (
+              <St.RoomButton
+                key={index}
+                style={{
+                  ...sizeHandler(room.sizeHandler),
+                  ...St.colorHandler(room.colorHandler),
+                }}
+              >
+                {room.name}
+              </St.RoomButton>
+            ))}
+          </ButtonsColumns>
+        </ButtonsSpace>
+
+        <ButtonsSpace2>
+          <ButtonsColumns>
+            {roomData2.slice(3, 6).map((room, index) => (
+              <St.RoomButton
+                key={index}
+                style={{
+                  ...sizeHandler(room.sizeHandler),
+                  ...St.colorHandler(room.colorHandler),
+                }}
+              >
+                {room.name}
+              </St.RoomButton>
+            ))}
+          </ButtonsColumns>
+        </ButtonsSpace2>
+        <ButtonsColumns2>
+          {roomData2.slice(6, 7).map((room, index) => (
             <St.RoomButton
               key={index}
               style={{
-                ...sizeHandler(size[room.sizeHandler]),
-                ...St.colorHandler(color[room.colorHandler]),
+                ...sizeHandler(room.sizeHandler),
+                ...St.colorHandler(room.colorHandler),
               }}
             >
               {room.name}
             </St.RoomButton>
           ))}
-        </ButtonsColumns>
-      </ButtonsSpace>
-      <ButtonsSpace2>
-        <ButtonsColumns style={{ marginBottom: "46px" }}>
-          {roomData2.slice(3, 6).map((room, index) => (
-            <St.RoomButton
-              key={index}
-              style={{
-                ...sizeHandler(size[room.sizeHandler]),
-                ...St.colorHandler(color[room.colorHandler]),
-              }}
-            >
-              {room.name}
-            </St.RoomButton>
-          ))}
-        </ButtonsColumns>
-      </ButtonsSpace2>
-      <ButtonsColumns2>
-        {roomData2.slice(6, 7).map((room, index) => (
-          <St.RoomButton
-            key={index}
-            style={{
-              ...sizeHandler(size[room.sizeHandler]),
-              ...St.colorHandler(color[room.colorHandler]),
-            }}
-          >
-            {room.name}
-          </St.RoomButton>
-        ))}
-      </ButtonsColumns2>
+        </ButtonsColumns2>
+      </St.Mapping>
     </>
   );
 };
