@@ -5,6 +5,7 @@ import JoinInput from '../components/Input/JoinInput';
 import { setToken, getToken } from '../util/token';
 import * as St from '../styles/styles';
 import { validateUserId, validatePassword } from '../util/validation';
+import { BGSheet, LoginIcon, PasswordIcon } from '../asset/icon';
 
 export default function LoginPage() {
   useEffect(() => {
@@ -45,14 +46,17 @@ export default function LoginPage() {
 
   return (
     <St.LoginContainer>
-      <St.LoginTitle>TAMINTAMS</St.LoginTitle>
-      <St.LoginSubTitle>
-        회의실 예약할 땐, 탐나는 인재 탐나는 스페이스
-      </St.LoginSubTitle>
-
+      <St.LoginAllTitle>
+        <St.LoginTitle>TAMINTAMS</St.LoginTitle>
+        <St.LoginSubTitle>
+          회의실 예약할 땐, 탐나는 인재 탐나는 스페이스
+        </St.LoginSubTitle>
+      </St.LoginAllTitle>
       <St.LoginCol>
         <St.LoginRow1>
-          <St.LoginText>아이디</St.LoginText>
+          <St.LoginText>
+            <LoginIcon />
+          </St.LoginText>
           <JoinInput
             value={id}
             handleChange={setId}
@@ -63,7 +67,9 @@ export default function LoginPage() {
         </St.LoginRow1>
 
         <St.LoginRow2>
-          <St.LoginText>비밀번호</St.LoginText>
+          <St.LoginText>
+            <PasswordIcon />
+          </St.LoginText>
           <JoinInput
             type="password"
             value={password}
@@ -78,6 +84,7 @@ export default function LoginPage() {
           <St.LoginBar>│</St.LoginBar>
           <St.LoginButton onClick={onLoginHandler}>로그인</St.LoginButton>
         </St.LoginButtons>
+        <St.ForgetButton>비밀번호를 잊어버리셨나요?</St.ForgetButton>
       </St.LoginCol>
     </St.LoginContainer>
   );

@@ -1,12 +1,16 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 // 로그인 페이지
-
 export const LoginContainer = styled.div`
-  min-width: 800px;
-  max-width: 1200px;
-  text-align: center;
-  margin: 130px;
+  width: 800px;
+  height: 700px;
+  margin: 0 auto;
+  position: relative;
+  border: 3px solid black;
+  margin-top: 30px;
+  border-radius: 50px;
+  border-width: 100px 5px 5px 5px;
+  background-color: white;
 `;
 
 export const ErrorMessage = styled.div`
@@ -21,18 +25,23 @@ export const LoginRow1 = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 100px;
+  /* margin-right: 100px; */
+  margin-bottom: 15px;
 `;
 
 export const LoginRow2 = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 130px;
+  /* margin-right: 130px; */
 `;
 
 export const LoginCol = styled.div`
-  padding: 70px;
+  margin-top: 80px;
+`;
+
+export const LoginAllTitle = styled.div`
+  margin-top: 100px;
 `;
 
 export const LoginTitle = styled.div`
@@ -40,14 +49,18 @@ export const LoginTitle = styled.div`
   font-size: 55px;
   font-weight: bold;
   text-decoration: underline;
-  text-decoration-thickness: 1px;
+  text-underline-offset: 7px;
+  text-decoration-thickness: 2px;
+  text-align: center;
+  color: black;
 `;
 
 export const LoginSubTitle = styled.div`
   font-weight: 700;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: border;
-  color: #424242;
+  color: black;
+  text-align: center;
 `;
 
 export const LoginButton = styled.button`
@@ -60,6 +73,7 @@ export const LoginButton = styled.button`
 export const LoginBar = styled.div`
   font-weight: 500;
   font-size: 22px;
+  color: black;
 `;
 
 export const LoginButtons = styled.div`
@@ -68,22 +82,40 @@ export const LoginButtons = styled.div`
   justify-content: center;
   padding: 30px;
   margin-left: 250px;
+  color: black;
 `;
 
 export const LoginText = styled.div`
   font-size: 30px;
-  color: #424242;
+  color: black;
 `;
 
 export const Input = styled.input`
-  margin: 15px 0 0 15px;
-  width: 400px;
+  all: unset;
+  cursor: pointer;
+  margin: 0px 0 0 15px;
+  width: 320px;
   height: 40px;
-  font-size: 30px;
+  font-size: 25px;
+  letter-spacing: 0.15px;
   text-align: center;
-  border-width: 3px;
-  border-radius: 20px;
-  border-color: #808080;
+  border-bottom: 3px solid;
+  color: black;
+  font-weight: bold;
+`;
+
+export const ForgetButton = styled.button`
+  font-size: 14px;
+  all: unset;
+  cursor: pointer;
+  color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 20px;
 `;
 
 // 회원가입 페이지
@@ -209,23 +241,23 @@ export const RoomButton = styled.div`
 
 export const colorHandler = (color) => {
   switch (color) {
-    case "green":
+    case 'green':
       return {
-        border: "2.8px solid #222222",
-        color: "#ffffff",
-        backgroundColor: "#02c8be",
+        border: '2.8px solid #222222',
+        color: '#ffffff',
+        backgroundColor: '#02c8be',
       };
-    case "yellow":
+    case 'yellow':
       return {
-        border: "2.2px solid #222222",
-        color: "#ffffff",
-        backgroundColor: "#8fdf40",
+        border: '2.2px solid #222222',
+        color: '#ffffff',
+        backgroundColor: '#8fdf40',
       };
-    case "transparent":
+    case 'transparent':
       return {
-        border: "2.8px solid transparent",
-        color: "#ffffff",
-        backgroundColor: "transparent", // 배경색을 투명으로 설정
+        border: '2.8px solid transparent',
+        color: '#ffffff',
+        backgroundColor: 'transparent', // 배경색을 투명으로 설정
       };
     default:
       return {};
