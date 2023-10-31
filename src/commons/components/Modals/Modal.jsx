@@ -1,16 +1,36 @@
 import React from "react";
-import "../../../assets/css/modal.css";
+import "../../../css/modal.css";
+import { fetchReservationHistory, bookRoom } from "../../../service/api";
 
 const Modal = (props) => {
-  const { open, close, roomname, selectedButtons } = props;
+  const { open, close, roomname, selectedButtons, updateSelectTimes } = props;
 
-  const handleBooking = () => {
+  const handleFinalBookingClick = async () => {
     if (selectedButtons.length === 0) {
       alert("시간을 선택해주세요!");
     } else {
-      // 예약 완료 후 closedTimes를 업데이트
-      props.updateSelectTimes(roomname, selectedButtons);
-      alert("예약이 완료되었습니다!");
+      try {
+        updateSelectTimes(roomname, selectedButtons);
+        console.log("예약완료:", roomname, selectedButtons);
+        const response = await bookRoom(roomname, true);
+        alert(response.msg);
+        alert("예약이 완료되었습니다!");
+        close();
+      } catch (error) {
+        console.error("Error during booking:", error);
+        alert("예약 중 오류가 발생했습니다.");
+      }
+    }
+  };
+
+  // 예약 내역 조회 버튼 클릭 핸들러
+  const handleReservationHistoryClick = async (roomId) => {
+    try {
+      const history = await fetchReservationHistory(roomId);
+      // 예약 내역 조회 로직
+    } catch (error) {
+      console.error("Error fetching reservation history:", error);
+      alert("예약 내역 조회 중 오류가 발생했습니다.");
     }
   };
 
@@ -26,7 +46,7 @@ const Modal = (props) => {
           </header>
           <main>{props.children}</main>
           <footer>
-            <button className="booking" onClick={handleBooking}>
+            <button className="booking" onClick={handleFinalBookingClick}>
               예약
             </button>
             <button className="close" onClick={close}>
