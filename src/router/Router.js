@@ -1,7 +1,8 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import LoginPage from '../pages/LoginPage';
-import MainPage from '../pages/MainPage';
-import JoinPage from '../pages/JoinPage';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import LoginPage from "../pages/LoginPage";
+import JoinPage from "../pages/JoinPage";
+import Floor2 from "../pages/Floor2";
+import Floor3 from "../pages/Floor3";
 
 function Routers() {
   return (
@@ -9,7 +10,8 @@ function Routers() {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/join" element={<JoinPage />} />
-        <Route path="/main" element={<MainPage />} />
+        <Route path="/floor2" element={<Floor2 />} />
+        <Route path="/floor3" element={<Floor3 />} />
       </Routes>
     </BrowserRouter>
   );

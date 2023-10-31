@@ -1,10 +1,8 @@
-import Routers from "./router/Router";
-import { GlobalStyle } from "./styles/styles";
+import Routers from './router/Router';
 
 export default function App() {
   return (
     <>
-      <GlobalStyle />
       <Routers />
     </>
   );
