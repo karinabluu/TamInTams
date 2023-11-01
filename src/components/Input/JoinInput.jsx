@@ -24,7 +24,7 @@ export default function JoinInput(props) {
       }
     }
 
-    handleChange(value);
+    // handleChange(value);
   };
 
   return (
@@ -32,7 +32,8 @@ export default function JoinInput(props) {
       <St.Input
         type={props.type || 'text'}
         value={value}
-        onChange={(e) => handleChange(e.target.value)}
+        // onChange={(e) => handleChange(e.target.value)}
+        onChange={handleChange}
         onKeyUp={handleKeyUp}
       />
     </>

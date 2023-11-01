@@ -106,6 +106,27 @@ export const ForgetButton = styled.button`
   left: 48%;
 `;
 
+export const LoginInput = styled.input`
+  all: unset;
+  cursor: pointer;
+  margin: 0px 0 0 15px;
+  width: 320px;
+  height: 40px;
+  font-size: 25px;
+  letter-spacing: 0.15px;
+  text-align: center;
+  border-bottom: 3px solid;
+  color: black;
+  font-weight: bold;
+  input:focus {
+    outline: none;
+    box-shadow: none !important;
+  }
+  &::placeholder {
+    font-size: 20px;
+  }
+`;
+
 // 회원가입 페이지
 
 export const Input = styled.input`

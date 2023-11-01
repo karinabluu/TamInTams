@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import JoinInput from '../components/Input/JoinInput';
+import LoginInput from '../components/Input/LoginInput';
 import { setToken, getToken } from '../util/token';
 import * as St from '../styles/styles';
 import { validateUserId, validatePassword } from '../util/validation';
-import { BGSheet, LoginIcon, PasswordIcon } from '../asset/icon';
+import { LoginIcon, PasswordIcon } from '../asset/icon';
 
 export default function LoginPage() {
   useEffect(() => {
@@ -57,18 +57,23 @@ export default function LoginPage() {
           <St.LoginText>
             <LoginIcon />
           </St.LoginText>
-          <JoinInput value={id} handleChange={setId} />
+          <LoginInput
+            type="text"
+            value={id}
+            handleChange={setId}
+            placeholder="아이디를 입력해주세요"
+          />
         </St.LoginRow1>
 
         <St.LoginRow2>
           <St.LoginText>
             <PasswordIcon />
           </St.LoginText>
-          <JoinInput
+          <LoginInput
             type="password"
             value={password}
             handleChange={setPassword}
-            // placeholder="아이디를 입력해주세요."
+            placeholder="비밀번호를 입력해주세요"
           />
         </St.LoginRow2>
 
