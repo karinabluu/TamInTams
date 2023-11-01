@@ -57,13 +57,7 @@ export default function LoginPage() {
           <St.LoginText>
             <LoginIcon />
           </St.LoginText>
-          <JoinInput
-            value={id}
-            handleChange={setId}
-            errorMessage={
-              '아이디는 7자리 이상 12자리 이하이며, 특수문자와 한글은 포함되지 않습니다.'
-            }
-          />
+          <JoinInput value={id} handleChange={setId} />
         </St.LoginRow1>
 
         <St.LoginRow2>
@@ -74,6 +68,7 @@ export default function LoginPage() {
             type="password"
             value={password}
             handleChange={setPassword}
+            // placeholder="아이디를 입력해주세요."
           />
         </St.LoginRow2>
 

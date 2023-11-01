@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 // 로그인 페이지
+
 export const LoginContainer = styled.div`
   width: 800px;
   height: 700px;
@@ -9,35 +10,33 @@ export const LoginContainer = styled.div`
   border: 3px solid black;
   margin-top: 30px;
   border-radius: 50px;
-  border-width: 100px 5px 5px 5px;
-  background-color: white;
-`;
-
-export const ErrorMessage = styled.div`
-  max-width: 210px;
-  color: red;
-  font-size: 12px;
-  margin: 8px;
-  display: flex;
+  border-width: 110px 5px 5px 5px;
+  background-color: #dce0dc;
+  justify-content: center;
+  display: grid;
 `;
 
 export const LoginRow1 = styled.div`
+  position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* margin-right: 100px; */
   margin-bottom: 15px;
 `;
 
 export const LoginRow2 = styled.div`
+  position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* margin-right: 130px; */
+  top: 60px;
 `;
 
 export const LoginCol = styled.div`
-  margin-top: 80px;
+  margin-top: 70px;
+  position: relative;
+  width: 400px;
+  height: 400px;
 `;
 
 export const LoginAllTitle = styled.div`
@@ -78,17 +77,36 @@ export const LoginBar = styled.div`
 
 export const LoginButtons = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 30px;
-  margin-left: 250px;
+  /* align-items: center; */
+  /* justify-content: center; */
+  /* padding: 30px; */
+  /* margin-left: 250px; */
+  left: 53%;
   color: black;
+  position: absolute;
+  top: 140px;
 `;
 
 export const LoginText = styled.div`
   font-size: 30px;
   color: black;
 `;
+
+export const ForgetButton = styled.button`
+  font-size: 14px;
+  all: unset;
+  cursor: pointer;
+  color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 220px;
+  left: 48%;
+`;
+
+// 회원가입 페이지
 
 export const Input = styled.input`
   all: unset;
@@ -102,78 +120,88 @@ export const Input = styled.input`
   border-bottom: 3px solid;
   color: black;
   font-weight: bold;
+  input:focus {
+    outline: none;
+    box-shadow: none !important;
+  }
 `;
 
-export const ForgetButton = styled.button`
-  font-size: 14px;
-  all: unset;
-  cursor: pointer;
+export const ErrorMessage = styled.div`
+  font-size: 16px;
   color: red;
+  margin-top: 8px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin-top: 20px;
+  transform: translate(40%);
+  /* text-align: center; */
 `;
-
-// 회원가입 페이지
 
 export const JoinContainer = styled.div`
-  min-width: 800px;
-  max-width: 1200px;
-  text-align: center;
-  margin: 130px;
+  width: 800px;
+  height: 700px;
+  margin: 0 auto;
+  position: relative;
+  border: 3px solid black;
+  margin-top: 30px;
+  border-radius: 50px;
+  border-width: 110px 5px 5px 5px;
+  background-color: #dce0dc;
 `;
 
 export const JoinRow1 = styled.div`
-  display: flex;
   align-items: center;
-  margin-left: 196px;
+  justify-content: center;
+  display: flex;
 `;
 
 export const JoinRow2 = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 176px;
+  justify-content: center;
+  margin-top: 20px;
 `;
 
 export const JoinRow3 = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 128px;
+  justify-content: center;
+  margin-top: 20px;
 `;
 
 export const JoinRow4 = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 148px;
+  justify-content: center;
+  margin-top: 20px;
 `;
 
 export const JoinSubTitle = styled.div`
   font-weight: 500;
-  font-size: 30px;
+  font-size: 31px;
   font-weight: bold;
   text-decoration: underline;
-  text-decoration-thickness: 1px;
-  color: #424242;
+  text-underline-offset: 7px;
+  text-decoration-thickness: 2px;
+  color: black;
+  text-align: center;
 `;
 
 export const JoinTitle = styled.div`
   font-weight: 500;
   font-size: 50px;
   font-weight: bold;
+  text-align: center;
 `;
 
 export const JoinText = styled.div`
   font-size: 20px;
-  color: #424242;
+  color: black;
+  width: 130px;
+  text-align: center;
 `;
 
 export const JoinHeader = styled.div`
-  margin-top: -20px;
-  margin-bottom: 20px;
+  margin-top: 60px;
+  margin-bottom: 60px;
 `;
 
 export const JoinBar = styled.div`
@@ -192,7 +220,7 @@ export const JoinButtons = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 30px;
+  padding: 40px;
   margin-left: 250px;
 `;
 
