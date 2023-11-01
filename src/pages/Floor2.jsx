@@ -3,10 +3,10 @@ import { Navigate, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { getToken } from "../util/token";
 import * as St from "../styles/styles";
+import Modal from "../components/Modal/Modal";
 import axios from "axios";
 
 // 룸버튼 크기
-
 const sizeHandler = (size) => {
   switch (size) {
     case "large":
@@ -23,15 +23,11 @@ const sizeHandler = (size) => {
       return {};
   }
 };
-const size = ["large", "small", "xlarge"];
-const color = ["green", "yellow", "transparent"];
+// const size = ["large", "small", "xlarge"];
+// const color = ["green", "yellow", "transparent"];
 
 const roomData = [
-  {
-    name: "협재",
-    sizeHandler: "large",
-    colorHandler: "green",
-  },
+  { name: "협재", sizeHandler: "large", colorHandler: "green" },
   { name: "곽지", sizeHandler: "large", colorHandler: "green" },
   { name: "이호", sizeHandler: "large", colorHandler: "green" },
   { name: "함덕", sizeHandler: "large", colorHandler: "green" },
@@ -73,14 +69,28 @@ const ButtonColumns = styled.section`
 `;
 
 const Floor2 = () => {
+  const [modalOpen, setModalOpen] = useState(false); //초기값: 모달닫기상태
+  const [selectedButtons, setSelectedButtons] = useState([]); //선택된 버튼들을 배열로 모아둠
+  const [roomState, setroomState] = useState(roomData); //index = roomData2(배열값)
+  const [roomname, setRoomname] = useState(""); //roomname = roomData.name(방이름 초기값)
+
   const navigate = useNavigate(); // 페이지간 이동을 위한 함수 import
+
+  //타임슬롯: 모달창 넘버버튼
+  const timeSlots = Array.from({ length: 12 }, (_, time) => {
+    const hour = time + 9;
+    return {
+      label: `${hour < 10 ? "0" + hour : hour}:00`,
+      value: time,
+    };
+  });
 
   useEffect(() => {
     const token = getToken();
     if (!token) {
       navigate("/login");
     }
-  }, []);
+  }, [navigate]);
 
   const logOutHandler = async () => {
     const token = getToken();
@@ -93,6 +103,48 @@ const Floor2 = () => {
     } catch (error) {
       console.error("로그아웃 실패", error);
     }
+  };
+
+  //모달 창 열기
+  const handleOpenModal = (room) => {
+    setModalOpen(true); //setModalOpen의 상태가 true값으로 되면서 열림
+    setRoomname(room.name); //room.name을 클릭한 값의 데이터에서 받아옴
+    console.log("room name:", room.name); //room.name값 받는지 콘솔로그 체크
+  };
+
+  //모달닫기
+  const handleCloseModal = () => {
+    setModalOpen(false); //setModalOpen 상태가 false로 되면서 닫힘
+    setSelectedButtons([]); //선택된버튼들이 초기화됌
+  };
+
+  //버튼을 클릭했을때 동작
+  const handleButtonClick = (hour) => {
+    if (selectedButtons.includes(hour)) {
+      setSelectedButtons(
+        selectedButtons.filter((selectedHour) => selectedHour !== hour)
+      ); // 이미 선택된 버튼이면 선택 해제
+    } else if (selectedButtons.length < 2) {
+      setSelectedButtons([...selectedButtons, hour]); // 선택된 버튼이 2개 미만이면 새로운 버튼 선택
+    } else {
+      setSelectedButtons([hour]); //그 외에는 선택된 버튼을 새로운 버튼으로 대체
+    }
+    console.log("Selected button value:", hour, roomname); // 선택된 방의 이름 로그로 출력
+  };
+
+  //선택 시간 업데이트 버튼 - 특정 방의 선택된 시간(selectTimes)값을 업데이트
+  const handleSelectedTimes = (roomname, updatedRoomTimes) => {
+    // roomname과 updatedRoomTimes를 매개변수로 받아와서
+    setroomState((prevItems) =>
+      prevItems.map((room) =>
+        // 이전의 방 목록(prevItems)을 매핑하면서 특정 방의 이름과 일치하는 경우
+        room.name === roomname
+          ? // 해당 방의 선택된 시간(selectTimes)을 업데이트된 시간(updatedRoomTimes)으로 설정
+            { ...room, selectTimes: updatedRoomTimes }
+          : // 그렇지 않으면 이전의 방 목록을 유지
+            room
+      )
+    );
   };
 
   return (
@@ -116,9 +168,10 @@ const Floor2 = () => {
         <Floor2img />
         <ButtonColumns>
           <ButtonsRows style={{ marginBottom: "36px" }}>
-            {roomData.slice(0, 7).map((room, index) => (
+            {roomState.slice(0, 7).map((room, index) => ( //예약 상태가 변경될거니까 roomState가 더 적절
               <St.RoomButton
                 key={index}
+                onClick={() => handleOpenModal(room)} //모달오픈동작
                 style={{
                   ...sizeHandler(room.sizeHandler),
                   ...St.colorHandler(room.colorHandler),
@@ -129,9 +182,10 @@ const Floor2 = () => {
             ))}
           </ButtonsRows>
           <ButtonsRows>
-            {roomData.slice(7, 16).map((room, index) => (
+            {roomState.slice(7, 16).map((room, index) => ( //예약 상태가 변경될거니까 roomState가 더 적절
               <St.RoomButton
                 key={index}
+                onClick={() => handleOpenModal(room)} //모달오픈동작
                 style={{
                   ...sizeHandler(room.sizeHandler),
                   ...St.colorHandler(room.colorHandler),
@@ -143,6 +197,29 @@ const Floor2 = () => {
           </ButtonsRows>
         </ButtonColumns>
       </St.Mapping>
+
+      {/*모달 컴퍼넌트 추가*/}
+      <Modal
+        open={modalOpen}
+        close={handleCloseModal}
+        roomname={roomname}
+        selectedButtons={selectedButtons}
+        updateSelectTimes={handleSelectedTimes}
+      >
+        {timeSlots.map((timeSlot) => (
+          <button
+            key={timeSlot.value}
+            className={`button timeslot ${
+              selectedButtons && selectedButtons.includes(timeSlot.value)
+                ? "selected"
+                : ""
+            }`}
+            onClick={() => handleButtonClick(timeSlot.value)}
+          >
+            {timeSlot.label}
+          </button>
+        ))}
+      </Modal>
     </>
   );
 };
