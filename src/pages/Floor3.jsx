@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { getToken } from "../util/token";
 import * as St from "../styles/styles";
@@ -30,8 +30,8 @@ const sizeHandler = (size) => {
   }
 };
 
-const size = ["large", "small", "xlarge"];
-const color = ["green", "yellow", "transparent"];
+// const size = ["large", "small", "xlarge"];
+// const color = ["green", "yellow", "transparent"];
 
 const roomData2 = [
   { name: "다랑쉬오름", sizeHandler: "large", colorHandler: "green" },
@@ -84,7 +84,7 @@ const ButtonsSpace2 = styled.section`
 const Floor3 = () => {
   const [modalOpen, setModalOpen] = useState(false); //초기값: 모달닫기상태
   const [selectedButtons, setSelectedButtons] = useState([]); //선택된 버튼들을 배열로 모아둠
-  const [index, setIndex] = useState(roomData2); //index = roomData2(배열값)
+  const [roomState, setroomState] = useState(roomData2); //index = roomData2(배열값)
   const [roomname, setRoomname] = useState(""); //roomname = roomData2.name(방이름 초기값)
 
   const navigate = useNavigate(); // 페이지간 이동을 위한 함수 import
@@ -103,7 +103,7 @@ const Floor3 = () => {
     if (!token) {
       navigate("/login");
     }
-  }, []);
+  }, [navigate]);
 
   const logOutHandler = async () => {
     const token = getToken();
@@ -148,7 +148,7 @@ const Floor3 = () => {
   //선택 시간 업데이트 버튼 - 특정 방의 선택된 시간(selectTimes)값을 업데이트
   const handleSelectedTimes = (roomname, updatedRoomTimes) => {
     // roomname과 updatedRoomTimes를 매개변수로 받아와서
-    setIndex((prevItems) =>
+    setroomState((prevItems) =>
       prevItems.map((room) =>
         // 이전의 방 목록(prevItems)을 매핑하면서 특정 방의 이름과 일치하는 경우
         room.name === roomname
@@ -181,7 +181,7 @@ const Floor3 = () => {
         <Floor3img />
         <ButtonsSpace>
           <ButtonsColumns style={{ marginBottom: "46px" }}>
-            {roomData2.slice(0, 3).map((room, index) => (
+            {roomState.slice(0, 3).map((room, index) => (
               <St.RoomButton
                 key={index}
                 onClick={() => handleOpenModal(room)}
@@ -198,7 +198,7 @@ const Floor3 = () => {
 
         <ButtonsSpace2>
           <ButtonsColumns>
-            {roomData2.slice(3, 6).map((room, index) => (
+            {roomState.slice(3, 6).map((room, index) => (
               <St.RoomButton
                 key={index}
                 onClick={() => handleOpenModal(room)} //모달오픈동작
@@ -213,7 +213,7 @@ const Floor3 = () => {
           </ButtonsColumns>
         </ButtonsSpace2>
         <ButtonsColumns2>
-          {roomData2.slice(6, 7).map((room, index) => (
+          {roomState.slice(6, 7).map((room, index) => (
             <St.RoomButton
               key={index}
               onClick={() => handleOpenModal(room)} //모달오픈동작

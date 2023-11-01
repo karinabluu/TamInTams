@@ -18,7 +18,7 @@ export default function JoinPage() {
     if (token) {
       navigate('/join'); // floor2
     }
-  }, []);
+  }, [navigate]);
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();

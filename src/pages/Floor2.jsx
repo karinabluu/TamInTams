@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { getToken } from "../util/token";
 import * as St from "../styles/styles";
@@ -23,8 +23,8 @@ const sizeHandler = (size) => {
       return {};
   }
 };
-const size = ["large", "small", "xlarge"];
-const color = ["green", "yellow", "transparent"];
+// const size = ["large", "small", "xlarge"];
+// const color = ["green", "yellow", "transparent"];
 
 const roomData = [
   { name: "협재", sizeHandler: "large", colorHandler: "green" },
@@ -71,7 +71,7 @@ const ButtonColumns = styled.section`
 const Floor2 = () => {
   const [modalOpen, setModalOpen] = useState(false); //초기값: 모달닫기상태
   const [selectedButtons, setSelectedButtons] = useState([]); //선택된 버튼들을 배열로 모아둠
-  const [index, setIndex] = useState(roomData); //index = roomData(배열값)
+  const [roomState, setroomState] = useState(roomData); //index = roomData2(배열값)
   const [roomname, setRoomname] = useState(""); //roomname = roomData.name(방이름 초기값)
 
   const navigate = useNavigate(); // 페이지간 이동을 위한 함수 import
@@ -90,7 +90,7 @@ const Floor2 = () => {
     if (!token) {
       navigate("/login");
     }
-  }, []);
+  }, [navigate]);
 
   const logOutHandler = async () => {
     const token = getToken();
@@ -135,7 +135,7 @@ const Floor2 = () => {
   //선택 시간 업데이트 버튼 - 특정 방의 선택된 시간(selectTimes)값을 업데이트
   const handleSelectedTimes = (roomname, updatedRoomTimes) => {
     // roomname과 updatedRoomTimes를 매개변수로 받아와서
-    setIndex((prevItems) =>
+    setroomState((prevItems) =>
       prevItems.map((room) =>
         // 이전의 방 목록(prevItems)을 매핑하면서 특정 방의 이름과 일치하는 경우
         room.name === roomname
@@ -168,7 +168,7 @@ const Floor2 = () => {
         <Floor2img />
         <ButtonColumns>
           <ButtonsRows style={{ marginBottom: "36px" }}>
-            {roomData.slice(0, 7).map((room, index) => (
+            {roomState.slice(0, 7).map((room, index) => ( //예약 상태가 변경될거니까 roomState가 더 적절
               <St.RoomButton
                 key={index}
                 onClick={() => handleOpenModal(room)} //모달오픈동작
@@ -182,7 +182,7 @@ const Floor2 = () => {
             ))}
           </ButtonsRows>
           <ButtonsRows>
-            {roomData.slice(7, 16).map((room, index) => (
+            {roomState.slice(7, 16).map((room, index) => ( //예약 상태가 변경될거니까 roomState가 더 적절
               <St.RoomButton
                 key={index}
                 onClick={() => handleOpenModal(room)} //모달오픈동작
