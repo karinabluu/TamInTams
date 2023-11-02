@@ -125,6 +125,7 @@ export const LoginInput = styled.input`
   &::placeholder {
     font-size: 20px;
   }
+  background-color: #dce0dc;
 `;
 
 // 회원가입 페이지
