@@ -2,18 +2,31 @@ import styled from 'styled-components';
 
 // 로그인 페이지
 
-export const LoginContainer = styled.div`
+export const LoginContainer1 = styled.div`
   width: 800px;
   height: 700px;
   margin: 0 auto;
   position: relative;
-  border: 3px solid black;
+  border: 10px solid black;
   margin-top: 30px;
   border-radius: 50px;
-  border-width: 110px 5px 5px 5px;
+  border-width: 50px 5px 5px 5px;
+  justify-content: center;
+  display: grid;
+  z-index: 1000;
+  background-color: black;
+`;
+
+export const LoginContainer2 = styled.div`
+  border-width: 30px 0px 0px 0px;
   background-color: #dce0dc;
   justify-content: center;
   display: grid;
+  width: 789px;
+  height: 690px;
+  background-color: #dce0dc;
+  border-radius: 50px;
+  border: 10px solid black;
 `;
 
 export const LoginRow1 = styled.div`
@@ -139,6 +152,33 @@ export const PCMInput = styled.input`
 
 // 회원가입 페이지
 
+export const JoinContainer1 = styled.div`
+  width: 800px;
+  height: 700px;
+  margin: 0 auto;
+  position: relative;
+  border: 10px solid black;
+  margin-top: 30px;
+  border-radius: 50px;
+  border-width: 50px 5px 5px 5px;
+  justify-content: center;
+  display: grid;
+  z-index: 1000;
+  background-color: black;
+`;
+
+export const JoinContainer2 = styled.div`
+  border-width: 30px 0px 0px 0px;
+  background-color: #dce0dc;
+  justify-content: center;
+  display: grid;
+  width: 789px;
+  height: 690px;
+  background-color: #dce0dc;
+  border-radius: 50px;
+  border: 10px solid black;
+`;
+
 export const Input = styled.input`
   all: unset;
   cursor: pointer;
@@ -165,18 +205,6 @@ export const ErrorMessage = styled.div`
   transform: translate(104%);
   width: 310px;
   /* text-align: center; */
-`;
-
-export const JoinContainer = styled.div`
-  width: 800px;
-  height: 700px;
-  margin: 0 auto;
-  position: relative;
-  border: 3px solid black;
-  margin-top: 30px;
-  border-radius: 50px;
-  border-width: 110px 5px 5px 5px;
-  background-color: #dce0dc;
 `;
 
 export const JoinRow1 = styled.div`

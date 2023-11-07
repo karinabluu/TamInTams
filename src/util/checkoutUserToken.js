@@ -5,9 +5,9 @@ export const checkoutUserToken = async () => {
   const token = getToken();
 
   try {
-    const response = await axios.get('http://3.36.132.186:3018/api/user/{id}', {
+    const response = await axios.post('http://3.36.132.186:3018/api/logout', {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `${token}`,
       },
     });
     if (response.status === 200) {

@@ -67,20 +67,20 @@ export default function JoinPage() {
     }
 
     const userData = {
-      email: id,
+      username: id,
       password,
       name,
     };
 
     try {
       const response = await axios.post(
-        'http://3.36.132.186:3018/api/sign-up',
+        'http://3.36.132.186:8000/api/auth/register',
         userData,
         { headers: { 'Content-Type': 'application/json' } }
       );
 
       if (response.status === 201) {
-        alert('회원가입에 성공하였습니다!');
+        alert('회원가입이 완료되었습니다.');
         navigate('/');
       }
     } catch (error) {
@@ -91,66 +91,68 @@ export default function JoinPage() {
   };
 
   return (
-    <St.JoinContainer>
-      <St.JoinHeader>
-        <St.JoinSubTitle>TAMINTAMS</St.JoinSubTitle>
-        <St.JoinTitle>회원가입</St.JoinTitle>
-      </St.JoinHeader>
-      <St.JoinRow1>
-        <St.JoinText>아이디</St.JoinText>
-        <JoinInput
-          type="text"
-          value={id}
-          handleChange={(e) => setId(e.target.value)}
-        />
-      </St.JoinRow1>
-      {validateUserId(id) || (
-        <St.ErrorMessage>
-          아이디는 7~12자 이내, 특수문자와 한글은 포함하지 않습니다.
-        </St.ErrorMessage>
-      )}
-      <St.JoinRow2>
-        <St.JoinText>비밀번호</St.JoinText>
-        <JoinInput
-          type="password"
-          value={password}
-          handleChange={(e) => setPassword(e.target.value)}
-        />
-      </St.JoinRow2>
-      {validatePassword(password) || (
-        <St.ErrorMessage>
-          비밀번호는 8자 이상, 특수문자는 1개 이상 들어가야 됩니다.
-        </St.ErrorMessage>
-      )}
-      <St.JoinRow3>
-        <St.JoinText>비밀번호 확인</St.JoinText>
-        <St.Input
-          type="password"
-          value={passwordConfirm}
-          onChange={(e) => setPasswordConfirm(e.target.value)}
-        />
-      </St.JoinRow3>
-      {password === passwordConfirm || (
-        <St.ErrorMessage>비밀번호가 일치하지 않습니다.</St.ErrorMessage>
-      )}
+    <St.JoinContainer1>
+      <St.JoinContainer2>
+        <St.JoinHeader>
+          <St.JoinSubTitle>TAMINTAMS</St.JoinSubTitle>
+          <St.JoinTitle>회원가입</St.JoinTitle>
+        </St.JoinHeader>
+        <St.JoinRow1>
+          <St.JoinText>아이디</St.JoinText>
+          <JoinInput
+            type="text"
+            value={id}
+            handleChange={(e) => setId(e.target.value)}
+          />
+        </St.JoinRow1>
+        {validateUserId(id) || (
+          <St.ErrorMessage>
+            아이디는 7~12자 이내, 특수문자와 한글은 포함하지 않습니다.
+          </St.ErrorMessage>
+        )}
+        <St.JoinRow2>
+          <St.JoinText>비밀번호</St.JoinText>
+          <JoinInput
+            type="password"
+            value={password}
+            handleChange={(e) => setPassword(e.target.value)}
+          />
+        </St.JoinRow2>
+        {validatePassword(password) || (
+          <St.ErrorMessage>
+            비밀번호는 8자 이상, 특수문자는 1개 이상 들어가야 됩니다.
+          </St.ErrorMessage>
+        )}
+        <St.JoinRow3>
+          <St.JoinText>비밀번호 확인</St.JoinText>
+          <St.Input
+            type="password"
+            value={passwordConfirm}
+            onChange={(e) => setPasswordConfirm(e.target.value)}
+          />
+        </St.JoinRow3>
+        {password === passwordConfirm || (
+          <St.ErrorMessage>비밀번호가 일치하지 않습니다.</St.ErrorMessage>
+        )}
 
-      <St.JoinRow4>
-        <St.JoinText>사용자 이름</St.JoinText>
-        <St.Input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </St.JoinRow4>
-      {name.trim() === '' && (
-        <St.ErrorMessage>사용자 이름을 입력하세요.</St.ErrorMessage>
-      )}
+        <St.JoinRow4>
+          <St.JoinText>사용자 이름</St.JoinText>
+          <St.Input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </St.JoinRow4>
+        {name.trim() === '' && (
+          <St.ErrorMessage>사용자 이름을 입력하세요.</St.ErrorMessage>
+        )}
 
-      <St.JoinButtons>
-        <St.JoinButton onClick={() => navigate('/')}>이전으로</St.JoinButton>
-        <St.JoinBar>│</St.JoinBar>
-        <St.JoinButton onClick={onSubmitHandler}>가입완료</St.JoinButton>
-      </St.JoinButtons>
-    </St.JoinContainer>
+        <St.JoinButtons>
+          <St.JoinButton onClick={() => navigate('/')}>이전으로</St.JoinButton>
+          <St.JoinBar>│</St.JoinBar>
+          <St.JoinButton onClick={onSubmitHandler}>가입완료</St.JoinButton>
+        </St.JoinButtons>
+      </St.JoinContainer2>
+    </St.JoinContainer1>
   );
 }

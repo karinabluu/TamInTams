@@ -25,13 +25,13 @@ export default function LoginPage() {
     e.preventDefault();
 
     const userData = {
-      email: id,
+      username: id,
       password,
     };
 
     try {
       const response = await axios.post(
-        'http://3.36.132.186:3018/api/sign-in',
+        'http://3.36.132.186:8000/api/auth/login',
         userData
       );
 
@@ -52,54 +52,56 @@ export default function LoginPage() {
   };
 
   return (
-    <St.LoginContainer>
-      <St.LoginAllTitle>
-        <St.LoginTitle>TAMINTAMS</St.LoginTitle>
-        <St.LoginSubTitle>
-          회의실 예약할 땐, 탐나는 인재 탐나는 스페이스
-        </St.LoginSubTitle>
-      </St.LoginAllTitle>
-      <St.LoginCol>
-        <St.LoginRow1>
-          <St.LoginText>
-            <LoginIcon />
-          </St.LoginText>
-          <LoginInput
-            type="text"
-            value={id}
-            handleChange={setId}
-            placeholder="아이디를 입력해주세요"
-          />
-        </St.LoginRow1>
+    <St.LoginContainer1>
+      <St.LoginContainer2>
+        <St.LoginAllTitle>
+          <St.LoginTitle>TAMINTAMS</St.LoginTitle>
+          <St.LoginSubTitle>
+            회의실 예약할 땐, 탐나는 인재 탐나는 스페이스
+          </St.LoginSubTitle>
+        </St.LoginAllTitle>
+        <St.LoginCol>
+          <St.LoginRow1>
+            <St.LoginText>
+              <LoginIcon />
+            </St.LoginText>
+            <LoginInput
+              type="text"
+              value={id}
+              handleChange={setId}
+              placeholder="아이디를 입력해주세요"
+            />
+          </St.LoginRow1>
 
-        <St.LoginRow2>
-          <St.LoginText>
-            <PasswordIcon />
-          </St.LoginText>
-          <LoginInput
-            type="password"
-            value={password}
-            handleChange={setPassword}
-            placeholder="비밀번호를 입력해주세요"
-          />
-        </St.LoginRow2>
+          <St.LoginRow2>
+            <St.LoginText>
+              <PasswordIcon />
+            </St.LoginText>
+            <LoginInput
+              type="password"
+              value={password}
+              handleChange={setPassword}
+              placeholder="비밀번호를 입력해주세요"
+            />
+          </St.LoginRow2>
 
-        <St.LoginButtons>
-          <St.LoginButton onClick={() => navigate('/join')}>
-            회원가입
-          </St.LoginButton>
-          <St.LoginBar>│</St.LoginBar>
-          <St.LoginButton onClick={onLoginHandler}>로그인</St.LoginButton>
-        </St.LoginButtons>
-        <St.ForgetButton onClick={() => openPasswordChangeModal(userId)}>
-          비밀번호를 잊어버리셨나요?
-        </St.ForgetButton>
-        <PasswordChangeModal
-          open={openModal}
-          close={() => setOpenModal(false)}
-          userId={userId}
-        />
-      </St.LoginCol>
-    </St.LoginContainer>
+          <St.LoginButtons>
+            <St.LoginButton onClick={() => navigate('/join')}>
+              회원가입
+            </St.LoginButton>
+            <St.LoginBar>│</St.LoginBar>
+            <St.LoginButton onClick={onLoginHandler}>로그인</St.LoginButton>
+          </St.LoginButtons>
+          <St.ForgetButton onClick={() => openPasswordChangeModal(userId)}>
+            비밀번호를 잊어버리셨나요?
+          </St.ForgetButton>
+          <PasswordChangeModal
+            open={openModal}
+            close={() => setOpenModal(false)}
+            userId={userId}
+          />
+        </St.LoginCol>
+      </St.LoginContainer2>
+    </St.LoginContainer1>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import * as St from '../../styles/styles';
-import '../../styles/css/PasswordChangeModal.css';
+import '../../styles/css/PasswordChangeModalStyles.css';
 
 export default function PasswordChangeModal(props) {
   const [name, setName] = useState('');
@@ -55,7 +55,7 @@ export default function PasswordChangeModal(props) {
         // 이름과 아이디가 확인된 경우에만 비밀번호 변경 요청을 보냅니다.
         const response = await axios.put(
           `http://54.180.31.53:8080/api/user/${userId}`,
-          { name: name, email: userId, password: setPassword }
+          { name: name, userid: userId, password: setPassword }
         );
         if (response.data.msg === '회원 정보 수정 완료') {
           setMessage('비밀번호가 변경되었습니다.');
@@ -76,7 +76,13 @@ export default function PasswordChangeModal(props) {
   };
 
   return (
-    <div className={props.open ? 'openModal modal' : 'modal'}>
+    <div
+      className={
+        props.open
+          ? 'openModal modal passwordchangemodalsection'
+          : 'modal passwordchangemodalsection'
+      }
+    >
       {props.open ? (
         <section>
           <header>
