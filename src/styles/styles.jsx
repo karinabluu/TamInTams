@@ -77,10 +77,6 @@ export const LoginBar = styled.div`
 
 export const LoginButtons = styled.div`
   display: flex;
-  /* align-items: center; */
-  /* justify-content: center; */
-  /* padding: 30px; */
-  /* margin-left: 250px; */
   left: 53%;
   color: black;
   position: absolute;
@@ -128,6 +124,19 @@ export const LoginInput = styled.input`
   background-color: #dce0dc;
 `;
 
+// 비밀번호 관련 모달
+
+export const PCMText = styled.div`
+  /* font-size: 20px;
+  color: black;
+  width: 130px;
+  text-align: center; */
+`;
+
+export const PCMInput = styled.input`
+  /* cursor: pointer; */
+`;
+
 // 회원가입 페이지
 
 export const Input = styled.input`
@@ -153,7 +162,8 @@ export const ErrorMessage = styled.div`
   color: red;
   margin-top: 8px;
   display: flex;
-  transform: translate(40%);
+  transform: translate(104%);
+  width: 310px;
   /* text-align: center; */
 `;
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import * as St from '../../styles/styles';
+import '../../styles/css/PasswordChangeModal.css';
 
 export default function PasswordChangeModal(props) {
   const [name, setName] = useState('');
@@ -85,24 +86,26 @@ export default function PasswordChangeModal(props) {
             </button>
           </header>
           <main>
-            <St.JoinText>이름</St.JoinText>
-            <St.Input
+            <St.PCMText>이름</St.PCMText>
+            <St.PCMInput
               type="text"
               name="name"
               value={name}
               onChange={handleChange}
             />
-            <St.JoinText>아이디</St.JoinText>
-            <St.Input
+
+            <St.PCMText>아이디</St.PCMText>
+            <St.PCMInput
               type="text"
               name="userId"
               value={userId}
               onChange={handleChange}
             />
+
             {isVerified && (
               <div>
-                <St.JoinText>새로운 비밀번호</St.JoinText>
-                <St.Input
+                <St.PCMText>새로운 비밀번호</St.PCMText>
+                <St.PCMInput
                   type="password"
                   name="password"
                   value={password}

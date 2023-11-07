@@ -102,13 +102,6 @@ export default function JoinPage() {
           type="text"
           value={id}
           handleChange={(e) => setId(e.target.value)}
-          // handleChange={(value) =>
-          //   handleInputChange(
-          //     value,
-          //     validateUserId,
-          //     '아이디는 7자리 이상 12자리 이하이며, 특수문자와 한글은 포함되지 않습니다.'
-          //   )
-          // }
         />
       </St.JoinRow1>
       {validateUserId(id) || (
@@ -116,22 +109,12 @@ export default function JoinPage() {
           아이디는 7~12자 이내, 특수문자와 한글은 포함하지 않습니다.
         </St.ErrorMessage>
       )}
-      {/* {errorMessage === '아이디' && (
-        <St.ErrorMessage>{errorMessage}</St.ErrorMessage>
-      )} */}
       <St.JoinRow2>
         <St.JoinText>비밀번호</St.JoinText>
         <JoinInput
           type="password"
           value={password}
           handleChange={(e) => setPassword(e.target.value)}
-          // handleChange={(value) =>
-          //   handleInputChange(
-          //     value,
-          //     validatePassword,
-          //     '비밀번호는 8자리 이상이며, 특수문자가 1개 이상 포함되어야 합니다.'
-          //   )
-          // }
         />
       </St.JoinRow2>
       {validatePassword(password) || (

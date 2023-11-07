@@ -1,24 +1,24 @@
-import React from "react";
-import "../../styles/css/modal.css";
-import { bookRoom } from "../../service/api"; //fetchReservationHistory 나중에 추가될것
+import React from 'react';
+import '../../styles/css/ReservationModal.css';
+import { bookRoom } from '../../service/api'; //fetchReservationHistory 나중에 추가될것
 
-const Modal = (props) => {
+const ReservationModal = (props) => {
   const { open, close, roomname, selectedButtons, updateSelectTimes } = props;
 
   const handleBookingClick = async () => {
     if (selectedButtons.length === 0) {
-      alert("시간을 선택해주세요!");
+      alert('시간을 선택해주세요!');
     } else {
       try {
         updateSelectTimes(roomname, selectedButtons);
-        console.log("예약완료:", roomname, selectedButtons);
+        console.log('예약완료:', roomname, selectedButtons);
         const response = await bookRoom(roomname, true);
         alert(response.msg);
-        alert("예약이 완료되었습니다!");
+        alert('예약이 완료되었습니다!');
         close();
       } catch (error) {
-        console.error("Error during booking:", error);
-        alert("예약 중 오류가 발생했습니다.");
+        console.error('Error during booking:', error);
+        alert('예약 중 오류가 발생했습니다.');
       }
     }
   };
@@ -36,7 +36,7 @@ const Modal = (props) => {
   // };
 
   return (
-    <div className={open ? "openModal modal" : "modal"}>
+    <div className={open ? 'openModal modal' : 'modal'}>
       {open ? (
         <section>
           <header>
@@ -63,4 +63,4 @@ const Modal = (props) => {
   );
 };
 
-export default Modal;
+export default ReservationModal;
