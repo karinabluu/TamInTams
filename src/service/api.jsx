@@ -1,27 +1,25 @@
 import axios from "axios";
 
-const API_URL = "http://54.180.31.53:8080";
-
-// 예약 내역 조회
-// export const fetchReservationHistory = async (id) => {
-//   try {
-//     const response = await axios.get(`${API_URL}/api/room-time/${id}`);
-//     console.log("Reservation History Response:", response.data);
-//     return response.data;
-//   } catch (error) {
-//     console.error("Error fetching reservation history:", error);
-//     throw error;
-//   }
-// };
+const API_URL = "http://3.36.132.186:8000";
 
 // 최종 예약하기
-export const bookRoom = async (roomId, check) => {
+export const bookRoom = async (roomId, userData, bookDate, bookTime, durationHours, userToken) => {
   try {
-    const response = await axios.post(`${API_URL}/api/room/book`, {
-      roomName: "협재",
-      check: true,
-      time: "09:00 ~ 10:00",
-    });
+    const response = await axios.post(
+      `${API_URL}/api/books`, 
+      {
+        roomId,
+        userData,
+        bookDate,
+        bookTime,
+        durationHours,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${userToken}` // 헤더에 토큰을 포함시킴
+        }
+      }
+    );
     console.log("Booking Response:", response.data);
     return response.data;
   } catch (error) {

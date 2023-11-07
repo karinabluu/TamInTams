@@ -1,21 +1,30 @@
 import { useState } from 'react';
 import * as St from '../../styles/styles';
-import { validateUserId, validatePassword } from '../../util/validation';
 
 export default function JoinInput(props) {
-  const { value, handleChange, errorMessage } = props;
+  const { value, handleChange, validationMessage, validator } = props;
   const [isCheck, setIsCheck] = useState(true);
 
   const handleKeyUp = () => {
     let isValid = true;
 
-    if (props.type === 'text') {
-      isValid = validateUserId(value);
-    } else if (props.type === 'password') {
-      isValid = validatePassword(value);
+    if (validator) {
+      isValid = validator(value);
     }
 
     setIsCheck(isValid);
+
+    if (!isValid) {
+      if (props.setErrorMessage) {
+        props.setErrorMessage(validationMessage);
+      }
+    } else {
+      if (props.setErrorMessage) {
+        props.setErrorMessage('');
+      }
+    }
+
+    // handleChange(value);
   };
 
   return (
@@ -23,10 +32,10 @@ export default function JoinInput(props) {
       <St.Input
         type={props.type || 'text'}
         value={value}
-        onChange={(e) => handleChange(e.target.value)}
+        // onChange={(e) => handleChange(e.target.value)}
+        onChange={handleChange}
         onKeyUp={handleKeyUp}
       />
-      {!isCheck && <St.ErrorMessage>{errorMessage}</St.ErrorMessage>}
     </>
   );
 }
