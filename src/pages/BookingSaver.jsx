@@ -23,7 +23,7 @@ const BookingSaver = (props) => {
   useEffect(() => {
     const token = getToken();
     if (!token) {
-      navigate("/login");
+      navigate("/");
     }
   }, [navigate]);
 
@@ -42,7 +42,7 @@ const BookingSaver = (props) => {
 
   return (
     <div>
-      <UserBookingInfo userData={reservationData} setReservationData={setReservationData} />
+      <BookingHistory userData={reservationData} setReservationData={setReservationData} />
       <Modal roomname={roomname} onReservation={handleReservationData} />
     </div>
   );

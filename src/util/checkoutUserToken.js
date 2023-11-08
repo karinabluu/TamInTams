@@ -5,7 +5,7 @@ export const checkoutUserToken = async () => {
   const token = getToken();
 
   try {
-    const response = await axios.post('http://3.36.132.186:3018/api/logout', {
+    const response = await axios.post('http://3.36.132.186:8000/api/logout', {
       headers: {
         Authorization: `${token}`,
       },
