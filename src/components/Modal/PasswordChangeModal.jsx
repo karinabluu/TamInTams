@@ -53,9 +53,9 @@ export default function PasswordChangeModal(props) {
     try {
       if (isVerified) {
         // 이름과 아이디가 확인된 경우에만 비밀번호 변경 요청을 보냅니다.
-        const response = await axios.put(
-          `http://54.180.31.53:8080/api/user/${userId}`,
-          { name: name, userid: userId, password: setPassword }
+        const response = await axios.post(
+          `http://localhost:8000/api/auth/same`,
+          { name: name, username: userId }
         );
         if (response.data.msg === '회원 정보 수정 완료') {
           setMessage('비밀번호가 변경되었습니다.');

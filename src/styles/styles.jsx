@@ -19,12 +19,12 @@ export const LoginContainer1 = styled.div`
 
 export const LoginContainer2 = styled.div`
   border-width: 30px 0px 0px 0px;
-  background-color: #dce0dc;
   justify-content: center;
   display: grid;
   width: 789px;
   height: 690px;
-  background-color: #dce0dc;
+  /* background-color: #dce0dc; */
+  background-color: white;
   border-radius: 50px;
   border: 10px solid black;
 `;
@@ -46,14 +46,14 @@ export const LoginRow2 = styled.div`
 `;
 
 export const LoginCol = styled.div`
-  margin-top: 70px;
+  margin-top: 80px;
   position: relative;
   width: 400px;
   height: 400px;
 `;
 
 export const LoginAllTitle = styled.div`
-  margin-top: 100px;
+  margin-top: 120px;
 `;
 
 export const LoginTitle = styled.div`
@@ -132,9 +132,9 @@ export const LoginInput = styled.input`
     box-shadow: none !important;
   }
   &::placeholder {
-    font-size: 20px;
+    font-size: 18px;
   }
-  background-color: #dce0dc;
+  background-color: white;
 `;
 
 // 비밀번호 관련 모달
@@ -169,12 +169,11 @@ export const JoinContainer1 = styled.div`
 
 export const JoinContainer2 = styled.div`
   border-width: 30px 0px 0px 0px;
-  background-color: #dce0dc;
+  background-color: white;
   justify-content: center;
   display: grid;
   width: 789px;
   height: 690px;
-  background-color: #dce0dc;
   border-radius: 50px;
   border: 10px solid black;
 `;
@@ -182,7 +181,7 @@ export const JoinContainer2 = styled.div`
 export const Input = styled.input`
   all: unset;
   cursor: pointer;
-  margin: 0px 0 0 15px;
+  margin: 0px 0 0 17px;
   width: 320px;
   height: 40px;
   font-size: 25px;
@@ -198,11 +197,11 @@ export const Input = styled.input`
 `;
 
 export const ErrorMessage = styled.div`
-  font-size: 16px;
+  font-size: 13px;
   color: red;
   margin-top: 8px;
   display: flex;
-  transform: translate(104%);
+  transform: translate(57%);
   width: 310px;
   /* text-align: center; */
 `;
@@ -260,8 +259,8 @@ export const JoinText = styled.div`
 `;
 
 export const JoinHeader = styled.div`
-  margin-top: 60px;
-  margin-bottom: 60px;
+  margin-top: 50px;
+  margin-bottom: 30px;
 `;
 
 export const JoinBar = styled.div`
@@ -282,6 +281,7 @@ export const JoinButtons = styled.div`
   justify-content: center;
   padding: 40px;
   margin-left: 250px;
+  margin-bottom: 30px;
 `;
 
 // 2F / 3F 버튼 디자인
