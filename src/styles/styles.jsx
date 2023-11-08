@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 // 로그인 페이지
 
@@ -344,7 +344,7 @@ export const Button = styled.div`
 `;
 
 export const HeaderWrap = styled.section`
-  display: flex;
+  display: flex; //
   max-width: 1190px;
   justify-content: space-between;
   margin: auto;
@@ -357,6 +357,12 @@ export const ButtonWrapper = styled.div`
   display: flex;
   align-items: baseline;
   gap: 15px;
+`;
+
+export const ButtonWrapper2 = styled.div`
+  display: flex;
+  align-items: center;
+  gap: -10px;
 `;
 
 // 회의실 버튼 디자인
@@ -379,23 +385,23 @@ export const RoomButton = styled.div`
 
 export const colorHandler = (color) => {
   switch (color) {
-    case 'green':
+    case "green":
       return {
-        border: '2.8px solid #222222',
-        color: '#ffffff',
-        backgroundColor: '#02c8be',
+        border: "2.8px solid #222222",
+        color: "#ffffff",
+        backgroundColor: "#02c8be",
       };
-    case 'yellow':
+    case "yellow":
       return {
-        border: '2.2px solid #222222',
-        color: '#ffffff',
-        backgroundColor: '#8fdf40',
+        border: "2.2px solid #222222",
+        color: "#ffffff",
+        backgroundColor: "#8fdf40",
       };
-    case 'transparent':
+    case "transparent":
       return {
-        border: '2.8px solid transparent',
-        color: '#ffffff',
-        backgroundColor: 'transparent',
+        border: "2.8px solid transparent",
+        color: "#ffffff",
+        backgroundColor: "transparent", // 배경색을 투명으로 설정
       };
     default:
       return {};
@@ -409,4 +415,10 @@ export const Mapping = styled.section`
   height: 600px;
   margin: 0 auto;
   position: relative;
+`;
+
+// 상단 헤더 정렬
+
+export const HeaderContainer = styled.div`
+  z-index: 1;
 `;
