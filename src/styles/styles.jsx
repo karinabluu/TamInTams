@@ -8,7 +8,7 @@ export const LoginContainer1 = styled.div`
   margin: 0 auto;
   position: relative;
   border: 10px solid black;
-  margin-top: 30px;
+  /* margin-top: 30px; */
   border-radius: 50px;
   border-width: 50px 5px 5px 5px;
   justify-content: center;
@@ -139,15 +139,66 @@ export const LoginInput = styled.input`
 
 // 비밀번호 관련 모달
 
-export const PCMText = styled.div`
-  /* font-size: 20px;
-  color: black;
-  width: 130px;
-  text-align: center; */
+export const PCMTitle = styled.div`
+  font-weight: 400;
+  font-size: 28px;
+  text-align: center;
+  color: rgb(2, 200, 190);
+  margin-top: 10px;
+  margin-bottom: 15px;
 `;
 
+export const PCMSubTitle = styled.div`
+  text-align: center;
+`;
+
+export const PCMText = styled.div``;
+
 export const PCMInput = styled.input`
-  /* cursor: pointer; */
+  margin-left: 40px;
+  cursor: pointer;
+  width: 380px;
+  height: 38px;
+  font-size: 15px;
+  letter-spacing: 0.15px;
+  text-align: center;
+`;
+
+export const PCMRow1 = styled.div`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  align-items: center;
+`;
+
+export const PCMRow2 = styled.div`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 80px;
+  align-items: center;
+`;
+
+export const PCMRow3 = styled.div`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 130px;
+  align-items: center;
+`;
+
+export const PCMErrorMessage = styled.div`
+  font-size: 13px;
+  color: red;
+  margin-top: 8px;
+  display: flex;
+  transform: translate(12%);
+  margin-top: 178px;
+  /* text-align: center; */
 `;
 
 // 회원가입 페이지
@@ -158,7 +209,7 @@ export const JoinContainer1 = styled.div`
   margin: 0 auto;
   position: relative;
   border: 10px solid black;
-  margin-top: 30px;
+  /* margin-top: 30px; */
   border-radius: 50px;
   border-width: 50px 5px 5px 5px;
   justify-content: center;

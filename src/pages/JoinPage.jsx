@@ -55,13 +55,13 @@ export default function JoinPage() {
 
     if (!validateUserId(id)) {
       setErrorMessage(
-        '아이디는 7자리 이상 12자리 이하이며, 특수문자와 한글은 포함되지 않습니다.'
+        '아이디는 7~12자 이내, 특수문자와 한글은 포함하지 않습니다.'
       );
       return;
     }
     if (!validatePassword(password)) {
       setErrorMessage(
-        '비밀번호는 8자리 이상이며, 특수문자가 1개 이상 포함되어야 합니다.'
+        '비밀번호는 8자 이상, 특수문자는 1개 이상 들어가야 됩니다.'
       );
       return;
     }
