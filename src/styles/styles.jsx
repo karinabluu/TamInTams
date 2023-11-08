@@ -8,7 +8,6 @@ export const LoginContainer1 = styled.div`
   margin: 0 auto;
   position: relative;
   border: 10px solid black;
-  /* margin-top: 30px; */
   border-radius: 50px;
   border-width: 50px 5px 5px 5px;
   justify-content: center;
@@ -23,7 +22,6 @@ export const LoginContainer2 = styled.div`
   display: grid;
   width: 789px;
   height: 690px;
-  /* background-color: #dce0dc; */
   background-color: white;
   border-radius: 50px;
   border: 10px solid black;
@@ -198,7 +196,6 @@ export const PCMErrorMessage = styled.div`
   display: flex;
   transform: translate(12%);
   margin-top: 178px;
-  /* text-align: center; */
 `;
 
 // 회원가입 페이지
@@ -209,7 +206,6 @@ export const JoinContainer1 = styled.div`
   margin: 0 auto;
   position: relative;
   border: 10px solid black;
-  /* margin-top: 30px; */
   border-radius: 50px;
   border-width: 50px 5px 5px 5px;
   justify-content: center;
@@ -254,7 +250,6 @@ export const ErrorMessage = styled.div`
   display: flex;
   transform: translate(57%);
   width: 310px;
-  /* text-align: center; */
 `;
 
 export const JoinRow1 = styled.div`
@@ -345,7 +340,7 @@ export const Button = styled.div`
 `;
 
 export const HeaderWrap = styled.section`
-  display: flex; //
+  display: flex;
   max-width: 1190px;
   justify-content: space-between;
   margin: auto;
@@ -396,7 +391,7 @@ export const colorHandler = (color) => {
       return {
         border: '2.8px solid transparent',
         color: '#ffffff',
-        backgroundColor: 'transparent', // 배경색을 투명으로 설정
+        backgroundColor: 'transparent',
       };
     default:
       return {};
