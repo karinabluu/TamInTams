@@ -3,21 +3,25 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import LoginInput from '../components/Input/LoginInput';
 import { setToken, getToken } from '../util/token';
+import { setID, getID } from '../util/token';
 import * as St from '../styles/styles';
 import { LoginIcon, PasswordIcon } from '../asset/icon';
 import PasswordChangeModal from '../components/Modal/PasswordChangeModal';
 
 export default function LoginPage() {
+  const navigate = useNavigate();
+  
   useEffect(() => {
     const token = getToken();
-    if (token) {
+    if (!token) {
       navigate('/'); // floor2
     }
   }, []);
 
+
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
+
   const [userId, setUserId] = useState('');
   const [openModal, setOpenModal] = useState(false);
 

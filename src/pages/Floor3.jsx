@@ -101,7 +101,7 @@ const Floor3 = () => {
   useEffect(() => {
     const token = getToken();
     if (!token) {
-      navigate('/login');
+      navigate('/');
     }
   }, [navigate]);
 
