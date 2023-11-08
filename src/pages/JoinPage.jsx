@@ -19,7 +19,7 @@ export default function JoinPage() {
     if (token) {
       navigate('/join');
     }
-  }, []);
+  }, [navigate]);
 
   const handleInputChange = (value, validator, validationMessage) => {
     if (!value) {

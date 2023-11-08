@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import LoginInput from '../components/Input/LoginInput';
 import { setToken, getToken } from '../util/token';
-import { setID, getID } from '../util/token';
+import { setId, getId } from '../util/token';
 import * as St from '../styles/styles';
 import { LoginIcon, PasswordIcon } from '../asset/icon';
 import PasswordChangeModal from '../components/Modal/PasswordChangeModal';
@@ -13,10 +13,11 @@ export default function LoginPage() {
   
   useEffect(() => {
     const token = getToken();
-    if (!token) {
+    const id = getId();
+    if (!token || !id) {
       navigate('/'); // floor2
     }
-  }, []);
+  }, [navigate]);
 
 
   const [id, setId] = useState('');
@@ -38,7 +39,7 @@ export default function LoginPage() {
         'http://3.36.132.186:8000/api/auth/login',
         userData
       );
-
+    
       if (response.status === 200) {
         setToken(response.data.token);
         console.log('로그인 성공:', response.data.token);

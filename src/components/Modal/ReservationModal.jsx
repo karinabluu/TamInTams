@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { TimeCalc } from "../../util/modalUtil";
 
 const ReservationModal = (props) => {
-  const { open, close, roomname, updateSelectTimes, onReservation, id } = props; // open prop 추가
+  const { open, close, roomname, onReservation, } = props; // open prop 추가
   const [selectedButtons, setSelectedButtons] = useState([]); //선택된 버튼들을 배열로 모아둠
   const [selectedTimeSlots, setSelectedTimeSlots] = useState([]);
   const navigate = useNavigate();
@@ -105,12 +105,6 @@ const ReservationModal = (props) => {
           formData.durationHours
         );
 
-        updateSelectTimes(
-          roomname,
-          selectedButtons,
-          bookDate,
-          `예약시간: ${startTime} ~ ${endTime}`
-        );
         console.log(
           "예약완료:",
           roomname,
@@ -118,9 +112,7 @@ const ReservationModal = (props) => {
           bookDate,
           `예약시간: ${startTime} ~ ${endTime}`
         );
-        // alert(response.msg); // 3번
-        // alert("예약이 완료되었습니다!"); // 3번
-        onReservation(formData);
+
   
         close();
       } catch (error) {

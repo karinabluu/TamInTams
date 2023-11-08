@@ -15,7 +15,7 @@ export const bookRoom = async (roomId, userId, bookDate, bookTime, durationHours
       },
       {
         headers: {
-          Authorization: `Bearer ${Token}, ${userId}` // 헤더에 토큰을 포함시킴
+          Authorization: `Bearer ${Token}` // 헤더에 토큰을 포함시킴
         }
       }
     );
@@ -23,6 +23,18 @@ export const bookRoom = async (roomId, userId, bookDate, bookTime, durationHours
     return response.data;
   } catch (error) {
     console.error("Booking error:", error);
+    throw error;
+  }
+};
+
+// 예약 내역 조회
+export const fetchReservationHistory = async (id) => {
+  try {
+    const response = await axios.get(`${API_URL}/api/users/userinfo2/${id}`);
+    console.log("Reservation History Response:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching reservation history:", error);
     throw error;
   }
 };
