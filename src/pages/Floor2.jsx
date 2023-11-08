@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { getToken } from '../util/token';
-// import { getID } from '../util/token';
+import { getToken, getId } from '../util/token';
 import * as St from '../styles/styles';
 import ReservationModal from '../components/Modal/ReservationModal'; // 수정된 부분
 import axios from 'axios';
@@ -80,18 +79,19 @@ const Floor2 = () => {
 
   useEffect(() => {
     const token = getToken();
-    if (!token) {
+    const id = getId();
+    if (!token || !id) {
       navigate("/");
     }
   }, [navigate]);
 
   const logOutHandler = async () => {
     const token = getToken();
-    // const id = getID();
-    console.log(token);
+    const id = getId();
+    console.log(token, id);
     try {
-      await axios.post('http://3.36.132.186:3018/api/log-out', null, {
-        headers: { Authorization: token},
+      await axios.post('http://3.36.132.186:8000/api/log-out', null, {
+        headers: { Authorization: `Bearer ${token}`},
       });
       navigate('/');
     } catch (error) {
@@ -106,19 +106,28 @@ const Floor2 = () => {
     console.log('room name:', room.name); //room.name값 받는지 콘솔로그 체크
   };
 
-      //모달닫기
-      const handleCloseModal = () => {
-        setModalOpen(false); // modalOpen 상태가 false로 되면서 모달이 닫힘
-        setSelectedButtons([]); // 선택된 버튼들이 초기화됨
-      };
-
-
-
-  const handleSelectedTimes = (roomname, updatedRoomTimes) => {
-    const newRoomState = setRoomState(roomState, roomname, updatedRoomTimes);
-    setRoomState(newRoomState);
+  //모달닫기
+  const handleCloseModal = () => {
+    setModalOpen(false); // modalOpen 상태가 false로 되면서 모달이 닫힘
+    setSelectedButtons([]); // 선택된 버튼들이 초기화됨
   };
 
+
+
+  //선택 시간 업데이트 버튼 - 특정 방의 선택된 시간(selectTimes)값을 업데이트
+  const handleSelectedTimes = (roomname, updatedRoomTimes) => {
+    // roomname과 updatedRoomTimes를 매개변수로 받아와서
+    setRoomState((prevItems) =>
+      prevItems.map((room) =>
+        // 이전의 방 목록(prevItems)을 매핑하면서 특정 방의 이름과 일치하는 경우
+        room.name === roomname
+          ? // 해당 방의 선택된 시간(selectTimes)을 업데이트된 시간(updatedRoomTimes)으로 설정
+            { ...room, selectTimes: updatedRoomTimes }
+          : // 그렇지 않으면 이전의 방 목록을 유지
+            room
+      )
+    );
+  };
 
 
 
@@ -188,6 +197,7 @@ const Floor2 = () => {
       <ReservationModal //
         open={modalOpen}
         close={handleCloseModal}//
+        selectedButtons={selectedButtons}
         roomname={roomname} //
         handleSelectedTimes={handleSelectedTimes}
         
