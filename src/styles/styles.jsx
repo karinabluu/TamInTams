@@ -241,6 +241,7 @@ export const Input = styled.input`
     outline: none;
     box-shadow: none !important;
   }
+  background-color: white;
 `;
 
 export const ErrorMessage = styled.div`
