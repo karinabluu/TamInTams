@@ -3,25 +3,26 @@ import styled from 'styled-components';
 // 로그인 페이지
 
 export const LoginContainer1 = styled.div`
-  width: 800px;
-  height: 700px;
+  width: 700px;
+  height: 460px;
   margin: 0 auto;
   position: relative;
   border: 10px solid black;
   border-radius: 50px;
-  border-width: 50px 5px 5px 5px;
+  border-width: 40px 5px 5px 5px;
   justify-content: center;
   display: grid;
   z-index: 1000;
   background-color: black;
+  margin-top: 100px;
 `;
 
 export const LoginContainer2 = styled.div`
   border-width: 30px 0px 0px 0px;
   justify-content: center;
   display: grid;
-  width: 789px;
-  height: 690px;
+  width: 689px;
+  height: 450px;
   background-color: white;
   border-radius: 50px;
   border: 10px solid black;
@@ -44,14 +45,14 @@ export const LoginRow2 = styled.div`
 `;
 
 export const LoginCol = styled.div`
-  margin-top: 80px;
+  margin-top: 60px;
   position: relative;
   width: 400px;
   height: 400px;
 `;
 
 export const LoginAllTitle = styled.div`
-  margin-top: 120px;
+  margin-top: 45px;
 `;
 
 export const LoginTitle = styled.div`
@@ -109,8 +110,9 @@ export const ForgetButton = styled.button`
   justify-content: center;
   position: absolute;
   transform: translate(-50%, -50%);
-  top: 220px;
+  top: 195px;
   left: 48%;
+  font-weight: 300;
 `;
 
 export const LoginInput = styled.input`
@@ -119,7 +121,7 @@ export const LoginInput = styled.input`
   margin: 0px 0 0 15px;
   width: 320px;
   height: 40px;
-  font-size: 25px;
+  font-size: 20px;
   letter-spacing: 0.15px;
   text-align: center;
   border-bottom: 3px solid;
@@ -130,7 +132,7 @@ export const LoginInput = styled.input`
     box-shadow: none !important;
   }
   &::placeholder {
-    font-size: 18px;
+    font-size: 17px;
   }
   background-color: white;
 `;
@@ -201,17 +203,18 @@ export const PCMErrorMessage = styled.div`
 // 회원가입 페이지
 
 export const JoinContainer1 = styled.div`
-  width: 800px;
-  height: 700px;
+  width: 700px;
+  height: 650px;
   margin: 0 auto;
   position: relative;
   border: 10px solid black;
   border-radius: 50px;
-  border-width: 50px 5px 5px 5px;
+  border-width: 40px 5px 5px 5px;
   justify-content: center;
   display: grid;
   z-index: 1000;
   background-color: black;
+  margin-top: 20px;
 `;
 
 export const JoinContainer2 = styled.div`
@@ -219,8 +222,8 @@ export const JoinContainer2 = styled.div`
   background-color: white;
   justify-content: center;
   display: grid;
-  width: 789px;
-  height: 690px;
+  width: 689px;
+  height: 640px;
   border-radius: 50px;
   border: 10px solid black;
 `;
@@ -228,7 +231,7 @@ export const JoinContainer2 = styled.div`
 export const Input = styled.input`
   all: unset;
   cursor: pointer;
-  margin: 0px 0 0 17px;
+  margin: 0px 0 0 11px;
   width: 320px;
   height: 40px;
   font-size: 25px;
@@ -249,7 +252,7 @@ export const ErrorMessage = styled.div`
   color: red;
   margin-top: 8px;
   display: flex;
-  transform: translate(57%);
+  transform: translate(47%);
   width: 310px;
 `;
 
@@ -299,7 +302,7 @@ export const JoinTitle = styled.div`
 `;
 
 export const JoinText = styled.div`
-  font-size: 20px;
+  font-size: 18px;
   color: black;
   width: 130px;
   text-align: center;
@@ -326,7 +329,7 @@ export const JoinButtons = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px;
+  padding: 10px;
   margin-left: 250px;
   margin-bottom: 30px;
 `;

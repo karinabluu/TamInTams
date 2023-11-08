@@ -2,8 +2,8 @@ export const LoginIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="40"
-      height="40"
+      width="35"
+      height="35"
       fill="black"
       class="bi bi-person-fill"
       viewBox="0 0 16 16"
@@ -17,8 +17,8 @@ export const PasswordIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="40"
-      height="40"
+      width="33"
+      height="33"
       fill="black"
       class="bi bi-lock-fill"
       viewBox="0 0 16 16"
