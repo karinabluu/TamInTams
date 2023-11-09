@@ -1,31 +1,25 @@
-import React, { useState, useEffect } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import { getToken } from "../util/token";
-import * as St from "../styles/styles";
-import ReservationModal from "../components/Reservation/ReservationModal";
-// import axios from 'axios';
-import Navbar from "../components/Navbar/Navbar";
+import React, { useState, useEffect } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import { getToken } from '../util/token';
+import * as St from '../styles/styles';
+import ReservationModal from '../components/Reservation/ReservationModal';
+import Navbar from '../components/Navbar/Navbar';
 
 const Floor3 = () => {
   const [modalOpen, setModalOpen] = useState(false); //초기값: 모달닫기상태
   const [selectedButtons, setSelectedButtons] = useState([]); //선택된 버튼들을 배열로 모아둠
   const [roomState, setroomState] = useState(roomData2); //index = roomData2(배열값)
-  const [roomname, setRoomname] = useState(""); //roomname = roomData2.name(방이름 초기값)
+  const [roomname, setRoomname] = useState(''); //roomname = roomData2.name(방이름 초기값)
 
   const navigate = useNavigate(); // 페이지간 이동을 위한 함수 import
 
-  // const loginname = getUname();
-  // console.log('회원 이름:', loginname);
-  const loginname = localStorage.getItem("userName");
-
-  // const loginId = getUuid();
-  // console.log('회원 아이디:', loginId);
+  const loginname = localStorage.getItem('userName');
 
   useEffect(() => {
     const token = getToken();
     if (!token) {
-      navigate("/");
+      navigate('/');
     }
   }, [navigate]);
 
@@ -33,7 +27,7 @@ const Floor3 = () => {
   const timeSlots = Array.from({ length: 12 }, (_, time) => {
     const hour = time + 9;
     return {
-      label: `${hour < 10 ? "0" + hour : hour}:00`,
+      label: `${hour < 10 ? '0' + hour : hour}:00`,
       value: time,
     };
   });
@@ -42,7 +36,7 @@ const Floor3 = () => {
   const handleOpenModal = (room) => {
     setModalOpen(true); //setModalOpen의 상태가 true값으로 되면서 열림
     setRoomname(room.name); //room.name을 클릭한 값의 데이터에서 받아옴
-    console.log("room name:", room.name); //room.name값 받는지 콘솔로그 체크
+    console.log('room name:', room.name); //room.name값 받는지 콘솔로그 체크
   };
 
   //모달닫기
@@ -61,7 +55,7 @@ const Floor3 = () => {
       setSelectedButtons([...selectedButtons, hour]); // 선택된 버튼이 2개 미만이면 새로운 버튼 선택
     } else {
       setSelectedButtons([hour]); // 그 외에는 선택된 버튼을 새로운 버튼으로 대체
-      console.log("Selected button value:", hour, roomname);
+      console.log('Selected button value:', hour, roomname);
     }
   };
 
@@ -84,12 +78,12 @@ const Floor3 = () => {
     <>
       <St.HeaderWrap>
         <St.ButtonWrapper>
-          <St.Button style={{ fontSize: "50px" }}>3F</St.Button>
+          <St.Button style={{ fontSize: '50px' }}>3F</St.Button>
           <span> I </span>
           <St.Button
-            style={{ color: "lightgrey" }}
+            style={{ color: 'lightgrey' }}
             onClick={() => {
-              navigate("/Floor2"); //2층 페이지로 이동하는 이벤트
+              navigate('/Floor2'); //2층 페이지로 이동하는 이벤트
             }}
           >
             2F
@@ -100,7 +94,7 @@ const Floor3 = () => {
             <Navbar />
           </St.HeaderContainer>
           <St.Button
-            style={{ fontSize: "18px", position: "relative", top: "-2px" }}
+            style={{ fontSize: '18px', position: 'relative', top: '-2px' }}
           >
             {loginname} 인재님
           </St.Button>
@@ -109,7 +103,7 @@ const Floor3 = () => {
       <St.Mapping>
         <Floor3img />
         <ButtonsSpace>
-          <ButtonsColumns style={{ marginBottom: "46px" }}>
+          <ButtonsColumns style={{ marginBottom: '46px' }}>
             {roomState.slice(0, 3).map((room, index) => (
               <St.RoomButton
                 key={index}
@@ -170,8 +164,8 @@ const Floor3 = () => {
             key={timeSlot.value}
             className={`button timeslot ${
               selectedButtons && selectedButtons.includes(timeSlot.value)
-                ? "selected"
-                : ""
+                ? 'selected'
+                : ''
             }`}
             onClick={() => handleButtonClick(timeSlot.value)}
           >
@@ -187,20 +181,20 @@ const Floor3 = () => {
 
 const sizeHandler = (size) => {
   switch (size) {
-    case "large":
+    case 'large':
       return {
-        width: "125px",
-        height: "83px",
+        width: '125px',
+        height: '83px',
       };
-    case "small":
+    case 'small':
       return {
-        width: "62px",
-        height: "58px",
+        width: '62px',
+        height: '58px',
       };
-    case "xlarge":
+    case 'xlarge':
       return {
-        width: "102px",
-        height: "200px",
+        width: '102px',
+        height: '200px',
       };
     default:
       return {};
@@ -208,17 +202,17 @@ const sizeHandler = (size) => {
 };
 
 const roomData2 = [
-  { name: "다랑쉬오름", sizeHandler: "large", colorHandler: "green" },
-  { name: "용눈이오름", sizeHandler: "large", colorHandler: "green" },
-  { name: "따라비오름", sizeHandler: "large", colorHandler: "green" },
-  { name: "Na1", sizeHandler: "small", colorHandler: "yellow" },
-  { name: "Na2", sizeHandler: "small", colorHandler: "yellow" },
-  { name: "Na3", sizeHandler: "small", colorHandler: "yellow" },
-  { name: "거문오름", sizeHandler: "xlarge", colorHandler: "green" },
+  { name: '다랑쉬오름', sizeHandler: 'large', colorHandler: 'green' },
+  { name: '용눈이오름', sizeHandler: 'large', colorHandler: 'green' },
+  { name: '따라비오름', sizeHandler: 'large', colorHandler: 'green' },
+  { name: 'Na1', sizeHandler: 'small', colorHandler: 'yellow' },
+  { name: 'Na2', sizeHandler: 'small', colorHandler: 'yellow' },
+  { name: 'Na3', sizeHandler: 'small', colorHandler: 'yellow' },
+  { name: '거문오름', sizeHandler: 'xlarge', colorHandler: 'green' },
 ];
 
 const Floor3img = styled.div`
-  background-image: url("/img/Floor3.png");
+  background-image: url('/img/Floor3.png');
   height: 600px;
   background-repeat: no-repeat;
   background-position: center;
