@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { getToken, getId } from '../util/token';
+import { getToken, getUuid } from '../util/token';
 import * as St from '../styles/styles';
 import ReservationModal from '../components/Modal/ReservationModal'; // 수정된 부분
 import axios from 'axios';
@@ -79,15 +79,15 @@ const Floor2 = () => {
 
   useEffect(() => {
     const token = getToken();
-    const id = getId();
+    const id = getUuid();
     if (!token || !id) {
-      navigate("/");
+      navigate("/floor2");
     }
   }, [navigate]);
 
   const logOutHandler = async () => {
     const token = getToken();
-    const id = getId();
+    const id = getUuid();
     console.log(token, id);
     try {
       await axios.post('http://3.36.132.186:8000/api/log-out', null, {
