@@ -2,12 +2,26 @@ import axios from "axios";
 
 const API_URL = "http://54.180.31.53:8080";
 // const API_URL = "http://3.36.132.186:8000";
+// const API_URL = "http://3.37.55.180:8080";
+
+const token = localStorage.getItem("token");
+
+axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
 // 최종 예약하기
-export const bookRoom = async (bookId, roomId, userId, bookDate, bookTime, durationHours, token,) => {
+export const bookRoom = async (
+  bookId,
+  roomId,
+  userId,
+  bookDate,
+  bookTime,
+  durationHours,
+  token
+) => {
   try {
     const response = await axios.post(
-      `${API_URL}/api/room/books`,{
+      `${API_URL}/api/room/books`,
+      {
         bookId,
         roomId,
         userId,
@@ -18,14 +32,15 @@ export const bookRoom = async (bookId, roomId, userId, bookDate, bookTime, durat
       },
       {
         headers: {
-          Authorization: `Bearer ${token}` // 헤더에 토큰을 포함시킴
-        }
+          Authorization: `Bearer ${token}`, // 헤더에 토큰을 포함시킴
+        },
       }
-    );    
-    
+    );
+
     if (response.status === 201) {
-    console.log("Booking Response:", response.data);
-    return response.data}
+      console.log("Booking Response:", response.data);
+      return response.data;
+    }
   } catch (error) {
     console.error("Booking error:", error);
     throw error;
@@ -36,10 +51,10 @@ export const bookRoom = async (bookId, roomId, userId, bookDate, bookTime, durat
 export const fetchBookedTimeslots = async (_id) => {
   try {
     // API_URL은 당신의 API 기본 URL로 가정합니다.
-    const response = await axios.get(`${API_URL}/api/books/${_id}`); 
-      console.log("Reservation History Response:", response.data);
+    const response = await axios.get(`${API_URL}/api/books/${_id}`);
+    console.log("Reservation History Response:", response.data);
 
-    return response.data;// 해당 방과 시간에 대한 예약된 시간대를 반환합니다.
+    return response.data; // 해당 방과 시간에 대한 예약된 시간대를 반환합니다.
   } catch (error) {
     console.error("Error fetching booked timeslots for room:", error);
     throw error; // 함수를 호출하는 곳에서 에러를 처리할 수 있도록 에러를 던집니다.
@@ -49,7 +64,8 @@ export const fetchBookedTimeslots = async (_id) => {
 // 예약 내역 조회
 export const fetchReservationHistory = async (id) => {
   try {
-    const response = await axios.get(`${API_URL}/api/users/userinfo2/${id}`);
+    const id = localStorage.getItem("userId");
+    const response = await axios.get(`${API_URL}/api/books/${id}`);
     console.log("Reservation History Response:", response.data);
     return response.data;
   } catch (error) {

@@ -6,6 +6,7 @@ import * as St from "../styles/styles";
 import ReservationModal from "../components/Reservation/ReservationModal";
 import axios from "axios";
 import Navbar from "../components/Navbar/Navbar";
+import { fetchReservationHistory } from "../service/api";
 
 const Floor2 = () => {
   const [modalOpen, setModalOpen] = useState(false); //초기값: 모달닫기상태
@@ -18,6 +19,8 @@ const Floor2 = () => {
   const name = localStorage.getItem("userName");
 
   useEffect(() => {
+    fetchReservationHistory(); // 테스트용
+
     const token = getToken();
     console.log("현재 토큰 값:", token);
     if (!token) {
