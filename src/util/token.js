@@ -23,7 +23,9 @@ export const getUuid = () => {
 };
 
 //name 가져오기
+
 export const setUname = (name) => {
+  console.log(name);
   localStorage.setItem('name', name);
 };
 

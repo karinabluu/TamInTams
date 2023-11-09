@@ -14,7 +14,9 @@ const Floor2 = () => {
   const [roomname, setRoomname] = useState(''); //roomname = roomData.name(방이름 초기값)
 
   const navigate = useNavigate(); // 페이지간 이동을 위한 함수 import
+
   const loginname = getUname();
+  console.log('회원 이름:', loginname);
 
   useEffect(() => {
     const token = getToken();
@@ -112,7 +114,7 @@ const Floor2 = () => {
           <St.Button
             style={{ fontSize: '18px', position: 'relative', top: '-2px' }}
           >
-            ${loginname}님
+            {loginname}님
           </St.Button>
         </St.ButtonWrapper2>
       </St.HeaderWrap>
