@@ -16,28 +16,15 @@ const Floor2 = () => {
   // const [name, setName] = useState('');
 
   const navigate = useNavigate(); // 페이지간 이동을 위한 함수 import
-  const name = localStorage.getItem("userName");
+
+  const loginname = localStorage.getItem("userName");
 
   useEffect(() => {
     fetchReservationHistory(); // 테스트용
 
     const token = getToken();
-    console.log("현재 토큰 값:", token);
     if (!token) {
-      console.log("토큰이 없습니다. 로그인 페이지로 이동합니다.");
       navigate("/");
-    } else {
-      axios
-        .get("http://3.36.132.186:8000/api/auth/login")
-        .then((response) => {
-          // setName(response.data.name);
-        })
-        .catch((error) => {
-          console.error(
-            "서버에서 데이터를 가져오는 중 오류가 발생했습니다:",
-            error
-          );
-        });
     }
   }, [navigate]);
 
@@ -115,7 +102,7 @@ const Floor2 = () => {
           <St.Button
             style={{ fontSize: "18px", position: "relative", top: "-2px" }}
           >
-            {name ? name + "인재님" : "탐나는 인재님"}
+            {loginname} 인재님
           </St.Button>
         </St.ButtonWrapper2>
       </St.HeaderWrap>
