@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import { getToken } from '../util/token';
 import * as St from '../styles/styles';
 import ReservationModal from '../components/Modal/ReservationModal';
-import axios from 'axios';
 import Navbar from '../components/Navbar/Navbar';
+import { getUname, setUname } from '../util/token';
 
 const Floor2 = () => {
   const [modalOpen, setModalOpen] = useState(false); //초기값: 모달닫기상태
@@ -14,6 +14,7 @@ const Floor2 = () => {
   const [roomname, setRoomname] = useState(''); //roomname = roomData.name(방이름 초기값)
 
   const navigate = useNavigate(); // 페이지간 이동을 위한 함수 import
+  const loginname = getUname();
 
   useEffect(() => {
     const token = getToken();
@@ -111,7 +112,7 @@ const Floor2 = () => {
           <St.Button
             style={{ fontSize: '18px', position: 'relative', top: '-2px' }}
           >
-            탐나는 인재님
+            ${loginname}님
           </St.Button>
         </St.ButtonWrapper2>
       </St.HeaderWrap>
