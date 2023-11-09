@@ -3,20 +3,18 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { getToken } from '../util/token';
 import * as St from '../styles/styles';
-import ReservationModal from '../components/Modal/ReservationModal';
+import ReservationModal from '../components/Reservation/ReservationModal';
+import axios from 'axios';
 import Navbar from '../components/Navbar/Navbar';
-import { getUname, setUname } from '../util/token';
 
 const Floor2 = () => {
   const [modalOpen, setModalOpen] = useState(false); //초기값: 모달닫기상태
   const [selectedButtons, setSelectedButtons] = useState([]); //선택된 버튼들을 배열로 모아둠
   const [roomState, setroomState] = useState(roomData); //index = roomData2(배열값)
   const [roomname, setRoomname] = useState(''); //roomname = roomData.name(방이름 초기값)
+  const [name, setName] = useState('');
 
   const navigate = useNavigate(); // 페이지간 이동을 위한 함수 import
-
-  const loginname = getUname();
-  console.log('회원 이름:', loginname);
 
   useEffect(() => {
     const token = getToken();
@@ -24,6 +22,18 @@ const Floor2 = () => {
     if (!token) {
       console.log('토큰이 없습니다. 로그인 페이지로 이동합니다.');
       navigate('/');
+    } else {
+      axios
+        .get('http://3.36.132.186:8000/api/auth/login')
+        .then((response) => {
+          setName(response.data.name);
+        })
+        .catch((error) => {
+          console.error(
+            '서버에서 데이터를 가져오는 중 오류가 발생했습니다:',
+            error
+          );
+        });
     }
   }, [navigate]);
 
@@ -35,19 +45,6 @@ const Floor2 = () => {
       value: time,
     };
   });
-
-  // const logOutHandler = async () => {
-  //   const token = getToken();
-  //   console.log(token);
-  //   try {
-  //     await axios.post('http://3.36.132.186:3018/api/log-out', null, {
-  //       headers: { Authorization: token },
-  //     });
-  //     navigate('/');
-  //   } catch (error) {
-  //     console.error('로그아웃 실패', error);
-  //   }
-  // };
 
   //모달 창 열기
   const handleOpenModal = (room) => {
@@ -114,7 +111,7 @@ const Floor2 = () => {
           <St.Button
             style={{ fontSize: '18px', position: 'relative', top: '-2px' }}
           >
-            {loginname}님
+            {name ? name + '인재님' : '탐나는 인재님'}
           </St.Button>
         </St.ButtonWrapper2>
       </St.HeaderWrap>

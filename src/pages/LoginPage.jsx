@@ -5,7 +5,7 @@ import LoginInput from '../components/Input/LoginInput';
 import { setToken, getToken } from '../util/token';
 import * as St from '../styles/styles';
 import { LoginIcon, PasswordIcon } from '../asset/icon';
-import PasswordChangeModal from '../components/Modal/PasswordChangeModal';
+import PasswordChangeModal from '../components/PasswordChange/PasswordChangeModal';
 
 export default function LoginPage() {
   useEffect(() => {

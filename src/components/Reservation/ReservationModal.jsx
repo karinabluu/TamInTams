@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/css/ReservationModal.css';
+import './ReservationModal.css';
 import { bookRoom } from '../../service/api'; //fetchReservationHistory 나중에 추가될것
 
 const ReservationModal = (props) => {

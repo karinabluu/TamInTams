@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { getToken } from '../util/token';
+import { getToken, getUname, getUuid } from '../util/token';
 import * as St from '../styles/styles';
-import ReservationModal from '../components/Modal/ReservationModal';
-import axios from 'axios';
+import ReservationModal from '../components/Reservation/ReservationModal';
+// import axios from 'axios';
 import Navbar from '../components/Navbar/Navbar';
 
 const Floor3 = () => {
@@ -14,6 +14,12 @@ const Floor3 = () => {
   const [roomname, setRoomname] = useState(''); //roomname = roomData2.name(방이름 초기값)
 
   const navigate = useNavigate(); // 페이지간 이동을 위한 함수 import
+
+  const loginname = getUname();
+  console.log('회원 이름:', loginname);
+
+  const loginId = getUuid();
+  console.log('회원 아이디:', loginId);
 
   useEffect(() => {
     const token = getToken();
@@ -30,19 +36,6 @@ const Floor3 = () => {
       value: time,
     };
   });
-
-  // const logOutHandler = async () => {
-  //   const token = getToken();
-  //   console.log(token);
-  //   try {
-  //     await axios.post('http://3.36.132.186:3018/api/log-out', null, {
-  //       headers: { Authorization: token },
-  //     });
-  //     navigate('/');
-  //   } catch (error) {
-  //     console.error('로그아웃 실패', error);
-  //   }
-  // };
 
   //모달 창 열기
   const handleOpenModal = (room) => {
@@ -108,7 +101,7 @@ const Floor3 = () => {
           <St.Button
             style={{ fontSize: '18px', position: 'relative', top: '-2px' }}
           >
-            탐나는 인재님
+            {loginname} 인재님
           </St.Button>
         </St.ButtonWrapper2>
       </St.HeaderWrap>

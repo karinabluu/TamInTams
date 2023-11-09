@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import * as St from '../../styles/styles';
-import '../../styles/css/PasswordChangeModalStyles.css';
+import './PasswordChangeModalStyles.css';
 import { validatePassword } from '../../util/validation';
 
 export default function PasswordChangeModal(props) {
