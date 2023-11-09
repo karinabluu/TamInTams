@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
 // date;
 // import "../../styles/ReservationStyles/ReservationModal.css";
@@ -8,6 +9,17 @@ import { setUname, getUname } from "../../util/token";
 import { bookRoom, fetchBookedTimeslots } from "../../service/api";
 import { useNavigate } from "react-router-dom";
 // import { TimeCalc } from "../../util/modalUtil";
+=======
+import React, { useState, useEffect } from 'react';
+import './ReservationModal.css';
+import { setToken, getToken } from '../../util/token';
+import { setUuid, getUuid } from '../../util/token';
+import { setBookid, getBookid } from '../../util/token';
+import { setUname, getUname } from '../../util/token';
+import { bookRoom, fetchBookedTimeslots } from '../../service/api';
+import { useNavigate } from 'react-router-dom';
+import { TimeCalc } from '../../util/modalUtil';
+>>>>>>> main
 
 const ReservationModal = (props) => {
   const { open, close, roomname } = props; // open prop 추가
@@ -22,7 +34,7 @@ const ReservationModal = (props) => {
     const id = getUuid();
     console.log("User ID:", getUuid());
     if (!token || !id) {
-      navigate("/floor2");
+      navigate('/floor2');
     }
   }, [navigate]);
 
@@ -31,7 +43,11 @@ const ReservationModal = (props) => {
     const hour = time + 9;
     const endHour = hour + 1; // 종료 시간을 시작 시간에 1을 더하여 계산
     return {
+<<<<<<< HEAD
       label: `${hour < 10 ? "0" + hour : hour}:00`,
+=======
+      label: `${hour < 10 ? '0' + hour : hour}:00`,
+>>>>>>> main
       value: time,
     };
   });
@@ -42,8 +58,13 @@ const ReservationModal = (props) => {
     const id = getUuid();
     setUname();
     const name = getUname();
+<<<<<<< HEAD
     console.log("User ID:", id);
     console.log("User name:", name);
+=======
+    console.log('User ID:', id);
+    console.log('User name:', name);
+>>>>>>> main
 
     setSelectedButtons((prevSelectedButtons) => {
       if (prevSelectedButtons.includes(hour)) {
@@ -68,8 +89,13 @@ const ReservationModal = (props) => {
       }
     });
 
+<<<<<<< HEAD
     console.log("Selected button value:", hour, roomname);
     console.log("token:", token, "id:", id);
+=======
+    console.log('Selected button value:', hour, roomname);
+    console.log('token:', token, 'id:', id);
+>>>>>>> main
   };
 
   useEffect(() => {
@@ -77,11 +103,19 @@ const ReservationModal = (props) => {
     const fetchAndSetBookedTimeslots = async () => {
       try {
         // 여기에서 book_id는 예약을 식별하는 ID입니다.
+<<<<<<< HEAD
         // const _id = getBookid(); // 이 ID를 어떻게 얻을지는 백엔드 API 설계에 따라 달라집니다.
         // const bookedSlotsData = await fetchBookedTimeslots(_id);
         // setBookedTimeslots(bookedSlotsData);
       } catch (error) {
         console.error("Could not fetch booked timeslots:", error);
+=======
+        const _id = getBookid(); // 이 ID를 어떻게 얻을지는 백엔드 API 설계에 따라 달라집니다.
+        const bookedSlotsData = await fetchBookedTimeslots(_id);
+        setBookedTimeslots(bookedSlotsData);
+      } catch (error) {
+        console.error('Could not fetch booked timeslots:', error);
+>>>>>>> main
       }
     };
 
@@ -91,19 +125,27 @@ const ReservationModal = (props) => {
   const calculateStartTime = (buttonIndex) => {
     // 오전 9시부터 시작한다고 가정합니다.
     const hour = 9 + buttonIndex; // 예를 들어, buttonIndex가 0이면, 9시를 의미합니다.
+<<<<<<< HEAD
     return hour.toString().padStart(2, "0") + ":00";
+=======
+    return hour.toString().padStart(2, '0') + ':00';
+>>>>>>> main
   };
 
   const calculateEndTime = (buttonIndex, duration) => {
     // duration은 예약의 길이(시간 단위)를 나타냅니다. 여기서는 항상 1로 가정합니다.
     const hour = 9 + buttonIndex + duration;
+<<<<<<< HEAD
     return hour.toString().padStart(2, "0") + ":00";
+=======
+    return hour.toString().padStart(2, '0') + ':00';
+>>>>>>> main
   };
 
   const handleTimeSlot = (start, duration) => {
     const startTime = calculateStartTime(start);
     const endTime = calculateEndTime(start, duration);
-    console.log("Selected time slot: ", startTime, endTime);
+    console.log('Selected time slot: ', startTime, endTime);
 
     const newTimeSlot = { startTime, endTime };
     setSelectedTimeSlots((prevTimeSlots) => [...prevTimeSlots, newTimeSlot]);
@@ -112,7 +154,11 @@ const ReservationModal = (props) => {
   //예약버튼
   const handleBookingClick = async () => {
     if (selectedButtons.length === 0) {
+<<<<<<< HEAD
       alert("시간을 선택해주세요!");
+=======
+      alert('시간을 선택해주세요!');
+>>>>>>> main
       return;
     }
 
@@ -131,40 +177,71 @@ const ReservationModal = (props) => {
 
     try {
       const id = getUuid();
+<<<<<<< HEAD
       // const bookDate = TimeCalc(new Date());
 
       const formData = {
         // _id: getBookid(),
         roomId: roomname,
         userId: id,
+=======
+      const bookDate = TimeCalc(new Date());
+
+      const formData = {
+        _id: getBookid(),
+        roomId: roomname,
+        userId: id,
+        bookDate: bookDate,
+>>>>>>> main
         bookTime: bookTime, // 'HH:mm - HH:mm' formatted string
         durationHours: duration,
         token: getToken(),
       };
 
       const response = await bookRoom(
+<<<<<<< HEAD
         // formData._id,
         formData.roomId,
         formData.userId,
+=======
+        formData._id,
+        formData.roomId,
+        formData.userId,
+        formData.bookDate,
+>>>>>>> main
         formData.bookTime,
         formData.durationHours,
         formData.token
       );
 
       // 예약 성공 메시지
+<<<<<<< HEAD
       // alert(`예약완료: ${roomname}, ${bookDate}, 예약시간: ${bookTime}`);
       console.log("예약 성공 응답:", response);
+=======
+      alert(`예약완료: ${roomname}, ${bookDate}, 예약시간: ${bookTime}`);
+      console.log('예약 성공 응답:', response);
+>>>>>>> main
 
       close(); // 모달을 닫습니다.
       setSelectedButtons([]); // 선택된 버튼 상태를 초기화합니다.
     } catch (error) {
+<<<<<<< HEAD
       console.error("Error during booking:", error);
       alert("예약 실패: " + (error.response?.data.message || error.message));
+=======
+      console.error('Error during booking:', error);
+      alert('예약 실패: ' + (error.response?.data.message || error.message));
+>>>>>>> main
     }
   };
 
   return (
+<<<<<<< HEAD
     <div className={open ? "openModal modal" : "modal"} open={open}>
+=======
+    <div className={open ? 'openModal modal' : 'modal'} open={open}>
+>>>>>>> main
       {open ? (
         <section>
           <header>
@@ -189,8 +266,13 @@ const ReservationModal = (props) => {
                   key={timeSlot.value}
                   // 'selected' 클래스를 추가하기 위한 로직을 포함합니다.
                   className={`timelinebutton timeslot ${
+<<<<<<< HEAD
                     isSelected ? "selected" : "notselected"
                   } ${isBooked ? "booked" : ""}`}
+=======
+                    isSelected ? 'selected' : 'notselected'
+                  } ${isBooked ? 'booked' : ''}`}
+>>>>>>> main
                   onClick={() => handleButtonClick(timeSlot.value)}
                   disabled={isBooked}
                 >

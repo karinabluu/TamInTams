@@ -12,10 +12,16 @@ const Floor2 = () => {
   const [modalOpen, setModalOpen] = useState(false); //초기값: 모달닫기상태
   const [selectedButtons, setSelectedButtons] = useState([]); //선택된 버튼들을 배열로 모아둠
   const [roomState, setroomState] = useState(roomData); //index = roomData2(배열값)
+<<<<<<< HEAD
   const [roomname, setRoomname] = useState(""); //roomname = roomData.name(방이름 초기값)
   const [name, setName] = useState("");
+=======
+  const [roomname, setRoomname] = useState(''); //roomname = roomData.name(방이름 초기값)
+  // const [name, setName] = useState('');
+>>>>>>> main
 
   const navigate = useNavigate(); // 페이지간 이동을 위한 함수 import
+  const name = localStorage.getItem('userName');
 
   useEffect(() => {
     fetchReservationHistory();
