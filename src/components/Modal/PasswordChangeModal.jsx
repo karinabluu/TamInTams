@@ -78,11 +78,11 @@ export default function PasswordChangeModal(props) {
     >
       {props.open ? (
         <section>
-          <header>
-            <button className="close" onClick={handleModalClose}>
-              &times;
-            </button>
-          </header>
+          {/* <header> */}
+          {/* <button className="close" onClick={handleModalClose}>
+            &times;
+          </button> */}
+          {/* </header> */}
           <main>
             <St.PCMTitle>비밀번호를 잊어버리셨나요?</St.PCMTitle>
             <St.PCMSubTitle>
@@ -124,6 +124,9 @@ export default function PasswordChangeModal(props) {
             )}
           </main>
           <footer>
+            <button className="close" onClick={handleModalClose}>
+              닫기
+            </button>
             <button className="change-password" onClick={handlePasswordChange}>
               확인
             </button>

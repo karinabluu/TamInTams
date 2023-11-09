@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 // 로그인 페이지
 
@@ -144,7 +144,7 @@ export const PCMTitle = styled.div`
   font-size: 28px;
   text-align: center;
   color: rgb(2, 200, 190);
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 15px;
 `;
 
@@ -385,23 +385,23 @@ export const RoomButton = styled.div`
 
 export const colorHandler = (color) => {
   switch (color) {
-    case "green":
+    case 'green':
       return {
-        border: "2.8px solid #222222",
-        color: "#ffffff",
-        backgroundColor: "#02c8be",
+        border: '2.8px solid #222222',
+        color: '#ffffff',
+        backgroundColor: '#02c8be',
       };
-    case "yellow":
+    case 'yellow':
       return {
-        border: "2.2px solid #222222",
-        color: "#ffffff",
-        backgroundColor: "#8fdf40",
+        border: '2.2px solid #222222',
+        color: '#ffffff',
+        backgroundColor: '#8fdf40',
       };
-    case "transparent":
+    case 'transparent':
       return {
-        border: "2.8px solid transparent",
-        color: "#ffffff",
-        backgroundColor: "transparent", // 배경색을 투명으로 설정
+        border: '2.8px solid transparent',
+        color: '#ffffff',
+        backgroundColor: 'transparent', // 배경색을 투명으로 설정
       };
     default:
       return {};
