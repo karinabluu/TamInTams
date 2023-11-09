@@ -1,36 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import { getToken } from '../util/token';
-import * as St from '../styles/styles';
-import ReservationModal from '../components/Reservation/ReservationModal';
-import axios from 'axios';
-import Navbar from '../components/Navbar/Navbar';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import { getToken } from "../util/token";
+import * as St from "../styles/styles";
+import ReservationModal from "../components/Reservation/ReservationModal";
+import axios from "axios";
+import Navbar from "../components/Navbar/Navbar";
+import { fetchReservationHistory } from "../service/api";
 
 const Floor2 = () => {
   const [modalOpen, setModalOpen] = useState(false); //초기값: 모달닫기상태
   const [selectedButtons, setSelectedButtons] = useState([]); //선택된 버튼들을 배열로 모아둠
   const [roomState, setroomState] = useState(roomData); //index = roomData2(배열값)
-  const [roomname, setRoomname] = useState(''); //roomname = roomData.name(방이름 초기값)
-  const [name, setName] = useState('');
+  const [roomname, setRoomname] = useState(""); //roomname = roomData.name(방이름 초기값)
+  const [name, setName] = useState("");
 
   const navigate = useNavigate(); // 페이지간 이동을 위한 함수 import
 
   useEffect(() => {
+    fetchReservationHistory();
+
     const token = getToken();
-    console.log('현재 토큰 값:', token);
+    console.log("현재 토큰 값:", token);
     if (!token) {
-      console.log('토큰이 없습니다. 로그인 페이지로 이동합니다.');
-      navigate('/');
+      console.log("토큰이 없습니다. 로그인 페이지로 이동합니다.");
+      navigate("/");
     } else {
       axios
-        .get('http://3.36.132.186:8000/api/auth/login')
+        .get("http://3.36.132.186:8000/api/auth/login")
         .then((response) => {
           setName(response.data.name);
         })
         .catch((error) => {
           console.error(
-            '서버에서 데이터를 가져오는 중 오류가 발생했습니다:',
+            "서버에서 데이터를 가져오는 중 오류가 발생했습니다:",
             error
           );
         });
@@ -41,7 +44,7 @@ const Floor2 = () => {
   const timeSlots = Array.from({ length: 12 }, (_, time) => {
     const hour = time + 9;
     return {
-      label: `${hour < 10 ? '0' + hour : hour}:00`,
+      label: `${hour < 10 ? "0" + hour : hour}:00`,
       value: time,
     };
   });
@@ -50,7 +53,7 @@ const Floor2 = () => {
   const handleOpenModal = (room) => {
     setModalOpen(true); //setModalOpen의 상태가 true값으로 되면서 열림
     setRoomname(room.name); //room.name을 클릭한 값의 데이터에서 받아옴
-    console.log('room name:', room.name); //room.name값 받는지 콘솔로그 체크
+    console.log("room name:", room.name); //room.name값 받는지 콘솔로그 체크
   };
 
   //모달닫기
@@ -70,7 +73,7 @@ const Floor2 = () => {
     } else {
       setSelectedButtons([hour]); //그 외에는 선택된 버튼을 새로운 버튼으로 대체
     }
-    console.log('Selected button value:', hour, roomname); // 선택된 방의 이름 로그로 출력
+    console.log("Selected button value:", hour, roomname); // 선택된 방의 이름 로그로 출력
   };
 
   //선택 시간 업데이트 버튼 - 특정 방의 선택된 시간(selectTimes)값을 업데이트
@@ -92,12 +95,12 @@ const Floor2 = () => {
     <>
       <St.HeaderWrap>
         <St.ButtonWrapper>
-          <St.Button style={{ fontSize: '50px' }}>2F </St.Button>
+          <St.Button style={{ fontSize: "50px" }}>2F </St.Button>
           <span> I </span>
           <St.Button
-            style={{ color: 'lightgrey' }}
+            style={{ color: "lightgrey" }}
             onClick={() => {
-              navigate('/Floor3'); //3층 페이지로 이동하는 이벤트함수 처리 필요함
+              navigate("/Floor3"); //3층 페이지로 이동하는 이벤트함수 처리 필요함
             }}
           >
             3F
@@ -109,16 +112,16 @@ const Floor2 = () => {
           </St.HeaderContainer>
 
           <St.Button
-            style={{ fontSize: '18px', position: 'relative', top: '-2px' }}
+            style={{ fontSize: "18px", position: "relative", top: "-2px" }}
           >
-            {name ? name + '인재님' : '탐나는 인재님'}
+            {name ? name + "인재님" : "탐나는 인재님"}
           </St.Button>
         </St.ButtonWrapper2>
       </St.HeaderWrap>
       <St.Mapping>
         <Floor2img />
         <ButtonColumns>
-          <ButtonsRows style={{ marginBottom: '36px' }}>
+          <ButtonsRows style={{ marginBottom: "36px" }}>
             {roomState.slice(0, 7).map(
               (
                 room,
@@ -185,8 +188,8 @@ const Floor2 = () => {
             key={timeSlot.value}
             className={`button timeslot ${
               selectedButtons && selectedButtons.includes(timeSlot.value)
-                ? 'selected'
-                : ''
+                ? "selected"
+                : ""
             }`}
             onClick={() => handleButtonClick(timeSlot.value)}
           >
@@ -201,15 +204,15 @@ const Floor2 = () => {
 // 룸버튼 크기
 const sizeHandler = (size) => {
   switch (size) {
-    case 'large':
+    case "large":
       return {
-        width: '93px',
-        height: '125px',
+        width: "93px",
+        height: "125px",
       };
-    case 'small':
+    case "small":
       return {
-        width: '40px',
-        height: '60px',
+        width: "40px",
+        height: "60px",
       };
     default:
       return {};
@@ -217,30 +220,30 @@ const sizeHandler = (size) => {
 };
 
 const roomData = [
-  { name: '협재', sizeHandler: 'large', colorHandler: 'green' },
-  { name: '곽지', sizeHandler: 'large', colorHandler: 'green' },
-  { name: '이호', sizeHandler: 'large', colorHandler: 'green' },
-  { name: '함덕', sizeHandler: 'large', colorHandler: 'green' },
-  { name: '월평', sizeHandler: 'large', colorHandler: 'green' },
-  { name: '김녕', sizeHandler: 'large', colorHandler: 'green' },
-  { name: '신양', sizeHandler: 'large', colorHandler: 'green' },
-  { name: '', sizeHandler: 'large', colorHandler: 'transparent' },
-  { name: '하모', sizeHandler: 'large', colorHandler: 'green' },
-  { name: '화순', sizeHandler: 'large', colorHandler: 'green' },
-  { name: '중문', sizeHandler: 'large', colorHandler: 'green' },
-  { name: '표선', sizeHandler: 'large', colorHandler: 'green' },
-  { name: 'Na1', sizeHandler: 'small', colorHandler: 'yellow' },
-  { name: 'Na2', sizeHandler: 'small', colorHandler: 'yellow' },
-  { name: 'Na3', sizeHandler: 'small', colorHandler: 'yellow' },
-  { name: '', sizeHandler: 'small', colorHandler: 'transparent' },
-  { name: 'Na4', sizeHandler: 'small', colorHandler: 'yellow' },
-  { name: 'Na5', sizeHandler: 'small', colorHandler: 'yellow' },
-  { name: 'Na6', sizeHandler: 'small', colorHandler: 'yellow' },
+  { name: "협재", sizeHandler: "large", colorHandler: "green" },
+  { name: "곽지", sizeHandler: "large", colorHandler: "green" },
+  { name: "이호", sizeHandler: "large", colorHandler: "green" },
+  { name: "함덕", sizeHandler: "large", colorHandler: "green" },
+  { name: "월평", sizeHandler: "large", colorHandler: "green" },
+  { name: "김녕", sizeHandler: "large", colorHandler: "green" },
+  { name: "신양", sizeHandler: "large", colorHandler: "green" },
+  { name: "", sizeHandler: "large", colorHandler: "transparent" },
+  { name: "하모", sizeHandler: "large", colorHandler: "green" },
+  { name: "화순", sizeHandler: "large", colorHandler: "green" },
+  { name: "중문", sizeHandler: "large", colorHandler: "green" },
+  { name: "표선", sizeHandler: "large", colorHandler: "green" },
+  { name: "Na1", sizeHandler: "small", colorHandler: "yellow" },
+  { name: "Na2", sizeHandler: "small", colorHandler: "yellow" },
+  { name: "Na3", sizeHandler: "small", colorHandler: "yellow" },
+  { name: "", sizeHandler: "small", colorHandler: "transparent" },
+  { name: "Na4", sizeHandler: "small", colorHandler: "yellow" },
+  { name: "Na5", sizeHandler: "small", colorHandler: "yellow" },
+  { name: "Na6", sizeHandler: "small", colorHandler: "yellow" },
 ];
 
 // 2층 배경이미지
 const Floor2img = styled.div`
-  background-image: url('/img/Floor2.png');
+  background-image: url("/img/Floor2.png");
   background-position: center;
   height: 600px;
   background-repeat: no-repeat;
