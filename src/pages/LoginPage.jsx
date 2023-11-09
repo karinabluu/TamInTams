@@ -37,6 +37,8 @@ export default function LoginPage() {
 
       if (response.status === 200) {
         setToken(response.data.token);
+        localStorage.setItem('userId', response.data.id);
+        localStorage.setItem('userName', response.data.name);
         console.log('로그인 성공:', response.data.name);
         navigate('/floor2');
       }
