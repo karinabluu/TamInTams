@@ -47,25 +47,17 @@ export const bookRoom = async (
   }
 };
 
-// 이 함수는 방 ID와 특정 시간을 기준으로 예약된 시간대를 가져옵니다.
-export const fetchBookedTimeslots = async (_id) => {
-  try {
-    // API_URL은 당신의 API 기본 URL로 가정합니다.
-    const response = await axios.get(`${API_URL}/api/books/${_id}`);
-    console.log("Reservation History Response:", response.data);
 
-    return response.data; // 해당 방과 시간에 대한 예약된 시간대를 반환합니다.
-  } catch (error) {
-    console.error("Error fetching booked timeslots for room:", error);
-    throw error; // 함수를 호출하는 곳에서 에러를 처리할 수 있도록 에러를 던집니다.
-  }
-};
-
-// 예약 내역 조회
-export const fetchReservationHistory = async (id) => {
+//예약 조회
+export const fetchReservationHistory = async (id, roomId, userId, bookDate, bookTime, token) => {
   try {
-    const id = localStorage.getItem("userId");
-    const response = await axios.get(`${API_URL}/api/books/${id}`);
+    const response = await axios.get(`${API_URL}/api/users/${id}`,{
+      id, roomId, userId, bookDate, bookTime
+    },    {
+        headers: {
+          Authorization: `Bearer ${token}` // 헤더에 토큰을 포함시킴
+        }
+      });
     console.log("Reservation History Response:", response.data);
     return response.data;
   } catch (error) {
@@ -73,3 +65,22 @@ export const fetchReservationHistory = async (id) => {
     throw error;
   }
 };
+
+
+//예약 수정후 업데이트
+export const updateReservation = async (bookDate, bookTime, userId, token) => {
+  try {
+    const response = await axios.patch(`${API_URL}/api/books/${userId}`, {
+      bookDate, bookTime, userId
+    }, { headers: {
+      Authorization: `Bearer ${token}` // 헤더에 토큰을 포함시킴
+    }
+  });
+    console.log("Reservation Update Response:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error updating reservation:", error);
+    throw error;
+  }
+};
+
