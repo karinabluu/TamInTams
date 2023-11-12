@@ -9,26 +9,15 @@ const token = localStorage.getItem("token");
 axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
 // 최종 예약하기
-export const bookRoom = async (
-  bookId,
-  roomId,
-  userId,
-  bookDate,
-  bookTime,
-  durationHours,
-  token
-) => {
+export const bookRoom = async (bookDate, bookTime, durationHours, roomId, userId, token) => {
   try {
     const response = await axios.post(
-      `${API_URL}/api/room/books`,
-      {
-        bookId,
-        roomId,
-        userId,
+      `${API_URL}/api/books`,{
         bookDate,
         bookTime,
-        durationHours,
-        token,
+        durationHours,     
+        roomId,
+        userId,
       },
       {
         headers: {
