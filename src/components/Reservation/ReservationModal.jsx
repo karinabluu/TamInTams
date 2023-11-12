@@ -115,13 +115,16 @@ const calculateEndTime = (buttonIndex) => {
       const response = await bookRoom(formData.roomId, formData.bookDate, formData.bookTime, formData.durationHours, formData.userId);
 
       // 서버로부터 받은 UTC 시간 슬롯을 현지 시간대로 변환
-
-
     
       alert(`예약완료: ${roomname}, ${bookDate}, 예약시간: ${bookTime}`);
       console.log("예약 성공 응답:", response);
       close();
       setSelectedButtons([]);
+      
+          // 예약 성공 후, 응답에서 받은 예약 정보 고유 ID를 로컬 스토리지에 저장
+    if (response && response.data && response.data._id) {
+      localStorage.setItem('reservationId', response.data._id);
+    }
     } catch (error) {
       console.error("Error during booking:", error);
       alert("예약 실패: " + (error.response?.data.message || error.message));
