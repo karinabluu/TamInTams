@@ -196,7 +196,7 @@ const ReservationModal = (props) => {
                     ) : isSelected ? (
                       "선택"
                     ) : (
-                      '가능'
+                      "가능"
                     )}
                   </button>
                 );

@@ -98,7 +98,7 @@
 
 /* 선택된 버튼 스타일 */
 .timelinebutton.selected {
-  content: '';
+  content: "";
   width: 53px;
   position: relative;
   left: 0;
