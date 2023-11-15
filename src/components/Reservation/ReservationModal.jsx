@@ -98,6 +98,10 @@ const ReservationModal = (props) => {
     return hour.toString().padStart(2, '0') + ':00';
   };
 
+  const resetButtonState = () => {
+    setSelectedButtons([]);
+  };
+
   const handleBookingClick = async () => {
     if (selectedButtons.length === 0) {
       alert('시간을 선택해주세요!');
@@ -163,7 +167,13 @@ const ReservationModal = (props) => {
         <div className="black-squaree">
           <div className="wrap">
             <span className="notice-title"> {roomname}</span>
-            <button onClick={close} className="closebutton">
+            <button
+              onClick={() => {
+                close();
+                resetButtonState();
+              }}
+              className="closebutton"
+            >
               &times;
             </button>
           </div>
