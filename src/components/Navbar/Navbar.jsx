@@ -147,9 +147,9 @@ const Navbar = () => {
         </div>
       )}
       {showMyPageModal && (
-        <div className="black-square">
+        <div className="black-square2">
           <span className="mypage-title">회의실 예약</span>
-          <div className="white-square">
+          <div className="white-square2">
             {reservations.length === 0 ? (
               <p>예약 내역이 없습니다.</p>
             ) : (
