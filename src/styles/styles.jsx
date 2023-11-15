@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 // 로그인 페이지
 
@@ -212,7 +212,7 @@ export const PCMErrorMessage = styled.div`
   z-index: 1000;
   transform: translate(2%);
   position: absolute;
-  margin-top: 185px;
+  margin-top: 190px;
 `;
 
 // 회원가입 페이지
@@ -265,7 +265,7 @@ export const Input = styled.input`
 export const ErrorMessage = styled.div`
   font-size: 13px;
   color: red;
-  margin-top: 3px;
+  margin-top: -2px;
   display: flex;
   transform: translate(47%);
   width: 310px;
@@ -401,23 +401,23 @@ export const RoomButton = styled.div`
 
 export const colorHandler = (color) => {
   switch (color) {
-    case "green":
+    case 'green':
       return {
-        border: "2.8px solid #222222",
-        color: "#ffffff",
-        backgroundColor: "#02c8be",
+        border: '2.8px solid #222222',
+        color: '#ffffff',
+        backgroundColor: '#02c8be',
       };
-    case "yellow":
+    case 'yellow':
       return {
-        border: "2.2px solid #222222",
-        color: "#ffffff",
-        backgroundColor: "#8fdf40",
+        border: '2.2px solid #222222',
+        color: '#ffffff',
+        backgroundColor: '#8fdf40',
       };
-    case "transparent":
+    case 'transparent':
       return {
-        border: "2.8px solid transparent",
-        color: "#ffffff",
-        backgroundColor: "transparent", // 배경색을 투명으로 설정
+        border: '2.8px solid transparent',
+        color: '#ffffff',
+        backgroundColor: 'transparent', // 배경색을 투명으로 설정
       };
     default:
       return {};
