@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 // 로그인 페이지
 
@@ -261,14 +261,47 @@ export const Input = styled.input`
   }
   background-color: white;
 `;
-
-export const ErrorMessage = styled.div`
+export const ErrorMessage1 = styled.div`
   font-size: 13px;
   color: red;
-  margin-top: -2px;
-  display: flex;
   transform: translate(47%);
-  width: 310px;
+  position: absolute;
+  right: 278px;
+  justify-content: flex-start;
+  top: 265px;
+`;
+
+export const ErrorMessage2 = styled.div`
+  font-size: 13px;
+  color: red;
+  transform: translate(47%);
+  position: absolute;
+  right: 291px;
+  justify-content: flex-start;
+  top: 336px;
+`;
+export const ErrorMessage3 = styled.div`
+  font-size: 13px;
+  color: red;
+  transform: translate(47%);
+  position: absolute;
+  right: 345px;
+  justify-content: flex-start;
+  top: 405px;
+`;
+
+export const ErrorMessage4 = styled.div`
+  font-size: 13px;
+  color: red;
+  transform: translate(47%);
+  position: absolute;
+  right: 360px;
+  top: 475px;
+`;
+
+export const JoinWarpper = styled.div`
+  margin-top: -30px;
+  position: fixed;
 `;
 
 export const JoinRow1 = styled.div`
@@ -281,21 +314,18 @@ export const JoinRow2 = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 5px;
 `;
 
 export const JoinRow3 = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 5px;
 `;
 
 export const JoinRow4 = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 5px;
 `;
 
 export const JoinSubTitle = styled.div`
@@ -332,6 +362,7 @@ export const JoinHeader = styled.div`
 export const JoinBar = styled.div`
   font-weight: 500;
   font-size: 22px;
+  margin-top: 30px;
 `;
 
 export const JoinButton = styled.button`
@@ -339,6 +370,7 @@ export const JoinButton = styled.button`
   cursor: pointer;
   font-size: 20px;
   font-weight: 500;
+  margin-top: 35px;
 `;
 
 export const JoinButtons = styled.div`
@@ -347,7 +379,7 @@ export const JoinButtons = styled.div`
   justify-content: center;
   padding: 10px;
   margin-left: 250px;
-  margin-bottom: 30px;
+  margin-bottom: 45px;
 `;
 
 // 2F / 3F 버튼 디자인
@@ -401,23 +433,23 @@ export const RoomButton = styled.div`
 
 export const colorHandler = (color) => {
   switch (color) {
-    case 'green':
+    case "green":
       return {
-        border: '2.8px solid #222222',
-        color: '#ffffff',
-        backgroundColor: '#02c8be',
+        border: "2.8px solid #222222",
+        color: "#ffffff",
+        backgroundColor: "#02c8be",
       };
-    case 'yellow':
+    case "yellow":
       return {
-        border: '2.2px solid #222222',
-        color: '#ffffff',
-        backgroundColor: '#8fdf40',
+        border: "2.2px solid #222222",
+        color: "#ffffff",
+        backgroundColor: "#8fdf40",
       };
-    case 'transparent':
+    case "transparent":
       return {
-        border: '2.8px solid transparent',
-        color: '#ffffff',
-        backgroundColor: 'transparent', // 배경색을 투명으로 설정
+        border: "2.8px solid transparent",
+        color: "#ffffff",
+        backgroundColor: "transparent", // 배경색을 투명으로 설정
       };
     default:
       return {};

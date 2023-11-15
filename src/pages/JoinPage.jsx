@@ -98,6 +98,7 @@ export default function JoinPage() {
           <Joinn />
           <St.JoinTitle>회원가입</St.JoinTitle>
         </St.JoinHeader>
+
         <St.JoinRow1>
           <St.JoinText>아이디</St.JoinText>
           <JoinInput
@@ -107,9 +108,9 @@ export default function JoinPage() {
           />
         </St.JoinRow1>
         {validateUserId(id) || (
-          <St.ErrorMessage>
+          <St.ErrorMessage1>
             7~12자 이내, 특수문자와 한글은 포함하지 않습니다.
-          </St.ErrorMessage>
+          </St.ErrorMessage1>
         )}
         <St.JoinRow2>
           <St.JoinText>비밀번호</St.JoinText>
@@ -120,9 +121,9 @@ export default function JoinPage() {
           />
         </St.JoinRow2>
         {validatePassword(password) || (
-          <St.ErrorMessage>
+          <St.ErrorMessage2>
             8자 이상, 특수문자는 1개 이상 들어가야 됩니다.
-          </St.ErrorMessage>
+          </St.ErrorMessage2>
         )}
         <St.JoinRow3>
           <St.JoinText>비밀번호 확인</St.JoinText>
@@ -133,7 +134,7 @@ export default function JoinPage() {
           />
         </St.JoinRow3>
         {password === passwordConfirm || (
-          <St.ErrorMessage>비밀번호가 일치하지 않습니다.</St.ErrorMessage>
+          <St.ErrorMessage3>비밀번호가 일치하지 않습니다.</St.ErrorMessage3>
         )}
 
         <St.JoinRow4>
@@ -145,7 +146,7 @@ export default function JoinPage() {
           />
         </St.JoinRow4>
         {name.trim() === "" && (
-          <St.ErrorMessage>사용자 이름을 입력하세요.</St.ErrorMessage>
+          <St.ErrorMessage4>사용자 이름을 입력하세요.</St.ErrorMessage4>
         )}
 
         <St.JoinButtons>
