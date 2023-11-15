@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
-import * as FaIcons from "react-icons/fa";
-import * as AiIcons from "react-icons/ai";
-import * as IoIcons from "react-icons/io";
-import { Link } from "react-router-dom";
-import { SidebarData } from "./SidebarData";
-import "./Navbar.css";
-import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-import { getToken, getUuid } from "../../util/token";
-import { fetchReservationHistory, deleteReservation } from "../../service/api";
+import React, { useState, useEffect } from 'react';
+import * as FaIcons from 'react-icons/fa';
+import * as AiIcons from 'react-icons/ai';
+import * as IoIcons from 'react-icons/io';
+import { Link } from 'react-router-dom';
+import { SidebarData } from './SidebarData';
+import './Navbar.css';
+import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import { getToken, getUuid } from '../../util/token';
+import { fetchReservationHistory, deleteReservation } from '../../service/api';
 
 const Navbar = () => {
   const [sidebar, setSidebar] = useState(false);
@@ -42,9 +42,9 @@ const Navbar = () => {
 
   const handleMenuItemClick = (item) => {
     if (item.modal) {
-      if (item.title === "공지사항") {
+      if (item.title === '공지사항') {
         openNotice();
-      } else if (item.title === "회의실 예약") {
+      } else if (item.title === '나의 예약정보') {
         openMyPageModal();
       }
     }
@@ -56,16 +56,16 @@ const Navbar = () => {
     const token = getToken();
     const id = getUuid();
     if (!token || !id) {
-      navigate("/");
+      navigate('/');
     }
   }, [navigate]);
 
-  const userName = localStorage.getItem("userName");
+  const userName = localStorage.getItem('userName');
 
   const loadReservations = async () => {
     setLoading(true);
     try {
-      const _id = localStorage.getItem("reservationId");
+      const _id = localStorage.getItem('reservationId');
       const token = getToken();
       if (_id && token) {
         const response = await fetchReservationHistory(_id, token);
@@ -92,7 +92,7 @@ const Navbar = () => {
   }, []);
 
   const handleDelete = async (reservationId) => {
-    const confirmCancel = window.confirm("예약을 정말 취소하시겠습니까?");
+    const confirmCancel = window.confirm('예약을 정말 취소하시겠습니까?');
     if (confirmCancel) {
       try {
         const token = getToken();
@@ -117,7 +117,7 @@ const Navbar = () => {
       <Link to="#" className="menu-button">
         <FaIcons.FaBars onClick={showSidebar} />
       </Link>
-      <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
+      <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
         <ul className="nav-menu-width">
           <li className="navbar-toggle">
             <Link to="#" className="menu-button">
@@ -179,7 +179,7 @@ const Navbar = () => {
 };
 
 const Notice = styled.div`
-  background-image: url("/img/notice.png");
+  background-image: url('/img/notice.png');
   background-repeat: no-repeat;
   background-size: contain;
   padding: 350px;
