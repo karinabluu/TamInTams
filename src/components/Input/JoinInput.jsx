@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import * as St from '../../styles/styles';
+import { useState } from "react";
+import * as St from "../../styles/styles";
 
 export default function JoinInput(props) {
   const { value, handleChange, validationMessage, validator } = props;
@@ -20,19 +20,16 @@ export default function JoinInput(props) {
       }
     } else {
       if (props.setErrorMessage) {
-        props.setErrorMessage('');
+        props.setErrorMessage("");
       }
     }
-
-    // handleChange(value);
   };
 
   return (
     <>
       <St.Input
-        type={props.type || 'text'}
+        type={props.type || "text"}
         value={value}
-        // onChange={(e) => handleChange(e.target.value)}
         onChange={handleChange}
         onKeyUp={handleKeyUp}
       />

@@ -97,6 +97,20 @@
   border-radius: 22px; /* 모달 테두리 둥글게 만듭니다. */
 }
 
+.black-square2 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #000000; /* 모달 배경색 */
+  border: 15px solid black;
+  z-index: 1000; /* 다른 요소 위에 표시하려면 z-index를 높게 설정합니다. */
+  width: 368px;
+  height: 385px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* 모달 그림자 효과 추가 */
+  border-radius: 22px; /* 모달 테두리 둥글게 만듭니다. */
+}
+
 /* White square 스타일 */
 .white-square {
   position: absolute;
@@ -111,12 +125,42 @@
   border-radius: 16px;
 }
 
+.white-square2 {
+  position: absolute;
+  top: 53.9%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  width: 382px;
+  height: 365px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 16px;
+}
+
 .close-button {
   position: absolute;
   bottom: 0; /* 아래로 고정 */
   left: 50%; /* 가로 중앙 정렬을 위해 왼쪽으로 50% 이동 */
   transform: translateX(-50%); /* 왼쪽으로 50%만큼 이동하여 중앙 정렬 */
   margin-bottom: 35px;
+  border: 2px solid black;
+  font-size: 13.5px;
+  background: #02c8be;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  outline: none;
+  padding: 20px 30px;
+  border-radius: 15px;
+  font-weight: bold;
+}
+
+.close-button2 {
+  position: absolute;
+  bottom: 0; /* 아래로 고정 */
+  left: 50%; /* 가로 중앙 정렬을 위해 왼쪽으로 50% 이동 */
+  transform: translateX(-50%); /* 왼쪽으로 50%만큼 이동하여 중앙 정렬 */
+  margin-bottom: 20px;
   border: 2px solid black;
   font-size: 13.5px;
   background: #02c8be;
@@ -155,4 +199,20 @@
   font-size: 15px;
   font-size: bold;
   margin-top: -6.5px;
+}
+
+.mypage-title {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-size: bold;
+  margin-top: -6.5px;
+}
+
+.none {
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
 }

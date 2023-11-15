@@ -1,115 +1,99 @@
-import React, { useState, useEffect } from 'react';
-import { navigate } from 'react'; // 앱 내에서의 네비게이션에 사용됩니다.
-import { fetchReservationHistory, updateReservation } from '../../service/api'; // API 호출
-import { getToken, getUuid } from '../../util/token'; // 토큰 유틸리티
-import { floor2Room } from '../../pages/Floor2'; // 2층의 방 이름들을 가져옵니다.
-import { floor3Room } from '../../pages/Floor3'; // 3층의 방 이름들을 가져옵니다.
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { fetchReservationHistory, deleteReservation } from "../../service/api"; // API 호출
+import { getToken, getUuid } from "../../util/token"; // 토큰 유틸리티
 
 const MyPage = () => {
-  // 컴포넌트 상태 관리를 위한 상태 훅
-  const [reservations, setReservations] = useState([]); // 예약 목록을 저장합니다.
-  const [loading, setLoading] = useState(false); // 비동기 작업에 대한 로딩 상태
-  const [error, setError] = useState(null); // API 오류 처리를 위한 에러 상태
-  const [editReservationId, setEditReservationId] = useState(null); // 편집 중인 예약의 ID
-  const [editedRoomName, setEditedRoomName] = useState(''); // 편집된 방 이름 상태
-  const [editedTime, setEditedTime] = useState(''); // 편집된 시간 상태
+  const [reservations, setReservations] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [deletedReservationIds, setDeletedReservationIds] = useState([]); // 삭제된 예약 ID를 관리하는 새로운 state 추가(예약내역 새로고침시 삭제된 예약 api로 로딩됨)
 
-  // localStorage에서 사용자 정보를 가져옵니다.
-  const userName = localStorage.getItem('userName');
-  const roomId = localStorage.getItem('roomId');
-  const bookDate = localStorage.getItem('bookDate');
-  const bookTime = localStorage.getItem('bookTime');
+  const navigate = useNavigate();
 
-  // 컴포넌트 마운트 시 토큰과 UUID를 확인합니다.
   useEffect(() => {
     const token = getToken();
     const id = getUuid();
     if (!token || !id) {
       navigate("/");
     }
-  }, []);
+  }, [navigate]);
 
-  // 컴포넌트 마운트 시 예약 정보를 가져옵니다.
-  useEffect(() => {
-    const loadReservations = async () => {
-      setLoading(true);
-      try {
-        const token = getToken();
-        const id = getUuid();    
-        const response = await fetchReservationHistory(id, roomId, bookDate, bookTime, token );
-        console.log("Reservation History Response:", response.data)
-        setReservations(response);
-      } catch (err) {
-        setError(err.message);
-      }
-    };
+  const userName = localStorage.getItem("userName");
 
-    loadReservations();
-  }, []);
-
-  // 예약 편집 로직
-  const handleEdit = async () => {
+  const loadReservations = async () => {
+    setLoading(true);
     try {
+      const _id = localStorage.getItem("reservationId");
       const token = getToken();
-      const userId = getUuid();
-      const _id = localStorage.getItem('_id');
-      await updateReservation(roomId, userName, bookDate, bookTime, userId, _id, token); // 수정할 날짜는 예시입니다.
-      console.log("Reservation History Response:", _id, token)
-      // 여기에서 예약 정보를 업데이트합니다.
+      if (_id && token) {
+        const response = await fetchReservationHistory(_id, token);
+        const reservationData = Array.isArray(response) ? response : [response];
+        const filteredReservations = reservationData.filter(
+          (reservation) => !deletedReservationIds.includes(reservation._id)
+        );
+        setReservations(filteredReservations);
+      }
     } catch (err) {
-      setError(err.message);
+      // 404 에러 발생 시 '예약 내역이 없습니다' 메시지 표시
+      if (err.response && err.response.status === 404) {
+        setReservations([]); // 예약 목록을 비웁니다.
+      } else {
+        setError(err.message); // 다른 종류의 에러 메시지 설정
+      }
     } finally {
-      setEditReservationId(null); // 편집 모드 종료
+      setLoading(false);
     }
   };
 
-  // 시간 선택 옵션을 생성합니다.
-  const timeOptions = Array.from({ length: 13 }, (_, index) => {
-    const hour = 9 + index;
-    return hour < 10 ? `0${hour}:00` : `${hour}:00`;
-  });
+  useEffect(() => {
+    loadReservations();
+  }, []);
 
-  // 로딩 중 표시
+  const handleDelete = async (reservationId) => {
+    const confirmCancel = window.confirm("예약을 정말 취소하시겠습니까?");
+    if (confirmCancel) {
+      try {
+        const token = getToken();
+        const deletedId = await deleteReservation(reservationId, token);
+        if (deletedId) {
+          const updatedReservations = reservations.filter(
+            (reservation) => reservation._id !== deletedId
+          );
+          setReservations(updatedReservations);
+        }
+      } catch (err) {
+        setError(err.message);
+      }
+    }
+  };
+
   if (loading) return <div>Loading...</div>;
-  // 에러 발생 시 표시
   if (error) return <div>Error: {error}</div>;
 
   return (
     <div>
       <h1>나의 예약 정보</h1>
-      {reservations.length === 0 ? (
+      {loading ? (
+        <div>Loading...</div>
+      ) : error ? (
+        <div>Error: {error}</div>
+      ) : reservations.length === 0 ? (
         <p>예약 내역이 없습니다.</p>
       ) : (
         <ul>
-          {reservations.map(reservation => (
-            <li key={reservation.userid}>
-              <div>방 이름: {reservation.roomId}</div> {/* 서버 응답에 따라 수정 필요 */}
-              <div>예약 날짜: {reservation.bookDate}</div>
-              <div>시작 시간: {reservation.bookTime}</div>
-              {editReservationId === reservation.userid ? (
-                <div>
-                  <select value={editedRoomName} onChange={e => setEditedRoomName(e.target.value)}>
-                    {[...floor2Room, ...floor3Room].map(room => (
-                      <option key={room} value={room}>{room}</option>
-                    ))}
-                  </select>
-                  <select value={editedTime} onChange={e => setEditedTime(e.target.value)}>
-                    {timeOptions.map(time => (
-                      <option key={time} value={time}>{time}</option>
-                    ))}
-                  </select>
-                  <button onClick={() => handleEdit(reservation.Id)}>저장</button>
-                  <button onClick={() => setEditReservationId(null)}>취소</button>
-                </div>
-              ) : (
-                <button onClick={() => {
-                  setEditReservationId(reservation.userId);
-                  setEditedRoomName(reservation.roomName);
-                  setEditedTime(reservation.bookTime);
-                }}>수정</button>
-              )}
-            </li>
-          ))}
+          {Array.isArray(reservations) &&
+            reservations.map((reservation) => (
+              <li key={reservation._id}>
+                <div>예약자명: {userName}</div>
+                <div>회의실명: {reservation.roomId}</div>
+                <div>예약날짜: {reservation.bookDate}</div>
+                <div>예약시간: {reservation.bookTime}</div>
+                <button onClick={() => handleDelete(reservation._id)}>
+                  삭제
+                </button>
+              </li>
+            ))}
         </ul>
       )}
     </div>

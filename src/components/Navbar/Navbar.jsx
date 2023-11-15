@@ -1,78 +1,140 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
+import * as IoIcons from "react-icons/io";
 import { Link } from "react-router-dom";
 import { SidebarData } from "./SidebarData";
 import "./Navbar.css";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import { getToken, getUuid } from "../../util/token";
+import { fetchReservationHistory, deleteReservation } from "../../service/api";
 
-function Navbar() {
+const Navbar = () => {
   const [sidebar, setSidebar] = useState(false);
-  const [showNotice, setShowNotice] = useState(false); // 모달 상태 관리
+  const [showNotice, setShowNotice] = useState(false);
+  const [showMyPageModal, setShowMyPageModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [deletedReservationIds, setDeletedReservationIds] = useState([]);
+  const [reservations, setReservations] = useState([]);
 
-  // 네비게이션바 열기 함수
   const showSidebar = () => setSidebar(!sidebar);
+  const closeSidebar = () => setSidebar(false);
 
-  // 네비게이션바 닫기 함수
-  const closeSidebar = () => {
-    setSidebar(false);
-  };
-
-  // 모달 열기 함수
   const openNotice = () => {
     setShowNotice(true);
   };
 
-  // 모달 닫기 함수
   const closeNotice = () => {
     setShowNotice(false);
     setSidebar(false);
   };
 
+  const openMyPageModal = () => {
+    setShowMyPageModal(true);
+  };
+
+  const closeMyPageModal = () => {
+    setShowMyPageModal(false);
+    setSidebar(false);
+  };
+
+  const handleMenuItemClick = (item) => {
+    if (item.modal) {
+      if (item.title === "공지사항") {
+        openNotice();
+      } else if (item.title === "회의실 예약") {
+        openMyPageModal();
+      }
+    }
+  };
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = getToken();
+    const id = getUuid();
+    if (!token || !id) {
+      navigate("/");
+    }
+  }, [navigate]);
+
+  const userName = localStorage.getItem("userName");
+
+  const loadReservations = async () => {
+    setLoading(true);
+    try {
+      const _id = localStorage.getItem("reservationId");
+      const token = getToken();
+      if (_id && token) {
+        const response = await fetchReservationHistory(_id, token);
+        const reservationData = Array.isArray(response) ? response : [response];
+        const filteredReservations = reservationData.filter(
+          (reservation) => !deletedReservationIds.includes(reservation._id)
+        );
+        setReservations(filteredReservations);
+      }
+    } catch (err) {
+      // 404 에러 발생 시 '예약 내역이 없습니다' 메시지 표시
+      if (err.response && err.response.status === 404) {
+        setReservations([]); // 예약 목록을 비웁니다.
+      } else {
+        setError(err.message); // 다른 종류의 에러 메시지 설정
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    loadReservations();
+  }, []);
+
+  const handleDelete = async (reservationId) => {
+    const confirmCancel = window.confirm("예약을 정말 취소하시겠습니까?");
+    if (confirmCancel) {
+      try {
+        const token = getToken();
+        const deletedId = await deleteReservation(reservationId, token);
+        if (deletedId) {
+          const updatedReservations = reservations.filter(
+            (reservation) => reservation._id !== deletedId
+          );
+          setReservations(updatedReservations);
+        }
+      } catch (err) {
+        setError(err.message);
+      }
+    }
+  };
+
+  // if (loading) return <div>Loading...</div>;
+  // if (error) return <div>Error: {error}</div>;
+
   return (
     <>
-      {/* 네비게이션 바 열기 버튼 */}
       <Link to="#" className="menu-button">
-        {/* FaBars 아이콘을 클릭하면 showSidebar 함수 호출 */}
         <FaIcons.FaBars onClick={showSidebar} />
       </Link>
       <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
         <ul className="nav-menu-width">
-          {/* 네비게이션 바 닫기 버튼 */}
           <li className="navbar-toggle">
             <Link to="#" className="menu-button">
               <AiIcons.AiOutlineClose onClick={closeSidebar} />
             </Link>
           </li>
-          {/* SidebarData 배열을 반복하며 네비게이션 바 메뉴 아이템 생성 */}
-          {SidebarData.map((item, index) => {
-            return (
-              <li key={index} className={item.cName}>
-                {/* 메뉴 아이템 클릭 시 해당 경로로 이동 */}
-                <Link
-                  to={item.path}
-                  onClick={() => {
-                    if (item.title === "공지사항") {
-                      openNotice();
-                    }
-                  }}
-                >
-                  {" "}
-                  <div className="Space">
-                    {/* 아이콘 표시 */}
-                    {item.icon}
-                  </div>
-                  {/* 메뉴 이름 표시 */}
-                  <span>{item.title}</span>
-                </Link>
-              </li>
-            );
-          })}
+          {SidebarData.map((item, index) => (
+            <li key={index} className={item.cName}>
+              <Link to={item.path} onClick={() => handleMenuItemClick(item)}>
+                <div className="Space">{item.icon}</div>
+                <span>{item.title}</span>
+              </Link>
+            </li>
+          ))}
         </ul>
       </nav>
-      {/* 네비게이션 바가 열려있을 때만 어두운 배경인 Dark를 불러옴 */}
       {sidebar && <div className="Dark"></div>}
-      {/* Notice 모달 */}
       {showNotice && (
         <div className="black-square">
           <span className="notice-title">공지사항</span>
@@ -84,13 +146,37 @@ function Navbar() {
           </div>
         </div>
       )}
+      {showMyPageModal && (
+        <div className="black-square">
+          <span className="mypage-title">회의실 예약</span>
+          <div className="white-square">
+            {reservations.length === 0 ? (
+              <p>예약 내역이 없습니다.</p>
+            ) : (
+              <ul>
+                {Array.isArray(reservations) &&
+                  reservations.map((reservation) => (
+                    <li key={reservation._id}>
+                      <div>예약자명: {userName}</div>
+                      <div>회의실명: {reservation.roomId}</div>
+                      <div>예약날짜: {reservation.bookDate}</div>
+                      <div>예약시간: {reservation.bookTime}</div>
+                      <button onClick={() => handleDelete(reservation._id)}>
+                        삭제
+                      </button>
+                    </li>
+                  ))}
+              </ul>
+            )}
+            <button onClick={closeMyPageModal} className="close-button">
+              닫기
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
-}
-
-export default Navbar;
-
-// 공지사항 그림을 불러오는 스타일드 컴포넌트
+};
 
 const Notice = styled.div`
   background-image: url("/img/notice.png");
@@ -99,3 +185,5 @@ const Notice = styled.div`
   padding: 350px;
   margin-top: 30px;
 `;
+
+export default Navbar;

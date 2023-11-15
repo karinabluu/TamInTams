@@ -6,7 +6,6 @@ import * as St from "../styles/styles";
 import ReservationModal from "../components/Reservation/ReservationModal";
 import axios from "axios";
 import Navbar from "../components/Navbar/Navbar";
-import { fetchReservationHistory } from "../service/api";
 
 const Floor2 = () => {
   const [modalOpen, setModalOpen] = useState(false); //초기값: 모달닫기상태
@@ -20,8 +19,6 @@ const Floor2 = () => {
   const loginname = localStorage.getItem("userName");
 
   useEffect(() => {
-    fetchReservationHistory(); // 테스트용
-
     const token = getToken();
     if (!token) {
       navigate("/");
@@ -262,5 +259,4 @@ const ButtonColumns = styled.section`
 `;
 
 export default Floor2;
-export const floor2Room = roomData.map(room => room.name);
-
+export const floor2Room = roomData.map((room) => room.name);
