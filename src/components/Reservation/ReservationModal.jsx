@@ -146,6 +146,9 @@ const ReservationModal = (props) => {
       console.log('예약 성공 응답:', response);
       close();
       setSelectedButtons([]);
+
+      // 예약이 성공하면 페이지 새로고침
+      window.location.reload();
     } catch (error) {
       console.error('Error during booking:', error);
       alert('예약 실패: ' + (error.response?.data.message || error.message));
