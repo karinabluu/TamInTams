@@ -98,7 +98,7 @@
 
 /* 선택된 버튼 스타일 */
 .timelinebutton.selected {
-  content: "";
+  content: '';
   width: 53px;
   position: relative;
   left: 0;
@@ -130,6 +130,7 @@
   cursor: pointer;
   font-size: 11px;
 }
+
 .timelinebutton.booked {
   background-color: red;
   border: 1.2px solid red;

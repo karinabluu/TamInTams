@@ -196,7 +196,7 @@ const ReservationModal = (props) => {
                     ) : isSelected ? (
                       '선택'
                     ) : (
-                      timeSlot.label
+                      '가능'
                     )}
                   </button>
                 );
