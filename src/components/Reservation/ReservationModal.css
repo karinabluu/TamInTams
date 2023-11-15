@@ -130,7 +130,6 @@
   cursor: pointer;
   font-size: 11px;
 }
-
 .timelinebutton.booked {
   background-color: red;
   border: 1.2px solid red;
