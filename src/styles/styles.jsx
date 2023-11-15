@@ -1,14 +1,14 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 // 로그인 페이지
 
 export const LoginContainer1 = styled.div`
   width: 700px;
-  height: 460px;
+  height: 455px;
   margin: 0 auto;
   position: relative;
-  border: 10px solid black;
-  border-radius: 50px;
+  border: 7px solid black;
+  border-radius: 45px;
   border-width: 40px 5px 5px 5px;
   justify-content: center;
   display: grid;
@@ -18,14 +18,14 @@ export const LoginContainer1 = styled.div`
 `;
 
 export const LoginContainer2 = styled.div`
-  border-width: 30px 0px 0px 0px;
+  border-width: 0px 0px 0px 0px;
   justify-content: center;
   display: grid;
   width: 689px;
-  height: 450px;
+  height: 454px;
   background-color: white;
-  border-radius: 50px;
-  border: 10px solid black;
+  border-radius: 35px;
+  margin-top: -5px;
 `;
 
 export const LoginRow1 = styled.div`
@@ -143,9 +143,12 @@ export const PCMTitle = styled.div`
   font-weight: 400;
   font-size: 28px;
   text-align: center;
+  display: flex;
+  align-items: center;
   color: rgb(2, 200, 190);
-  margin-top: 20px;
-  margin-bottom: 15px;
+  margin-top: 45px;
+  max-width: 400x;
+  margin-bottom: 35px;
 `;
 
 export const PCMSubTitle = styled.div`
@@ -154,14 +157,25 @@ export const PCMSubTitle = styled.div`
 
 export const PCMText = styled.div``;
 
+export const warp = styled.div`
+  display: flex;
+  flex-direction: column; /* 요소를 수직 방향으로 정렬합니다. */
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -15px;
+`;
+
 export const PCMInput = styled.input`
-  margin-left: 40px;
   cursor: pointer;
   width: 380px;
   height: 38px;
   font-size: 15px;
   letter-spacing: 0.15px;
   text-align: center;
+  margin-left: -10px;
+  border-radius: 15px;
+  margin-top: -10px;
+  border: 2.5px solid #000000;
 `;
 
 export const PCMRow1 = styled.div`
@@ -169,7 +183,7 @@ export const PCMRow1 = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 50px;
   align-items: center;
 `;
 
@@ -178,7 +192,7 @@ export const PCMRow2 = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 80px;
+  margin-top: 100px;
   align-items: center;
 `;
 
@@ -187,7 +201,7 @@ export const PCMRow3 = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 130px;
+  margin-top: 150px;
   align-items: center;
 `;
 
@@ -204,11 +218,11 @@ export const PCMErrorMessage = styled.div`
 
 export const JoinContainer1 = styled.div`
   width: 700px;
-  height: 650px;
+  height: 640px;
   margin: 0 auto;
   position: relative;
   border: 10px solid black;
-  border-radius: 50px;
+  border-radius: 35px;
   border-width: 40px 5px 5px 5px;
   justify-content: center;
   display: grid;
@@ -224,8 +238,8 @@ export const JoinContainer2 = styled.div`
   display: grid;
   width: 689px;
   height: 640px;
-  border-radius: 50px;
-  border: 10px solid black;
+  border-radius: 30px;
+  margin-top: -6px;
 `;
 
 export const Input = styled.input`
@@ -250,7 +264,7 @@ export const Input = styled.input`
 export const ErrorMessage = styled.div`
   font-size: 13px;
   color: red;
-  margin-top: 8px;
+  margin-top: 3px;
   display: flex;
   transform: translate(47%);
   width: 310px;
@@ -266,21 +280,21 @@ export const JoinRow2 = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 5px;
 `;
 
 export const JoinRow3 = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 5px;
 `;
 
 export const JoinRow4 = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 5px;
 `;
 
 export const JoinSubTitle = styled.div`
@@ -299,6 +313,7 @@ export const JoinTitle = styled.div`
   font-size: 50px;
   font-weight: bold;
   text-align: center;
+  margin-top: -4px;
 `;
 
 export const JoinText = styled.div`
@@ -385,23 +400,23 @@ export const RoomButton = styled.div`
 
 export const colorHandler = (color) => {
   switch (color) {
-    case 'green':
+    case "green":
       return {
-        border: '2.8px solid #222222',
-        color: '#ffffff',
-        backgroundColor: '#02c8be',
+        border: "2.8px solid #222222",
+        color: "#ffffff",
+        backgroundColor: "#02c8be",
       };
-    case 'yellow':
+    case "yellow":
       return {
-        border: '2.2px solid #222222',
-        color: '#ffffff',
-        backgroundColor: '#8fdf40',
+        border: "2.2px solid #222222",
+        color: "#ffffff",
+        backgroundColor: "#8fdf40",
       };
-    case 'transparent':
+    case "transparent":
       return {
-        border: '2.8px solid transparent',
-        color: '#ffffff',
-        backgroundColor: 'transparent', // 배경색을 투명으로 설정
+        border: "2.8px solid transparent",
+        color: "#ffffff",
+        backgroundColor: "transparent", // 배경색을 투명으로 설정
       };
     default:
       return {};

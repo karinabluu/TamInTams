@@ -1,24 +1,25 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import LoginInput from '../components/Input/LoginInput';
-import { setToken, getToken } from '../util/token';
-import * as St from '../styles/styles';
-import { LoginIcon, PasswordIcon } from '../asset/icon';
-import PasswordChangeModal from '../components/PasswordChange/PasswordChangeModal';
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import LoginInput from "../components/Input/LoginInput";
+import { setToken, getToken } from "../util/token";
+import * as St from "../styles/styles";
+import { LoginIcon, PasswordIcon } from "../asset/icon";
+import PasswordChangeModal from "../components/PasswordChange/PasswordChangeModal";
+import styled from "styled-components";
 
 export default function LoginPage() {
   useEffect(() => {
     const token = getToken();
     if (token) {
-      navigate('/'); // floor2
+      navigate("/"); // floor2
     }
   }, []);
 
-  const [id, setId] = useState('');
-  const [password, setPassword] = useState('');
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const [userId, setUserId] = useState('');
+  const [userId, setUserId] = useState("");
   const [openModal, setOpenModal] = useState(false);
 
   const onLoginHandler = async (e) => {
@@ -31,20 +32,20 @@ export default function LoginPage() {
 
     try {
       const response = await axios.post(
-        'http://3.36.132.186:8000/api/auth/login',
+        "http://13.209.65.63:8000/api/auth/login",
         userData
       );
 
       if (response.status === 200) {
         setToken(response.data.token);
-        localStorage.setItem('userId', response.data.id);
-        localStorage.setItem('userName', response.data.name);
-        console.log('로그인 성공:', response.data.name);
-        navigate('/floor2');
+        localStorage.setItem("userId", response.data.id);
+        localStorage.setItem("userName", response.data.name);
+        console.log("로그인 성공:", response.data.name);
+        navigate("/floor2");
       }
     } catch (error) {
-      console.error('로그인 실패:', error);
-      alert('로그인 실패: ' + error.response.data.message);
+      console.error("로그인 실패:", error);
+      alert("로그인 실패: " + error.response.data.message);
     }
   };
 
@@ -57,10 +58,11 @@ export default function LoginPage() {
     <St.LoginContainer1>
       <St.LoginContainer2>
         <St.LoginAllTitle>
-          <St.LoginTitle>TAMINTAMS</St.LoginTitle>
+          <Loginn />
+          {/* <St.LoginTitle>TAMINTAMS</St.LoginTitle>
           <St.LoginSubTitle>
             회의실 예약할 땐, 탐나는 인재 탐나는 스페이스
-          </St.LoginSubTitle>
+          </St.LoginSubTitle> */}
         </St.LoginAllTitle>
         <St.LoginCol>
           <St.LoginRow1>
@@ -88,7 +90,7 @@ export default function LoginPage() {
           </St.LoginRow2>
 
           <St.LoginButtons>
-            <St.LoginButton onClick={() => navigate('/join')}>
+            <St.LoginButton onClick={() => navigate("/join")}>
               회원가입
             </St.LoginButton>
             <St.LoginBar>│</St.LoginBar>
@@ -107,3 +109,13 @@ export default function LoginPage() {
     </St.LoginContainer1>
   );
 }
+
+const Loginn = styled.div`
+  background-image: url("/img/login.png");
+  background-position: center;
+  background-size: contain;
+  height: 85px;
+  size: fit-content;
+  background-repeat: no-repeat;
+  margin-left: 15px;
+`;

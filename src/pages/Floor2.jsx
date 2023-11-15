@@ -12,6 +12,7 @@ const Floor2 = () => {
   const [selectedButtons, setSelectedButtons] = useState([]); //선택된 버튼들을 배열로 모아둠
   const [roomState, setroomState] = useState(roomData); //index = roomData2(배열값)
   const [roomname, setRoomname] = useState(''); //roomname = roomData.name(방이름 초기값)
+  // const [name, setName] = useState('');
 
   const navigate = useNavigate(); // 페이지간 이동을 위한 함수 import
 
@@ -258,3 +259,4 @@ const ButtonColumns = styled.section`
 `;
 
 export default Floor2;
+export const floor2Room = roomData.map((room) => room.name);

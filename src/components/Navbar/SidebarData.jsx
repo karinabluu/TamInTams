@@ -8,12 +8,13 @@ export const SidebarData = [
     title: "공지사항",
     icon: <IoIcons.IoIosPaper />,
     cName: "nav-button",
+    modal: true,
   },
   {
     title: "회의실 예약",
-    path: "/Mypage",
     icon: <FaIcons.FaCartPlus />,
     cName: "nav-button",
+    modal: true,
   },
   {
     title: "로그아웃",

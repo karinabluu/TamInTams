@@ -1,32 +1,33 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import JoinInput from '../components/Input/JoinInput';
-import { getToken } from '../util/token';
-import * as St from '../styles/styles';
-import { validateUserId, validatePassword } from '../util/validation';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import JoinInput from "../components/Input/JoinInput";
+import { getToken } from "../util/token";
+import * as St from "../styles/styles";
+import { validateUserId, validatePassword } from "../util/validation";
+import styled from "styled-components";
 
 export default function JoinPage() {
-  const [id, setId] = useState('');
-  const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
-  const [passwordConfirm, setPasswordConfirm] = useState('');
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
   const navigate = useNavigate();
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     const token = getToken();
     if (token) {
-      navigate('/join');
+      navigate("/join");
     }
   }, []);
 
   const handleInputChange = (value, validator, validationMessage) => {
     if (!value) {
-      setErrorMessage('');
+      setErrorMessage("");
     } else {
       if (validator(value)) {
-        setErrorMessage('');
+        setErrorMessage("");
       } else {
         setErrorMessage(validationMessage);
       }
@@ -35,33 +36,33 @@ export default function JoinPage() {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-    setErrorMessage('');
+    setErrorMessage("");
 
     if (!id) {
-      setErrorMessage('아이디를 입력하세요.');
+      setErrorMessage("아이디를 입력하세요.");
       return;
     }
 
     if (!password) {
-      setErrorMessage('비밀번호를 입력하세요.');
+      setErrorMessage("비밀번호를 입력하세요.");
       return;
     }
 
     if (password !== passwordConfirm) {
-      alert('비밀번호와 비밀번호 확인이 서로 다릅니다.');
-      setErrorMessage('비밀번호와 비밀번호 확인이 서로 다릅니다.');
+      alert("비밀번호와 비밀번호 확인이 서로 다릅니다.");
+      setErrorMessage("비밀번호와 비밀번호 확인이 서로 다릅니다.");
       return;
     }
 
     if (!validateUserId(id)) {
       setErrorMessage(
-        '아이디는 7~12자 이내, 특수문자와 한글은 포함하지 않습니다.'
+        "아이디는 7~12자 이내, 특수문자와 한글은 포함하지 않습니다."
       );
       return;
     }
     if (!validatePassword(password)) {
       setErrorMessage(
-        '비밀번호는 8자 이상, 특수문자는 1개 이상 들어가야 됩니다.'
+        "비밀번호는 8자 이상, 특수문자는 1개 이상 들어가야 됩니다."
       );
       return;
     }
@@ -74,17 +75,17 @@ export default function JoinPage() {
 
     try {
       const response = await axios.post(
-        'http://3.36.132.186:8000/api/auth/register',
+        "http://13.209.65.63:8000/api/auth/register",
         userData,
-        { headers: { 'Content-Type': 'application/json' } }
+        { headers: { "Content-Type": "application/json" } }
       );
 
       if (response.status === 201) {
-        alert('회원가입이 완료되었습니다.');
-        navigate('/');
+        alert("회원가입이 완료되었습니다.");
+        navigate("/");
       }
     } catch (error) {
-      console.error('회원가입 실패:', error);
+      console.error("회원가입 실패:", error);
       alert(error.response.data.message);
       setErrorMessage(error.response.data.message);
     }
@@ -94,7 +95,7 @@ export default function JoinPage() {
     <St.JoinContainer1>
       <St.JoinContainer2>
         <St.JoinHeader>
-          <St.JoinSubTitle>TAMINTAMS</St.JoinSubTitle>
+          <Joinn />
           <St.JoinTitle>회원가입</St.JoinTitle>
         </St.JoinHeader>
         <St.JoinRow1>
@@ -107,7 +108,7 @@ export default function JoinPage() {
         </St.JoinRow1>
         {validateUserId(id) || (
           <St.ErrorMessage>
-            아이디는 7~12자 이내, 특수문자와 한글은 포함하지 않습니다.
+            7~12자 이내, 특수문자와 한글은 포함하지 않습니다.
           </St.ErrorMessage>
         )}
         <St.JoinRow2>
@@ -120,7 +121,7 @@ export default function JoinPage() {
         </St.JoinRow2>
         {validatePassword(password) || (
           <St.ErrorMessage>
-            비밀번호는 8자 이상, 특수문자는 1개 이상 들어가야 됩니다.
+            8자 이상, 특수문자는 1개 이상 들어가야 됩니다.
           </St.ErrorMessage>
         )}
         <St.JoinRow3>
@@ -143,12 +144,12 @@ export default function JoinPage() {
             onChange={(e) => setName(e.target.value)}
           />
         </St.JoinRow4>
-        {name.trim() === '' && (
+        {name.trim() === "" && (
           <St.ErrorMessage>사용자 이름을 입력하세요.</St.ErrorMessage>
         )}
 
         <St.JoinButtons>
-          <St.JoinButton onClick={() => navigate('/')}>이전으로</St.JoinButton>
+          <St.JoinButton onClick={() => navigate("/")}>이전으로</St.JoinButton>
           <St.JoinBar>│</St.JoinBar>
           <St.JoinButton onClick={onSubmitHandler}>가입완료</St.JoinButton>
         </St.JoinButtons>
@@ -156,3 +157,12 @@ export default function JoinPage() {
     </St.JoinContainer1>
   );
 }
+
+const Joinn = styled.div`
+  background-image: url("/img/join.png");
+  background-position: center;
+  background-size: contain;
+  height: 40px;
+  size: fit-content;
+  background-repeat: no-repeat;
+`;

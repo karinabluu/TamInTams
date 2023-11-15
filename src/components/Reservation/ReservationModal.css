@@ -8,52 +8,6 @@
   background-color: rgba(0, 0, 0, 0.6);
 }
 
-.modal > section {
-  max-width: 1200px;
-  margin: 0 auto;
-  border-radius: 0.3rem;
-  border: 0.2rem solid black;
-  background-color: #fff;
-
-  /* 팝업이 열릴때 스르륵 열리는 효과 */
-  animation: modal-show 0.3s;
-  overflow: hidden;
-}
-.modal > section > header {
-  position: relative;
-  padding: 12px 64px 12px 14px;
-  background-color: #000000;
-  color: #fff;
-  font-weight: 700;
-  font-size: 20px;
-}
-.modal > section > header button {
-  position: absolute;
-  top: 8px;
-  right: 12px;
-  width: 30px;
-  font-size: 21px;
-  font-weight: 700;
-  text-align: center;
-  color: #999;
-  background-color: transparent;
-}
-.modal > section > main {
-  padding: 20px 30px 20px 30px;
-  border-bottom: 2px solid #000000;
-  border-top: 2px solid #000000;
-}
-.modal > section > footer {
-  padding: 12px 16px;
-  text-align: right;
-}
-.modal > section > footer button {
-  padding: 6px 12px;
-  color: #fff;
-  background-color: #6c757d;
-  border-radius: 5px;
-  font-size: 13px;
-}
 .modal.openModal {
   display: flex;
   align-items: center;
@@ -61,39 +15,78 @@
   animation: modal-bg-show 0.3s;
 }
 
-.modal button {
-  outline: none;
-  display: inline-block;
-  width: 50px;
-  height: 30px;
-  cursor: pointer;
-  border: 0;
+.black-squaree {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #000000; /* 모달 배경색 */
+  border: 14px solid black;
+  z-index: 1000; /* 다른 요소 위에 표시하려면 z-index를 높게 설정합니다. */
+  width: 736px;
+  height: 235px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* 모달 그림자 효과 추가 */
+  border-radius: 22px; /* 모달 테두리 둥글게 만듭니다. */
 }
 
-/* 타임라인 전체 스타일 */
-.timeline {
+/* White square 스타일 */
+.white-squaree {
+  position: absolute;
+  top: 56%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
-  height: 34px; /* 타임라인의 높이 */
+  justify-content: center;
+  width: 750px;
+  height: 220px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 16px;
+}
+
+.notice-title {
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 0;
+  padding-top: 3px;
+  padding-left: 10px;
+}
+
+.closebutton {
+  font-size: 20px;
+  width: 40px;
+  height: 25px;
+  display: flex;
+  font-weight: bold;
+  align-items: flex;
+  justify-content: center;
+  cursor: pointer;
+  background-color: transparent;
+  color: white;
+  border: 1px solid transparent;
+  margin-top: -3px;
+  margin-right: -3px;
+}
+
+.wrap {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  align-items: flex-start;
-  position: relative;
-  padding-top: 20px; /* 시간대와의 간격을 조정 */
+  margin-top: -5px;
 }
 
 /* 시간대 레이블 스타일 */
 .time-labels {
   display: flex;
-  grid-template-columns: repeat(5, 1fr);
+  /* grid-template-columns: repeat(5, 1fr); */
   width: 100%;
   justify-content: space-between;
   font-size: small;
   margin-top: 5px;
   margin-bottom: 5px;
   font-weight: 700; /* 텍스트 크기 조정 */
-  color: #969696;
+  border-radius: 20px;
 }
-
-
 
 .time-label {
   text-align: left;
@@ -103,29 +96,69 @@
   margin-top: 5px; /* 그래프 선과 텍스트 사이의 간격을 조정*/
 }
 
-
-
 /* 선택된 버튼 스타일 */
 .timelinebutton.selected {
-  content: '';
-  width: calc(100% / 12);
+  content: "";
+  width: 53px;
   position: relative;
   left: 0;
+  margin: 0px 1.5px 0 1.5px;
+  border-radius: 5px;
+  border: 2.3px solid #000000; /* 선택된 버튼의 테두리 색상 */
   top: 0;
-  background-color: #02c8be; /* 선택된 버튼의 배경색과 같게 설정 */
-  color: #ffffff; /* 선택된 버튼의 텍스트 색상 */
-  animation: fillButton 0.3s ease-out forwards; /* 배경색 채움 애니메이션 적용 */
+  background-color: rgb(151, 216, 20); /* 선택된 버튼의 배경색과 같게 설정 */
+  color: white; /* 선택된 버튼의 텍스트 색상 */
+  cursor: pointer;
 }
 
+.timelinebutton.notselected:hover {
+  background-color: rgb(151, 216, 20);
+  transition: transform 1s ease-in-out;
+  border: 1.2px solid rgb(151, 216, 20);
+}
 
 /* 선택되지 않은 버튼 스타일 */
 .timelinebutton.notselected {
-  color: black; /* 선택되지 않은 버튼의 텍스트 색상 */
+  margin-top: 31px;
+  color: white;
+  border: 0;
+  width: 53px;
+  margin: 56.5px 1.5px 0 1.5px;
+  border-radius: 5px;
+  border: 1.2px solid rgb(191, 191, 191);
+  background-color: rgb(191, 191, 191);
+  cursor: pointer;
+  font-size: 11px;
+}
+.timelinebutton.booked {
+  background-color: red;
+  border: 1.2px solid red;
+  color: white;
+  font-weight: bold; /* 텍스트 색상을 흰색으로 설정하여 가독성을 높임 */
 }
 
+.timelinebutton.booked:hover {
+  background-color: red; /* 호버 효과를 제거하므로 배경색은 유지 */
+  border: 1.2px solid red; /* 호버 효과를 제거하므로 테두리도 유지 */
+  color: white; /* 호버 효과를 제거하므로 텍스트 색상도 유지 */
+  font-weight: bold;
+}
 
-
-
+.booking {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 140px;
+  height: 40px;
+  width: 100px;
+  margin-left: -101px;
+  border-radius: 11px;
+  background-color: #02c8be;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
 @keyframes fillButton {
   from {
     width: 0;

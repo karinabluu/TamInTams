@@ -247,3 +247,4 @@ const ButtonsSpace2 = styled.section`
 `;
 
 export default Floor3;
+export const floor3Room = roomData2.map(room => room.name);
